@@ -1,1 +1,2 @@
 add_lunch_combo ev_passion-userdebug
+add_lunch_combo ev_supersonic-userdebug
