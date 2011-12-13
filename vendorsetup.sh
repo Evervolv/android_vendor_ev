@@ -1,3 +1,4 @@
-add_lunch_combo ev_passion-userdebug
-add_lunch_combo ev_speedy-userdebug
-add_lunch_combo ev_supersonic-userdebug
+add_lunch_combo ev_inc-eng
+add_lunch_combo ev_passion-eng
+add_lunch_combo ev_speedy-eng
+add_lunch_combo ev_supersonic-eng
