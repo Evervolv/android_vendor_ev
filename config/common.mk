@@ -11,7 +11,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.setupwizard.enterprise_mode=1 \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false
-  	
+
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
@@ -43,9 +43,17 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/dictionaries
 ADDITIONAL_DEFAULT_PROPERTIES += \
     persist.sys.strictmode.override=1
 
-####Not implemented - but lets use it. ####
-#PRODUCT_VERSION_MAJOR = 2
-#PRODUCT_VERSION_MINOR = 0
-#PRODUCT_VERSION_MAINTENANCE = 0
-
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_DISPLAY_ID=ITL41D
+
+# Version Info
+PRODUCT_VERSION_MAJOR = 2
+PRODUCT_VERSION_MINOR = 0
+PRODUCT_VERSION_MAINTENANCE = 0
+
+ifneq ($(NIGHTLY),true)
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.romversion=Evervolv-$(PRODUCT_CODENAME)-$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)
+else
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.romversion=Evervolv-$(PRODUCT_CODENAME)-$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(shell date +%m%d%Y)-NIGHTLY
+endif
