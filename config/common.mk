@@ -41,7 +41,7 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/dictionaries
 
 # Disable strict mode
 ADDITIONAL_DEFAULT_PROPERTIES += \
-    persist.sys.strictmode.override=1
+    persist.sys.strictmode.disable=1
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_DISPLAY_ID=ITL41D
 
