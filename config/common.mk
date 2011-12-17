@@ -41,7 +41,7 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/dictionaries
 
 # Disable strict mode
 ADDITIONAL_DEFAULT_PROPERTIES += \
-    persist.sys.strictmode.disable=1
+    persist.sys.strictmode.disable=true
 
 # Version Info
 PRODUCT_VERSION_MAJOR = 2
