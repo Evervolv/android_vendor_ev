@@ -30,5 +30,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/mkshrc:system/etc/mkshrc
 
+# Branding
+include $(SRC_EVERVOLV_DIR)/config/branding.mk
+
 # Packages
 include $(SRC_EVERVOLV_DIR)/config/packages.mk
