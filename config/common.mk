@@ -37,6 +37,13 @@ PRODUCT_PACKAGES += \
     VisualizationWallpapers \
     PhaseBeam
 
+# Utilize init.d scripts
+PRODUCT_COPY_FILES += \
+    vendor/ev/prebuilt/common/bin/sysinit:system/bin/sysinit \
+    vendor/ev/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+    vendor/ev/prebuilt/common/etc/init.d/05mountext:system/etc/init.d/05mountext
+
+
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/dictionaries
 
 # Disable strict mode
