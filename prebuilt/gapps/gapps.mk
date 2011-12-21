@@ -4,7 +4,7 @@ vendor/ev/prebuilt/gapps/system/app/Calendar.apk:system/app/Calendar.apk \
 vendor/ev/prebuilt/gapps/system/app/CalendarProvider.apk:system/app/CalendarProvider.apk \
 vendor/ev/prebuilt/gapps/system/app/ChromeBookmarksSyncAdapter.apk:system/app/ChromeBookmarksSyncAdapter.apk \
 vendor/ev/prebuilt/gapps/system/app/GenieWidget.apk:system/app/GenieWidget.apk \
-vendor/ev/prebuilt/gapps/system/app/Gmail.apk:system/app/GenieWidget.apk \
+vendor/ev/prebuilt/gapps/system/app/Gmail.apk:system/app/Gmail.apk \
 vendor/ev/prebuilt/gapps/system/app/GoogleBackupTransport.apk:system/app/GoogleBackupTransport.apk \
 vendor/ev/prebuilt/gapps/system/app/GoogleContactsSyncAdapter.apk:system/app/GoogleContactsSyncAdapter.apk \
 vendor/ev/prebuilt/gapps/system/app/GoogleFeedback.apk:system/app/GoogleFeedback.apk \
@@ -22,7 +22,6 @@ vendor/ev/prebuilt/gapps/system/app/Music2.apk:system/app/Music2.apk \
 vendor/ev/prebuilt/gapps/system/app/NetworkLocation.apk:system/app/NetworkLocation.apk \
 vendor/ev/prebuilt/gapps/system/app/OneTimeInitializer.apk:system/app/OneTimeInitializer.apk \
 vendor/ev/prebuilt/gapps/system/app/SetupWizard.apk:system/app/SetupWizard.apk \
-vendor/ev/prebuilt/gapps/system/app/Superuser.apk:system/app/Superuser.apk \
 vendor/ev/prebuilt/gapps/system/app/Talk.apk:system/app/Talk.apk \
 vendor/ev/prebuilt/gapps/system/app/Vending.apk:system/app/Vending.apk \
 vendor/ev/prebuilt/gapps/system/app/VoiceSearch.apk:system/app/VoiceSearch.apk \
@@ -32,4 +31,7 @@ vendor/ev/prebuilt/gapps/system/etc/permissions/com.google.android.media.effects
 vendor/ev/prebuilt/gapps/system/etc/permissions/features.xml:system/etc/permissions/features.xml \
 vendor/ev/prebuilt/gapps/system/framework/com.google.android.maps.jar:system/framework/com.google.android.maps.jar \
 vendor/ev/prebuilt/gapps/system/framework/com.google.android.media.effects.jar:system/framework/com.google.android.media.effects.jar \
+vendor/ev/prebuilt/gapps/system/lib/libflint_engine_jni_api.so:system/lib/libflint_engine_jni_api.so \
+vendor/ev/prebuilt/gapps/system/lib/libspeexresampler.so:system/lib/libspeexresampler.so \
+vendor/ev/prebuilt/gapps/system/lib/libspeexwrapper.so:system/lib/libspeexwrapper.so \
 vendor/ev/prebuilt/gapps/system/lib/libvoicesearch.so:system/lib/libvoicesearch.so
