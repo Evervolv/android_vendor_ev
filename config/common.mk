@@ -44,6 +44,21 @@ PRODUCT_COPY_FILES += \
     vendor/ev/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
     vendor/ev/prebuilt/common/etc/init.d/05mountext:system/etc/init.d/05mountext
 
+# Apps2sd files
+PRODUCT_COPY_FILES += \
+    vendor/ev/prebuilt/common/bin/a2sd:system/bin/a2sd \
+    vendor/ev/prebuilt/common/bin/fix_permissions:system/bin/fix_permissions \
+    vendor/ev/prebuilt/common/xbin/zipalign:system/xbin/zipalign \
+    vendor/ev/prebuilt/common/etc/init.d/10apps2sd-redux:system/etc/init.d/10apps2sd
+
+# Prebuilt commandline tools
+PRODUCT_COPY_FILES += \
+    vendor/ev/prebuilt/common/xbin/dropbear-keygen:system/xbin/dropbear-keygen \
+    vendor/ev/prebuilt/common/xbin/htop:system/xbin/htop \
+    vendor/ev/prebuilt/common/xbin/powertop:system/xbin/powertop \
+    vendor/ev/prebuilt/common/etc/profile:system/etc/profile \
+    vendor/ev/prebuilt/common/etc/terminfo/l/linux:system/etc/terminfo/l/linux \
+    vendor/ev/prebuilt/common/etc/terminfo/u/unknown:system/etc/terminfo/u/unknown
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/dictionaries
 
