@@ -25,6 +25,7 @@ PRODUCT_PACKAGES += \
 # Optional packages
 PRODUCT_PACKAGES += \
     AndroidTerm \
+    EVToolbox \
     VideoEditor \
     VoiceDialer \
     Basic \
