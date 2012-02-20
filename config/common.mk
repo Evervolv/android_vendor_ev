@@ -42,6 +42,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     vendor/ev/prebuilt/common/bin/sysinit:system/bin/sysinit \
     vendor/ev/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+    vendor/ev/prebuilt/common/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
     vendor/ev/prebuilt/common/etc/init.d/05mountext:system/etc/init.d/05mountext
 
 # Apps2sd files
