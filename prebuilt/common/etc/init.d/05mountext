@@ -1,7 +1,7 @@
 #!/system/bin/sh
 #
 # mount ext partition from sd card
-# Revised 20111220 by Andrew Sutherland for apps2sd on Evervolv ICS
+# Revised by Andrew Sutherland for The Evervolv Project (20120223)
 
 if [ "$SD_EXT_DIRECTORY" = "" ];
 then
@@ -10,6 +10,8 @@ fi;
 BB="/system/xbin/busybox";
 FDISK="$BB fdisk -l";
 E2FSCK="/system/bin/e2fsck";
+logI="log -p i -t mountext"
+logE="log -p e -t mountext"
 
 # find SD Card
 for MMC_NUM in `seq 0 9`;
@@ -29,47 +31,65 @@ done
 # mount sdcard if a valid partition was found
 if [ -b "$SD_EXT_PART" ];
 then
-    log -p i -t mountext "Checking $SD_EXT_PART for errors...";
+    $logI "Checking $SD_EXT_PART for errors...";
     # fsck the sd-ext filesystem first
     if [ -x "$E2FSCK" ];
     then
-        $E2FSCK -y $SD_EXT_PART;
+        # using p instead of y to prevent 10min+ boot times when the
+        # filesystem has many unrecoverable errors
+        $E2FSCK -p $SD_EXT_PART;
         e2fsk_exitcode=$?;
     else
-        log -p i -t mountext "executable e2fsck not found, assuming no filesystem errors";
+        $logE "executable e2fsck not found, assuming no filesystem errors";
         e2fsk_exitcode=0;
     fi;
     # set property with exit code in case an error occurs
     setprop ev.e2fsck.errors $e2fsk_exitcode;
-    if [ "$e2fsk_exitcode" -lt 2 ];
+    if [ $e2fsk_exitcode -le 2 ];
     then
         # mount and set perms
-        # it is ok to mount ext[3/4] partitions as ext4
+        # it is ok to mount ext[2/3/4] partitions as ext4
         $BB mount -t ext4 -o noauto_da_alloc,data=ordered,commit=15,barrier=1,nouser_xattr,errors=continue,noatime,nodiratime,nosuid,nodev $SD_EXT_PART $SD_EXT_DIRECTORY;
-        if [ "$?" = 0 ];
+        if [ $? -eq 0 ];
         then
             $BB chown 1000:1000 $SD_EXT_DIRECTORY;
             $BB chmod 771 $SD_EXT_DIRECTORY;
-            log -p i -t mountext "$SD_EXT_DIRECTORY successfully mounted";
+            $logI "$SD_EXT_DIRECTORY successfully mounted";
         else
-            log -p e -t mountext "Unable to mount filesystem for $SD_EXT_DIRECTORY!";
+            $logE "Unable to mount filesystem for $SD_EXT_DIRECTORY!";
         fi;
     else
-        log -p e -t mountext "e2fsck returned error $e2fsk_exitcode";
-        log -p e -t mountext "Unable to repair ext partition...not mounting";
+        $logE "e2fsck returned error $e2fsk_exitcode";
+        $logE "Unable to repair ext partition...not mounting";
     fi;
 else
-    log -p e -t mountext "linux partition not found on sdcard";
+    $logE "linux partition not found on sdcard";
+fi;
+# swap: do zram first so it gets first priority since it should be faster
+# handle zram
+zramprop=`getprop persist.sys.zram.enable`
+zramblkdev="zram0"
+# 10% is smallest reasonable size
+if [[ $zramprop -ge 10 ]]; then
+    $logI "zRam percentage = $zramprop%"
+    if [ -b /dev/block/${zramblkdev} ]; then
+        memtotal=`$BB awk '{ if ($1 eq "MemTotal:") print $2 ;exit }' </proc/meminfo`
+        zramsize=$((($(($memtotal * $zramprop)) / 100) * 1024))
+        $logI "Initializing $zramsize bytes of zRam"
+        echo $zramsize > /sys/block/${zramblkdev}/disksize
+        mkswap /dev/block/${zramblkdev} >/dev/null
+        $BB swapon /dev/block/${zramblkdev}
+    else
+        $logE "no zRam device found"
+    fi;
 fi;
 # enable swap
-if [ "$SWAP_PART" = "" ];
-then
-    setprop ev.swap 0;
-    setprop ev.swappart "none";
-    log -p i -t mountext "No swap partition found.";
-else
-    $BB swapon $SWAP_PART;
-    setprop ev.swap 1;
-    setprop ev.swappart $SWAP_PART;
-    log -p i -t mountext "Swap enabled on $SWAP_PART";
+if [ -n "$SWAP_PART" ]; then
+    if [ -b $SWAP_PART ]; then
+        $BB swapon $SWAP_PART;
+        $logI "Swap enabled on $SWAP_PART";
+    else
+        $logE "Swap block device doesnt exist.";
+    fi;
 fi;
+exit;
