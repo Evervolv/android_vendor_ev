@@ -330,7 +330,7 @@ in
             echo -e "unmounting $SD_EXT_DIRECTORY"
             $bb umount "$SD_EXT_DIRECTORY"
             echo -e "formating $a2sdblk"
-            $make2fs a2sdblk
+            $make2fs $a2sdblk
             echo -e "$ck done..."
             reboot_now
             ;;
