@@ -63,6 +63,7 @@ PRODUCT_COPY_FILES += \
     vendor/ev/prebuilt/common/etc/terminfo/u/unknown:system/etc/terminfo/u/unknown
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/wallpapers
 
 # Disable strict mode
 ADDITIONAL_DEFAULT_PROPERTIES += \
