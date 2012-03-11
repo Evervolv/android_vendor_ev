@@ -11,4 +11,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.alarm_alert=Alarm_Beep_03.ogg
 
 PRODUCT_PACKAGES += \
-  Mms
+  Mms \
+  EVWidgets
