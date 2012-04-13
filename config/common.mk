@@ -25,18 +25,7 @@ PRODUCT_PACKAGES += \
 # Optional packages
 PRODUCT_PACKAGES += \
     AndroidTerm \
-    EVToolbox \
-    VideoEditor \
-    VoiceDialer \
-    Basic \
-    HoloSpiralWallpaper \
-    MagicSmokeWallpapers \
-    NoiseField \
-    Galaxy4 \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    VisualizationWallpapers \
-    PhaseBeam
+    EVToolbox
 
 # Utilize init.d scripts
 PRODUCT_COPY_FILES += \
