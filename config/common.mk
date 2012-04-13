@@ -63,6 +63,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/dictionaries
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/wallpapers
+PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/common
 
 # Disable strict mode
 ADDITIONAL_DEFAULT_PROPERTIES += \
