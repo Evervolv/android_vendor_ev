@@ -11,6 +11,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.alarm_alert=Scandium.ogg
 
 PRODUCT_PACKAGES += \
+    EVWidgets \
     VideoEditor \
     VoiceDialer \
     Basic \
