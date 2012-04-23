@@ -12,6 +12,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.ringtone=Pyxis.ogg \
+    ro.config.notification_sound=Merope.ogg \
+    ro.config.alarm_alert=Scandium.ogg
+
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
@@ -25,7 +30,8 @@ PRODUCT_PACKAGES += \
 # Optional packages
 PRODUCT_PACKAGES += \
     AndroidTerm \
-    EVToolbox
+    EVToolbox \
+    EVWidgets
 
 # Utilize init.d scripts
 PRODUCT_COPY_FILES += \
@@ -50,7 +56,6 @@ PRODUCT_COPY_FILES += \
     vendor/ev/prebuilt/common/etc/terminfo/l/linux:system/etc/terminfo/l/linux \
     vendor/ev/prebuilt/common/etc/terminfo/u/unknown:system/etc/terminfo/u/unknown
 
-PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/dictionaries
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/wallpapers
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/common
 

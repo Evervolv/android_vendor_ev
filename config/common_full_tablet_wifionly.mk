@@ -1,25 +1,6 @@
-# Inherit commonstuff
+# Inherit common stuff
 $(call inherit-product, vendor/ev/config/common.mk)
+$(call inherit-product, vendor/ev/config/common_full.mk)
 
-# Bring in all audio files
-include frameworks/base/data/sounds/AllAudio.mk
+# More tablet-specific items
 
-# Default ringtone --- TODO: Change these.
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.ringtone=Pyxis.ogg \
-    ro.config.notification_sound=Merope.ogg \
-    ro.config.alarm_alert=Scandium.ogg
-
-PRODUCT_PACKAGES += \
-    EVWidgets \
-    VideoEditor \
-    VoiceDialer \
-    Basic \
-    HoloSpiralWallpaper \
-    MagicSmokeWallpapers \
-    NoiseField \
-    Galaxy4 \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    VisualizationWallpapers \
-    PhaseBeam
