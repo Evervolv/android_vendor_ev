@@ -21,7 +21,25 @@ else
 	TARGET_PREBUILT_INT_KERNEL_TYPE := zImage
 endif
 
+# unless we explicitly specify source build, fallback to prebuilt
+ifneq ($(BUILD_KERNEL),true)
+    KERNEL_SRC:=
+endif
+
 ifeq "$(wildcard $(KERNEL_SRC) )" ""
+    # if we specify source build print a warning that we cant find
+    # the source, then fallback to prebuilt
+    ifeq ($(BUILD_KERNEL),true)
+        $(warning ************************************************)
+        $(warning *            Can't find kernel source          *)
+        $(warning *                                              *)
+        $(warning * You asked me to build the kernel but did not *)
+        $(warning *              provide the source!             *)
+        $(warning *                                              *)
+        $(warning * Please run find_deps to sync the kernel repo *)
+        $(warning * Or place your kernel source in $(KERNEL_SRC))
+        $(warning ************************************************)
+    endif
     ifneq ($(TARGET_PREBUILT_KERNEL),)
         $(warning ************************************************)
         $(warning *         Using prebuilt kernel binary         *)
