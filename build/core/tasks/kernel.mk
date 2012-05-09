@@ -22,14 +22,14 @@ else
 endif
 
 # unless we explicitly specify source build, fallback to prebuilt
-ifneq ($(BUILD_KERNEL),true)
+ifeq (,$(filter true 1,$(BUILD_KERNEL)))
     KERNEL_SRC:=
 endif
 
 ifeq "$(wildcard $(KERNEL_SRC) )" ""
     # if we specify source build print a warning that we cant find
     # the source, then fallback to prebuilt
-    ifeq ($(BUILD_KERNEL),true)
+    ifneq (,$(filter true 1,$(BUILD_KERNEL)))
         $(warning ************************************************)
         $(warning *            Can't find kernel source          *)
         $(warning *                                              *)
