@@ -50,7 +50,6 @@ PRODUCT_COPY_FILES += \
 # Prebuilt commandline tools
 PRODUCT_COPY_FILES += \
     vendor/ev/prebuilt/common/xbin/dropbear-keygen:system/xbin/dropbear-keygen \
-    vendor/ev/prebuilt/common/xbin/htop:system/xbin/htop \
     vendor/ev/prebuilt/common/xbin/powertop:system/xbin/powertop \
     vendor/ev/prebuilt/common/etc/profile:system/etc/profile
 
