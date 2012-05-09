@@ -52,9 +52,7 @@ PRODUCT_COPY_FILES += \
     vendor/ev/prebuilt/common/xbin/dropbear-keygen:system/xbin/dropbear-keygen \
     vendor/ev/prebuilt/common/xbin/htop:system/xbin/htop \
     vendor/ev/prebuilt/common/xbin/powertop:system/xbin/powertop \
-    vendor/ev/prebuilt/common/etc/profile:system/etc/profile \
-    vendor/ev/prebuilt/common/etc/terminfo/l/linux:system/etc/terminfo/l/linux \
-    vendor/ev/prebuilt/common/etc/terminfo/u/unknown:system/etc/terminfo/u/unknown
+    vendor/ev/prebuilt/common/etc/profile:system/etc/profile
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/wallpapers
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/common
