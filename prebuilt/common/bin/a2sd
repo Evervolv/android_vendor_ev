@@ -6,7 +6,7 @@
 # Bourne Again Shell (bash) courtesy of mzet (http://pub.mzet.net/bash)
 # Zipalign code courtesy of Wes Garner
 # Base apps2sd code courtesy of Cyanogen
-# Revised by Andrew Sutherland for The Evervolv Project (20120223)
+# Rewritten by Andrew Sutherland for The Evervolv Project (20120223)
 
 if [ "$SD_EXT_DIRECTORY" = "" ];
 then
@@ -16,8 +16,8 @@ fi;
 bb="/system/xbin/busybox"
 tbox="/system/bin/toolbox"
 zalign="/system/xbin/zipalign"
-fixperms="/system/bin/fix_permissions"
 make2fs="/system/bin/mke2fs -T ext4"
+fixperms="/system/bin/fix_permissions"
 e2fscheck="/system/bin/e2fsck -yf"
 tempstorage="/data/local/tmp"
 a2sdblk=`$tbox getprop a2sd.mountpoint`
@@ -46,120 +46,126 @@ help_me() {
     echo "checkext  : checks $SD_EXT_DIRECTORY for errors"
 }
 
-reboot_now() {
-    echo ""
-    echo "Your phone needs to be rebooted"
-    read -p "Reboot now? (y|n) " answer
-    if [ "$answer" == "y" ]; then
-        echo -e "$ck Rebooting..."
-        $bb sync
-        $bb reboot -f
-        exit;
-    fi;
-    exit;
-}
-
 abort() {
-    echo -e "$er Aborting"
+    $bb echo -e "$er Aborting"
     exit 1
 }
 
+exit_success() {
+    $bb echo -e "$ch Exiting Success"
+    exit
+}
+
+exit_fail(){
+    $bb echo -e "$er Exiting"
+    exit 1
+}
+
+reboot_now() {
+    $bb echo ""
+    $bb echo "Your phone needs to be rebooted"
+    read -p "Reboot now? (y|n) " answer
+    if [ "$answer" == "y" ]; then
+        $bb echo -e "$ck Rebooting..."
+        $bb sync
+        $bb reboot -f
+        exit_success
+    fi;
+    exit_success
+}
+
 set_flag() {
-    echo -e "$ck Setting flag $1"
-    echo "x" > $SD_EXT_DIRECTORY/.$1
+    $bb echo -e "$ck Setting flag $1"
+    $bb echo "x" > $SD_EXT_DIRECTORY/.$1
 }
 
 unset_flag() {
-    echo -e "$ck Removing flag $1"
+    $bb echo -e "$ck Removing flag $1"
     $bb rm -rf $SD_EXT_DIRECTORY/.$1 >/dev/null 2>&1
 }
 
 set_nocp_flag() {
-#    echo -e "$ck Setting nocp flag $1"
-    echo "x" > $SD_EXT_DIRECTORY/$1/.nocp
+#    $bb echo -e "$ck Setting nocp flag $1"
+    $bb echo "x" > $SD_EXT_DIRECTORY/$1/.nocp
 }
 
 unset_nocp_flag() {
-#    echo -e "$ck Removing nocp flag $1"
+#    $bb echo -e "$ck Removing nocp flag $1"
     $bb rm -rf $SD_EXT_DIRECTORY/$1/.nocp >/dev/null 2>&1
 }
 
 set_data_flag() {
-#    echo -e "$ck Setting data flag $1"
-    echo "x" > /data/.$1
+#    $bb echo -e "$ck Setting data flag $1"
+    $bb echo "x" > /data/.$1
 }
 
 unset_data_flag() {
-#    echo -e "$ck Removing data flag $1"
+#    $bb echo -e "$ck Removing data flag $1"
     $bb rm -rf /data/.$1 >/dev/null 2>&1
 }
 
 clear_dir() {
     # We cant just delete the folder since bind
     # mount is still in effect.
-    if [ -d $1 ]; then
-        echo -e "$ck Removing contents of $1"
+    if [ -d "$1" ]; then
+        $bb echo -e "$ck Removing contents of $1"
         $bb rm -rf $1/* >/dev/null 2>&1
     else
-        echo -e "$er $1 directory not found"
+        $bb echo -e "$er $1 directory not found"
     fi;
 }
 
 is_a2sd_active() {
     for ii in .a2sd .dc2sd .xdata .ad2sd; do
         if [ -f $SD_EXT_DIRECTORY/$ii ]; then
-            echo -e "$er a2sd is currently active please run 'remove' then reboot and run this command again"
+            $bb echo -e "$er a2sd is currently active please run 'remove' then reboot and run this command again"
             abort
         fi;
     done;
 }
 
-run_zalign() {
+run_zipalign() {
     #do app-private first so people dont freak out
     #if it errors because it is empty
     for ii in app-private app; do
-        echo -e "Zipaligning all .apk files in /data/$ii"
+        $bb echo -e "Zipaligning all .apk files in /data/$ii"
         for apk in /data/$ii/*.apk ; do
             $zalign -c 4 $apk
             if [ $? == 1 ]; then
-                echo -e "ZipAligning $(basename $apk)"
+                $bb echo -e "ZipAligning $(basename $apk)"
                 $zalign -f 4 $apk $tempstorage/$(basename $apk)
                 if [ -e $tempstorage/$(basename $apk) ]; then
                     $bb cp -fp $tempstorage/$(basename $apk) $apk
                     $bb rm -rf $tempstorage/$(basename $apk) >/dev/null 2>&1
-                    echo -e "$ck ZipAligning $(basename $apk) complete."
+                    $bb echo -e "$ck ZipAligning $(basename $apk) complete."
                 else
-                    echo -e "$er ZipAligning $(basename $apk) failed."
+                    $bb echo -e "$er ZipAligning $(basename $apk) failed."
                 fi;
             else
-                echo -e "$ck ZipAlign already completed on $apk"
+                $bb echo -e "$ck ZipAlign already completed on $apk"
             fi;
         done;
     done;
-    exit;
+    exit_success
 }
 
 install_a2sd() {
-    unset_nocp_flag app
-    unset_nocp_flag app-private
     set_flag a2sd
-    echo -e "Would you also like to move DALVIK-CACHE?"
-    read -p "You can later reverse this with 'nocachesd' (y|n) " answer
+    $bb echo -e "Would you also like to move DALVIK-CACHE?"
+    read -p "You can later undo this with 'nocachesd' (y|n) " answer
     if [ "$answer" == "y" ]; then
         set_flag dc2sd
         unset_data_flag dc2sd
-        echo -e "$ck Dalvik-Cache will be moved to $SD_EXT_DIRECTORY on reboot"
+        $bb echo -e "$ck Dalvik-Cache will be moved to $SD_EXT_DIRECTORY on reboot"
     fi;
-    echo -e "Would you also like to move APPDATA (/data/data)?"
-    read -p "You can later reverse this with 'nodatasd'? (y|n) " answer
+    $bb echo -e "Would you also like to move APPDATA (/data/data)?"
+    read -p "You can later undo this with 'nodatasd'? (y|n) " answer
     if [ "$answer" == "y" ]; then
         set_flag ad2sd
-        unset_nocp_flag data
-        unset_data_flag ad2sd
-        echo -e "$ck App data will be moved to $SD_EXT_DIRECTORY on reboot"
+        $bb echo -e "$ck App data will be moved to $SD_EXT_DIRECTORY on reboot"
     fi;
-    echo -e ""
-    echo -e "$ck Your apps will be moved to $SD_EXT_DIRECTORY on reboot"
+    $bb echo -e ""
+    $bb echo -e "$ck Your apps will be moved to $SD_EXT_DIRECTORY on reboot"
     reboot_now
 }
 
@@ -168,7 +174,6 @@ remove_a2sd() {
     unset_flag ad2sd
     unset_flag dc2sd
     for ll in app app-private data dalvik-cache; do
-        unset_nocp_flag "$ll"
         if [ -d $SD_EXT_DIRECTORY/$ll ]; then
             read -p "Would you like to remove the contents of $SD_EXT_DIRECTORY/$ll? (y|n) " answer
             if [ "$answer" == "y" ]; then
@@ -176,16 +181,16 @@ remove_a2sd() {
             fi;
         fi;
     done;
-    echo -e "$ck Apps2sd will not be active on reboot. Your device will only use internal memory. You will need to restore/reinstall any apps you wish to use."
+    $bb echo -e "$ck Apps2sd will not be active on reboot. Your device will only use internal memory. You will need to restore/reinstall any apps you wish to use."
     reboot_now
 }
 
 install_xdata() {
-    echo -e "Warning:"
-    echo -e "This moves /everything/ on /data to $SD_EXT_DIRECTORY/xdata. You may experience significant performace loss. I highly recommend you use a class6 or 10 sdcard"
-    echo -e ""
-    echo -e "If you wish to /undo/ this with 'noxdata' your phone will revert back the the way it was before this. So any changes made while on xdata will be lost."
-    echo -e ""
+    $bb echo -e "Warning:"
+    $bb echo -e "This moves /everything/ on /data to $SD_EXT_DIRECTORY/xdata. You may experience significant performace loss. I highly recommend you use a class6 or 10 sdcard"
+    $bb echo -e ""
+    $bb echo -e "If you wish to /undo/ this with 'noxdata' your phone will revert back the the way it was before this. So any changes made while on xdata will be lost."
+    $bb echo -e ""
     read -p "Do you wish to continue? (y|n) " answer
     if [ "$answer" != "y" ]; then
         abort
@@ -207,44 +212,43 @@ install_xdata() {
 #
 
 # Make sure only root can run our script
+# XXX: i fear a change in su could break this in the future: revisit later
 if [[ "`id`" != "uid=0(root) gid=0(root)" ]]; then
-   echo -e "$er This script must be run as root"
+   $bb echo -e "$er This script must be run as root"
    abort
 fi;
 
 # Check no arguments
-if [ $# == 0 ]; then
-    echo -e "$er This script cannot be run by itself."
+if [ $# -eq 0 ]; then
+    $bb echo -e "$er This script cannot be run by itself."
     help_me
     abort
 fi;
 
 # a2sd is worthless without its partner
 if [ ! -x "/system/etc/init.d/10apps2sd" ]; then
-    echo -e "$er 10apps2sd is either missing or not executable"
+    $bb echo -e "$er 10apps2sd is either missing or not executable"
     abort
 fi;
 
 # determine the block device
 if [[ "$a2sdblk" == "none" || -z "$a2sdblk" ]]; then
-    echo -e "$er $SD_EXT_DIRECTORY not mounted properly, it might have errors"
-    # 05mountext sets the ev.sdextpart prop that will tell us if
-    # this device even has a mountable ext partiton
+    $bb echo -e "$er $SD_EXT_DIRECTORY not mounted properly, it might have errors"
+    # 05mountext blindly sets the ev.sdextpart prop to p2 of the sdcard
     if [ -z "$a2sdextpart" ]; then
-        echo -e "$er ext partiton unknown!"
+        $bb echo -e "$er Ext partiton unknown!"
         abort
     else
-        if [ -b $a2sdextpart ]; then
-            echo -e "Using $a2sdextpart for the block device"
-            # the rest of the script uses a2sdblk
-            a2sdblk=$a2sdextpart
-        else
-            echo -e "$er block device doest exist: $a2sdextpart"
-            abort
-        fi;
-    fi;
+        a2sdblk=$a2sdextpart
+    fi
+fi
+# make sure block device exists
+if [ -b "$a2sdblk" ]; then
+    $bb echo -e "$ck Found block device: $a2sdblk"
 else
-    echo -e "Using $a2sdblk for the block device"
+    $bb echo -e "$er Block device doest exist: $a2sdblk"
+    $bb echo -e "  Did you partiton your sdcard correctly??"
+    abort
 fi;
 
 # big switch of actions
@@ -257,17 +261,17 @@ in
             remove_a2sd
             ;;
     "diskspace")
-            echo -e "Disk Space statistics on SD card"
+            $bb echo -e "Disk Space statistics on SD card"
             $bb df -h $a2sdblk
-            exit;
+            exit_success
             ;;
-    "align")
-            run_zalign
-            exit;
+    "align" | "zipalign" )
+            run_zipalign
+            exit_success
             ;;
-    "fixapk")
+    "fixapk" | "fixpermissions" )
             $fixperms
-            exit;
+            exit_success
             ;;
     "cleancache")
             clear_dir "/data/dalvik-cache"
@@ -275,26 +279,23 @@ in
             reboot_now
             ;;
     "cachesd")
-            echo -e "$er Please run 'install' instead"
-            exit 1;
+            $bb echo -e "$er Please run 'install' instead"
+            exit_fail
             ;;
     "nocachesd")
             unset_flag dc2sd
+            unset_data_flag dc2sd
             clear_dir "/data/dalvik-cache"
-            echo -e "Dalvik-Cache will be mounted on internal storage on reboot"
+            $bb echo -e "Dalvik-Cache will be mounted on internal storage on reboot"
             reboot_now
             ;;
     "datasd")
-            echo -e "$er Please run 'install' instead"
-            exit 1;
+            $bb echo -e "$er Please run 'install' instead"
+            exit_fail
             ;;
     "nodatasd")
             unset_flag ad2sd
-            read -p "Also erase saved appdata in $SD_EXT_DIRECTORY/data? (y|n) " answer
-            if [ "$answer" == "y" ]; then
-                clear_dir "$SD_EXT_DIRECTORY/data"
-            fi;
-            echo -e "Appdata will be mounted on internal storage on reboot"
+            $bb echo -e "Appdata will be mounted on internal storage on reboot"
             reboot_now
             ;;
     "xdata")
@@ -304,6 +305,7 @@ in
             unset_flag xdata
             unset_nocp_flag xdata/app
             unset_nocp_flag xdata/app-private
+            unset_nocp_flag xdata/data
             read -p "Would you like to remove the contents of $SD_EXT_DIRECTORY/xdata? (y|n) " answer
             if [ "answer" == "y" ]; then
                 clear_dir "$SD_EXT_DIRECTORY/xdata"
@@ -315,55 +317,58 @@ in
                 $bb find $SD_EXT_DIRECTORY/data -maxdepth 1 -name com.android.* -exec $bb rm -rf {} \;
                 reboot_now
             else
-                echo -e "$SD_EXT_DIRECTORY not present...nothing to do"
+                $bb echo -e "$SD_EXT_DIRECTORY/data not present...nothing to do"
             fi;
-            exit;
+            exit_success
             ;;
-    "formatext")
+    "formatext" | "formatsd")
             is_a2sd_active
-            echo -e "Warning this will erase everything on $SD_EXT_DIRECTORY"
+            $bb echo -e "Warning this will erase everything on $SD_EXT_DIRECTORY"
             read -p "Do you want to continue? (y|n) " answer
             if [ "$answer" != "y" ]; then
                 abort
             fi;
             $bb sync
-            echo -e "unmounting $SD_EXT_DIRECTORY"
+            $bb echo -e "Unmounting $SD_EXT_DIRECTORY"
             $bb umount "$SD_EXT_DIRECTORY"
-            echo -e "formating $a2sdblk"
+            $bb echo -e "Formating $a2sdblk"
             $make2fs $a2sdblk
-            echo -e "$ck done..."
+            $bb echo -e "$ck done..."
             reboot_now
             ;;
-    "checkext")
-            is_a2sd_active
+    "checkext" | "checksd")
             $bb sync
-            echo -e "unmounting $SD_EXT_DIRECTORY"
-            $bb umount $SD_EXT_DIRECTORY
-            echo -e "checking $a2sdblk"
+            if ! awk -vDIR="$SD_EXT_DIRECTORY" '$2 == DIR { exit 1; }' /proc/mounts ; then
+                $bb echo  -e "$er $SD_EXT_DIRECTORY is mounted."
+                $bb echo "  Meaning it does not have any fatal errors"
+                exit_fail
+            fi
+            $bb echo -e "checking $a2sdblk"
             $e2fscheck $a2sdblk
-            echo -e "$ck done..."
+            $bb echo -e "$ck done..."
             if [ $? -gt 2 ]; then
-                echo -e "$er e2fsck could not fix all errors"
-                echo -e "  you need to run 'formatext'"
-                exit 1
+                $bb echo -e "$er e2fsck could not fix all errors"
+                $bb echo -e "  you need to run 'formatext'"
+                exit_fail
             fi;
             reboot_now
             ;;
     "partlist")
-            echo -e "Partitions Supported with this ROM:"
+            $bb echo -e "Partitions Supported with this ROM:"
             for ll in ext2 ext3 ext4; do
-                if [[ `$bb grep -q -e $ll /proc/filesystems;echo $?;` -eq 0 ]]; then
-                    echo -e "   $ck $ll partition supported"
+                if [[ `$bb grep -q -e $ll /proc/filesystems;$bb echo $?;` -eq 0 ]]; then
+                    $bb echo -e "   $ck $ll partition supported"
                 else
-                    echo -e "   $er $ll partition not supported"
+                    $bb echo -e "   $er $ll partition not supported"
                 fi;
             done;
-            exit;
+            exit_success
             ;;
     *)
-            echo -e "$er Invalid command: $1"
+            $bb echo -e "$er Invalid command: $1"
             help_me
             abort
             ;;
 esac;
+# How the hell did we get here?
 exit;
