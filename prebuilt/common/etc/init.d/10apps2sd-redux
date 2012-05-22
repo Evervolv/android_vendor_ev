@@ -3,8 +3,7 @@
 # Originates from the cyanogenmod team 
 # Revised by Andrew Sutherland for The Evervolv Project (20120223)
 
-if [ "$SD_EXT_DIRECTORY" = "" ];
-then
+if [ "$SD_EXT_DIRECTORY" = "" ]; then
     SD_EXT_DIRECTORY=/sd-ext;
 fi;
 bb="/system/xbin/busybox";
@@ -20,13 +19,12 @@ if ! awk -vDIR="$SD_EXT_DIRECTORY" '$2 == DIR { exit 1; }' /proc/mounts ; then
                 $logI "AD2SD flag not set...not moving appdata";
                 continue;
             fi;
-            appfiles=`ls /data/$ii | wc -l`;
             # create directories if necessary.
             if [ ! -d $SD_EXT_DIRECTORY/$ii ]; then
                 $bb mkdir $SD_EXT_DIRECTORY/$ii;
                 $bb chown 1000:1000 $SD_EXT_DIRECTORY/$ii;
                 $bb chmod 771 $SD_EXT_DIRECTORY/$ii;
-                $logI "$SD_EXT_DIRECTORY/$ii created";
+                $logI "Created directory $SD_EXT_DIRECTORY/$ii";
             fi;
             # backwards compat for older a2sd
             if [ -h /data/$ii ]; then
@@ -37,13 +35,11 @@ if ! awk -vDIR="$SD_EXT_DIRECTORY" '$2 == DIR { exit 1; }' /proc/mounts ; then
                 $logI "Symlink /data/$ii removed";
             fi;
             # move apks
-            if [ ! -f $SD_EXT_DIRECTORY/$ii/.nocp ]; then
-                if [ $appfiles -gt 0 ]; then
-                    $logI "copying apks in /data/$ii to $SD_EXT_DIRECTORY/$ii";
-                    $bb cp -a /data/$ii/* $SD_EXT_DIRECTORY/$ii/;
-                    $logI "copied $appfiles from /data/$ii"
-                fi;
-                echo "$appfiles" > $SD_EXT_DIRECTORY/$ii/.nocp
+            appfiles=`$bb ls /data/$ii | $bb wc -l`;
+            if [ $appfiles -gt 0 ]; then
+                $logI "Copying apks in /data/$ii to $SD_EXT_DIRECTORY/$ii";
+                $bb cp -a /data/$ii/* $SD_EXT_DIRECTORY/$ii/;
+                $logI "Copied $appfiles from /data/$ii"
             fi;
             # delete the apks
             if [ $appfiles -gt 0 ]; then
@@ -56,7 +52,11 @@ if ! awk -vDIR="$SD_EXT_DIRECTORY" '$2 == DIR { exit 1; }' /proc/mounts ; then
         done;
         $logI "A2SD successfully activated";
     else
-        $logI "A2SD flag not set...nothing to do.";
+        $logI "A2SD flag not set";
+        # Nuke data leaving this will likely cause issues
+        if [ -d $SD_EXT_DIRECTORY/data ]; then
+            $bb rm -rf $SD_EXT_DIRECTORY/data
+        fi
     fi;
     # end a2sd
     # Setup dalvik-cache
@@ -65,10 +65,11 @@ if ! awk -vDIR="$SD_EXT_DIRECTORY" '$2 == DIR { exit 1; }' /proc/mounts ; then
         if [ ! -d $SD_EXT_DIRECTORY/dalvik-cache ]; then
             $bb mkdir $SD_EXT_DIRECTORY/dalvik-cache;
             $bb chown 1000:1000 $SD_EXT_DIRECTORY/dalvik-cache;
-            $bb chmod 777 $SD_EXT_DIRECTORY/dalvik-cache;
+            $bb chmod 771 $SD_EXT_DIRECTORY/dalvik-cache;
             $logI "$SD_EXT_DIRECTORY/dalvik-cache created";
         fi;
-        if [[ $(ls /data/dalvik-cache | wc -l) -gt 0 ]]; then
+        dcfiles=`$bb ls /data/dalvik-cache | $bb wc -l`
+        if [ $dcfiles -gt 0 ]; then
             $logI "Nuking /data/dalvik-cache to free up space";
             $bb rm -rf /data/dalvik-cache/*
         fi;
@@ -84,7 +85,7 @@ if ! awk -vDIR="$SD_EXT_DIRECTORY" '$2 == DIR { exit 1; }' /proc/mounts ; then
         $bb mount -o bind $SD_EXT_DIRECTORY/dalvik-cache /data/dalvik-cache;
         $logI "Finished setting up dalvik-cache on $SD_EXT_DIRECTORY";
     else
-        $logI "DC2SD flag not set...nothing to do";
+        $logI "DC2SD flag not set";
         # remove since its not being used
         if [ -d $SD_EXT_DIRECTORY/dalvik-cache ]; then
             $logI "Removing $SD_EXT_DIRECTORY/dalvik-cache";
@@ -103,36 +104,36 @@ if ! awk -vDIR="$SD_EXT_DIRECTORY" '$2 == DIR { exit 1; }' /proc/mounts ; then
         fi;
         # move files
         if [ ! -f $SD_EXT_DIRECTORY/xdata/.nocp ]; then
-            $logI "wiping $SD_EXT_DIRECTORY/xdata";
+            $logI "Wiping $SD_EXT_DIRECTORY/xdata";
             $bb rm -rf $SD_EXT_DIRECTORY/xdata/*;
-            echo "x" > $SD_EXT_DIRECTORY/xdata/.nocp;
-            $logI "cloning /data to $SD_EXT_DIRECTORY/xdata";
+            $bb echo "x" > $SD_EXT_DIRECTORY/xdata/.nocp;
+            $logI "Cloning /data to $SD_EXT_DIRECTORY/xdata";
             $bb cp -a /data/* $SD_EXT_DIRECTORY/xdata/;
             #$bb rm -r /data/*;
         fi;
-        # bind mount the xdata directory to the expected data directory
-        $logI "bind mounting $SD_EXT_DIRECTORY/xdata/ to /data";
-        $bb mount -o bind $SD_EXT_DIRECTORY/xdata /data;
         # dont mess with the old a2sd dirs just copy the apks into the new one
         for ll in app app-private data; do
             if [ -d $SD_EXT_DIRECTORY/$ll ]; then
                 if [ ! -f $SD_EXT_DIRECTORY/xdata/$ll/.nocp ]; then
-                    numfiles=`ls $SD_EXT_DIRECTORY/$ll | wc -l`;
+                    numfiles=`$bb ls $SD_EXT_DIRECTORY/$ll | $bb wc -l`;
                     if [ $numfiles -gt 0 ]; then
                         $bb cp -a $SD_EXT_DIRECTORY/$ll/* $SD_EXT_DIRECTORY/xdata/$ll/;
-                        $logI "copied $numfiles apks from $SD_EXT_DIRECTORY/$ll to $SD_EXT_DIRECTORY/xdata/$ll";
+                        $logI "Copied $numfiles apks from $SD_EXT_DIRECTORY/$ll to $SD_EXT_DIRECTORY/xdata/$ll";
+                        echo "$numfiles" > $SD_EXT_DIRECTORY/xdata/$ll/.nocp;
                     fi;
-                    echo "$numfiles" > $SD_EXT_DIRECTORY/xdata/$ll/.nocp;
                 fi;
             fi;
         done;
-        $logI "done setting up experimental xdata";
+        # bind mount the xdata directory to the expected data directory
+        $logI "Bind mounting $SD_EXT_DIRECTORY/xdata/ to /data";
+        $bb mount -o bind $SD_EXT_DIRECTORY/xdata /data;
+        $logI "Done setting up experimental xdata";
     else
-        $logI "XDATA flag not set...nothing to do";
+        $logI "XDATA flag not set";
     fi;
     #end experimental xdata
     #setprops needed by a2sd script
-    setprop a2sd.mountpoint `cat /proc/mounts | grep "$SD_EXT_DIRECTORY" | awk '/^\// {print $1;exit;}'`
+    setprop a2sd.mountpoint `$bb cat /proc/mounts | $bb grep "$SD_EXT_DIRECTORY" | $bb awk '/^\// {print $1;exit;}'`
     setprop ev.filesystem.ready 1;
 else
     $logI "$SD_EXT_DIRECTORY not mounted...nothing to do";
