@@ -63,7 +63,7 @@ then
         $logE "Unable to repair ext partition...not mounting";
     fi;
 else
-    $logE "linux partition not found on sdcard";
+    $logI "linux partition not found on sdcard";
 fi;
 # swap: do zram first so it gets first priority since it should be faster
 # handle zram
