@@ -3,6 +3,7 @@ add_lunch_combo ev_desirec-eng
 add_lunch_combo ev_epic4gtouch-eng
 add_lunch_combo ev_heroc-eng
 add_lunch_combo ev_inc-eng
+add_lunch_combo ev_jewel-eng
 add_lunch_combo ev_kingdom-eng
 add_lunch_combo ev_mecha-eng
 add_lunch_combo ev_passion-eng
