@@ -31,6 +31,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     AndroidTerm \
     EVToolbox \
+    EVTips \
     EVWidgets
 
 # Utilize init.d scripts
