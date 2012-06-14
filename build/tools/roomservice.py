@@ -13,7 +13,11 @@ if len(sys.argv) > 2:
 else:
     depsonly = None
 
-device = product[product.index("_") + 1:]
+try:
+    device = product[product.index("_") + 1:]
+except:
+    device = product
+
 if not depsonly:
     print "Device %s not found. Attempting to retrieve device repository from Evervolv Github (http://github.com/Evervolv)." % device
 
@@ -21,10 +25,11 @@ repositories = []
 
 page = 1
 while not depsonly:
-    result = json.loads(urllib2.urlopen("http://github.com/api/v2/json/repos/show/Evervolv?page=%d" % page).read())
-    if len(result['repositories']) == 0:
+    result = json.loads(urllib2.urlopen("https://api.github.com/users/Evervolv/repos?per_page=100&page=%d" % page).read())
+    if len(result) == 0:
         break
-    repositories = repositories + result['repositories']
+    for res in result:
+        repositories.append(res)
     page = page + 1
 
 def exists_in_tree(lm, repository):
