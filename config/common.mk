@@ -55,8 +55,8 @@ PRODUCT_COPY_FILES += \
     vendor/ev/prebuilt/common/xbin/powertop:system/xbin/powertop \
     vendor/ev/prebuilt/common/etc/profile:system/etc/profile
 
-PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/wallpapers
-PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/common
+#PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/wallpapers
+#PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/common
 
 # Disable strict mode
 ADDITIONAL_DEFAULT_PROPERTIES += \
