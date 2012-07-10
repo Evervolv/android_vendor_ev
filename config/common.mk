@@ -19,7 +19,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
-    frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
 
 # Required packages
 PRODUCT_PACKAGES += \
