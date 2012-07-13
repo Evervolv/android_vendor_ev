@@ -34,6 +34,16 @@ PRODUCT_PACKAGES += \
     EVTips \
     EVWidgets
 
+# Openssh
+PRODUCT_PACKAGES += \
+    ssh \
+    sftp \
+    scp \
+    sshd \
+    ssh-keygen \
+    sshd_config \
+    start-ssh
+
 # Utilize init.d scripts
 PRODUCT_COPY_FILES += \
     vendor/ev/prebuilt/common/bin/sysinit:system/bin/sysinit \
