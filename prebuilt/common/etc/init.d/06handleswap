@@ -26,6 +26,7 @@ done
 
 # handle zram
 zramprop=`getprop persist.service.zram`
+[ "$zramprop" = "" ] && zramprop=0
 # Hardcode this: I can't think of a scenario where we would want multiple devs
 zramblkdev=zram0
 # 10% is smallest reasonable size
