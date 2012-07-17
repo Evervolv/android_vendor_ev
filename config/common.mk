@@ -44,6 +44,13 @@ PRODUCT_PACKAGES += \
     sshd_config \
     start-ssh
 
+# e2fsprogs
+PRODUCT_PACKAGES += \
+    e2fsck \
+    mke2fs \
+    tune2fs \
+    resize2fs
+
 # Utilize init.d scripts
 PRODUCT_COPY_FILES += \
     vendor/ev/prebuilt/common/bin/sysinit:system/bin/sysinit \
