@@ -13,7 +13,7 @@ logI="log -p i -t apps2sd";
 if ! awk -vDIR="$SD_EXT_DIRECTORY" '$2 == DIR { exit 1; }' /proc/mounts ; then
     # if a2sd flag present we can continue
     if [ -f $SD_EXT_DIRECTORY/.a2sd ]; then
-        for ii in app app-private data; do
+        for ii in app app-private app-asec data; do
             # dont move data unless user opted for it.
             if [[ "$ii" == "data" && ! -f $SD_EXT_DIRECTORY/.ad2sd ]]; then
                 $logI "AD2SD flag not set...not moving appdata";
