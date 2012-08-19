@@ -5,7 +5,9 @@ include frameworks/base/data/sounds/AllAudio.mk
 
 #include vendor/ev/config/themes.mk
 
-#PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/full
+ifeq ($(TARGET_USE_KEYBOARD), international)
+    PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/full
+endif
 
 PRODUCT_PACKAGES += \
     VideoEditor \
