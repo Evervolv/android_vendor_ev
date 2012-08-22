@@ -42,6 +42,7 @@ PRODUCT_PACKAGES += \
     sshd \
     ssh-keygen \
     sshd_config \
+    sshd_motd \
     start-ssh
 
 # e2fsprogs
