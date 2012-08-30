@@ -51,3 +51,9 @@ if [ -b "$SD_EXT_PART" ]; then
         $logE "Unable to repair ext partition...not mounting";
     fi;
 fi;
+
+# Disable /data encryption on yaffs
+DATA_FS_TYPE=`$BB awk -vDIR="/data" '$2 == DIR { print $3; exit; }' /proc/mounts`
+if [ "$DATA_FS_TYPE" = "yaffs2" ]; then
+    setprop ro.crypto.state unsupported
+fi
