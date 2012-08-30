@@ -11,6 +11,7 @@ logE="log -p e -t mountext"
 
 # find SD Card
 for MMC_NUM in `seq 0 9`; do
+    test -e /sys/block/mmcblk${MMC_NUM}/device/type || continue
     MMC_TYPE=`cat /sys/block/mmcblk${MMC_NUM}/device/type`
     if [ "$MMC_TYPE" = "SD" ]; then
         # 2nd partition of sdcard should be the sd-ext if it exists
@@ -49,7 +50,4 @@ if [ -b "$SD_EXT_PART" ]; then
         $logE "e2fsck returned error $e2fsk_exitcode";
         $logE "Unable to repair ext partition...not mounting";
     fi;
-else
-    $logI "linux partition not found on sdcard";
 fi;
-exit;

@@ -13,6 +13,7 @@ logE="log -p e -t handleswap"
 
 # find SD Card
 for MMC_NUM in `seq 0 9`; do
+    test -e /sys/block/mmcblk${MMC_NUM}/device/type || continue
     MMC_TYPE=`$BB cat /sys/block/mmcblk${MMC_NUM}/device/type`
     if [ "$MMC_TYPE" = "SD" ]; then
         SWAP_PART=`$BB fdisk -l /dev/block/mmcblk${MMC_NUM} | $BB awk '/^\// && $5 == 82 {print $1;exit;}'`;

@@ -2,4 +2,6 @@
 #
 # read and set values from sysctl.conf
 
-sysctl -p
+if [ -e /system/etc/sysctl.conf ]; then
+    sysctl -p
+fi
