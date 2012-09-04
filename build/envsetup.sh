@@ -48,6 +48,19 @@ function breakfast()
     return $?
 }
 
+function cleantree () {
+    read -p "Are you sure you want to erase local changes? (y|N)" ans
+    test "$ans" = "Y" || test "$ans" = "y" || return
+    if [ "$(pwd)" != "$ANDROID_BUILD_TOP" ]; then
+        cd "$ANDROID_BUILD_TOP"
+    fi
+    echo "Cleaning tree...This will take a few minutes"
+    repo forall -c git reset --hard >/dev/null 2>&1
+    repo forall -c git clean -fd >/dev/null 2>&1
+    repo sync -fd >/dev/null 2>&1
+    echo "Done"
+}
+
 function evgerrit() {
     if [ $# -eq 0 ]; then
         $FUNCNAME help
