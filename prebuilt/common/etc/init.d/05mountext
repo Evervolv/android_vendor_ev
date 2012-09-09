@@ -1,55 +1,57 @@
 #!/system/bin/sh
 #
 # mount ext partition from sd card
-# Andrew Sutherland - (20120605)
+# Andrew Sutherland - (20120909)
 
-[ "$SD_EXT_DIRECTORY" = "" ] && SD_EXT_DIRECTORY=/sd-ext;
-BB="/system/xbin/busybox";
-E2FSCK="/system/bin/e2fsck";
+BB="/system/xbin/busybox"
+E2FSCK="/system/bin/e2fsck"
 logI="log -p i -t mountext"
 logE="log -p e -t mountext"
 
+if [ -z "$SD_EXT_DIRECTORY" ]; then SD_EXT_DIRECTORY=/sd-ext; fi
+
 # find SD Card
 for MMC_NUM in `seq 0 9`; do
-    test -e /sys/block/mmcblk${MMC_NUM}/device/type || continue
+    if [ ! -e /sys/block/mmcblk${MMC_NUM}/device/type ]; then continue; fi
     MMC_TYPE=`cat /sys/block/mmcblk${MMC_NUM}/device/type`
     if [ "$MMC_TYPE" = "SD" ]; then
-        # 2nd partition of sdcard should be the sd-ext if it exists
+        # 2nd partition will be used for /sd-ext
         SD_EXT_PART=/dev/block/mmcblk${MMC_NUM}p2
         setprop ev.sdextpart $SD_EXT_PART
-        break;
-    fi;
+        break
+    fi
 done
-# mount sdcard if a valid partition was found
-if [ -b "$SD_EXT_PART" ]; then
-    $logI "Checking $SD_EXT_PART for errors...";
-    # fsck the sd-ext filesystem first
-    if [ -x "$E2FSCK" ]; then
-        # using p instead of y to prevent 10min+ boot times when the
-        # filesystem has many unrecoverable errors
-        $E2FSCK -p $SD_EXT_PART;
-        e2fsk_exitcode=$?;
+# make sure partition exists
+if [ ! -b "$SD_EXT_PART" ]; then exit; fi
+# make sure its not already mounted (ie via init.rc)
+if ! awk -vBLK="$SD_EXT_PART" '$1 == BLK { exit 1; }' /proc/mounts; then exit; fi
+# Check for errors
+if [ -x "$E2FSCK" ]; then
+    $logI "Checking $SD_EXT_PART for errors..."
+    # using p instead of y to prevent 10min+ boot times when the
+    # filesystem has many unrecoverable errors
+    $E2FSCK -p $SD_EXT_PART
+    e2fsk_exitcode=$?
+else
+    $logE "Executable e2fsck not found... assuming no filesystem errors"
+    e2fsk_exitcode=0
+fi;
+# set property with exit code in case an error occurs
+setprop ev.e2fsck.errors $e2fsk_exitcode
+if [ $e2fsk_exitcode -le 2 ]; then
+    # mount and set perms
+    # it is ok to mount ext[2/3/4] partitions as ext4
+    $BB mount -t ext4 -o noauto_da_alloc,data=ordered,commit=15,barrier=1,nouser_xattr,errors=continue,noatime,nodiratime,nosuid,nodev $SD_EXT_PART $SD_EXT_DIRECTORY
+    if [ $? -eq 0 ]; then
+        $BB chown 1000:1000 $SD_EXT_DIRECTORY
+        $BB chmod 771 $SD_EXT_DIRECTORY
+        $logI "$SD_EXT_DIRECTORY successfully mounted"
     else
-        $logE "executable e2fsck not found, assuming no filesystem errors";
-        e2fsk_exitcode=0;
-    fi;
-    # set property with exit code in case an error occurs
-    setprop ev.e2fsck.errors $e2fsk_exitcode;
-    if [ $e2fsk_exitcode -le 2 ]; then
-        # mount and set perms
-        # it is ok to mount ext[2/3/4] partitions as ext4
-        $BB mount -t ext4 -o noauto_da_alloc,data=ordered,commit=15,barrier=1,nouser_xattr,errors=continue,noatime,nodiratime,nosuid,nodev $SD_EXT_PART $SD_EXT_DIRECTORY;
-        if [ $? -eq 0 ]; then
-            $BB chown 1000:1000 $SD_EXT_DIRECTORY;
-            $BB chmod 771 $SD_EXT_DIRECTORY;
-            $logI "$SD_EXT_DIRECTORY successfully mounted";
-        else
-            $logE "Unable to mount filesystem for $SD_EXT_DIRECTORY!";
-        fi;
-    else
-        $logE "e2fsck returned error $e2fsk_exitcode";
-        $logE "Unable to repair ext partition...not mounting";
-    fi;
+        $logE "Error: unable to mount $SD_EXT_DIRECTORY!"
+    fi
+else
+    $logE "Error: e2fsck returned $e2fsk_exitcode"
+    $logE "Error: unable to mount $SD_EXT_DIRECTORY!"
 fi;
 
 # Disable /data encryption on yaffs
