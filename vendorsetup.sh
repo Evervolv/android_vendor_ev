@@ -8,6 +8,7 @@ add_lunch_combo ev_passion-eng
 add_lunch_combo ev_pyramid-eng
 add_lunch_combo ev_ruby-eng
 add_lunch_combo ev_shooter-eng
+add_lunch_combo ev_shootervm-eng
 add_lunch_combo ev_speedy-eng
 add_lunch_combo ev_supersonic-eng
 add_lunch_combo ev_tenderloin-eng
