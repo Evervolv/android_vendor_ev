@@ -6,7 +6,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     openvpn \
     e2fsck \
+    htop \
     mke2fs \
+    nano \
     tune2fs
 
 # ExFAT support
