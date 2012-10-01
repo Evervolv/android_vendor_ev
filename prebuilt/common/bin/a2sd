@@ -1,28 +1,24 @@
 #!/bin/bash
-
+# Evervolv has a symlink from /bin/bash other roms will not have this
 # Based on Darktremor Apps2SD version 2.7.5
 # Based on Darktremor A2SD 2.6.1-R2 By: Robert Travis Kirton
 # Based on the Cyanogen 1.5 Scripts
 # Bourne Again Shell (bash) courtesy of mzet (http://pub.mzet.net/bash)
 # Zipalign code courtesy of Wes Garner
 # Base apps2sd code courtesy of Cyanogen
-# Rewritten by Andrew Sutherland for The Evervolv Project (20120223)
+# Rewritten by Andrew Sutherland for The Evervolv Project (20121003)
 
-if [ "$SD_EXT_DIRECTORY" = "" ];
-then
-    SD_EXT_DIRECTORY=/sd-ext;
-fi;
+if [ -z "$SD_EXT_DIRECTORY" ]; then SD_EXT_DIRECTORY=/sd-ext; fi;
 
 bb="/system/xbin/busybox"
 tbox="/system/bin/toolbox"
 zalign="/system/xbin/zipalign"
-make2fs="/system/bin/mke2fs -T ext4"
+make2fs="/system/bin/mke2fs -T ext4 -O ^has_journal"
 fixperms="/system/bin/fix_permissions"
 e2fscheck="/system/bin/e2fsck -yf"
 tempstorage="/data/local/tmp"
 a2sdblk=`$tbox getprop a2sd.mountpoint`
 a2sdextpart=`$tbox getprop ev.sdextpart`
-#a2sdfsready=`$tbox getprop ev.filesystem.ready`
 ck="\xe2\x9c\x94"
 er="\xe2\x9c\x96"
 pl="\xe2\x9c\x9a"
@@ -34,7 +30,6 @@ help_me() {
     echo "remove    : clears a2sd/dc2sd/ad2sd flags"
     echo "align     : runs zipalign on all apks"
     echo "fixapk    : runs fix_permissions on all apks"
-    echo "partlist  : shows if ext[2/3/4] is supported"
     echo "diskspace : shows disk usage on $SD_EXT_DIRECTORY"
     echo "cleancache: clears dalvik-cache"
     echo "nocachesd : cleancache and clears dc2sd flag"
@@ -52,7 +47,7 @@ abort() {
 }
 
 exit_success() {
-    $bb echo -e "$ch Exiting Success"
+    $bb echo -e "$ck Exiting Success"
     exit
 }
 
@@ -77,6 +72,7 @@ reboot_now() {
 set_flag() {
     $bb echo -e "$ck Setting flag $1"
     $bb echo "x" > $SD_EXT_DIRECTORY/.$1
+    $bb chmod 644 $SD_EXT_DIRECTORY/.$1
 }
 
 unset_flag() {
@@ -87,6 +83,7 @@ unset_flag() {
 set_nocp_flag() {
 #    $bb echo -e "$ck Setting nocp flag $1"
     $bb echo "x" > $SD_EXT_DIRECTORY/$1/.nocp
+    $bb chmod 644 $SD_EXT_DIRECTORY/$1/.nocp
 }
 
 unset_nocp_flag() {
@@ -97,6 +94,7 @@ unset_nocp_flag() {
 set_data_flag() {
 #    $bb echo -e "$ck Setting data flag $1"
     $bb echo "x" > /data/.$1
+    $bb chmod 644 /data/.$1
 }
 
 unset_data_flag() {
@@ -150,6 +148,10 @@ run_zipalign() {
 }
 
 install_a2sd() {
+    unset_flag a2sd
+    unset_flag ad2sd
+    unset_flag dc2sd
+    unset_data_flag dc2sd
     set_flag a2sd
     $bb echo -e "Would you also like to move DALVIK-CACHE?"
     read -p "You can later undo this with 'nocachesd' (y|n) " answer
@@ -173,7 +175,7 @@ remove_a2sd() {
     unset_flag a2sd
     unset_flag ad2sd
     unset_flag dc2sd
-    for ll in app app-private data dalvik-cache; do
+    for ll in app app-private app-asec data dalvik-cache; do
         if [ -d $SD_EXT_DIRECTORY/$ll ]; then
             read -p "Would you like to remove the contents of $SD_EXT_DIRECTORY/$ll? (y|n) " answer
             if [ "$answer" == "y" ]; then
@@ -212,11 +214,10 @@ install_xdata() {
 #
 
 # Make sure only root can run our script
-# XXX: i fear a change in su could break this in the future: revisit later
-if [[ "`id`" != "uid=0(root) gid=0(root)" ]]; then
+if [[ "$($bb whoami)" != "root" ]]; then
    $bb echo -e "$er This script must be run as root"
    abort
-fi;
+fi
 
 # Check no arguments
 if [ $# -eq 0 ]; then
@@ -329,19 +330,22 @@ in
                 abort
             fi;
             $bb sync
-            $bb echo -e "Unmounting $SD_EXT_DIRECTORY"
-            $bb umount "$SD_EXT_DIRECTORY"
+            if ! awk -vDIR="$SD_EXT_DIRECTORY" '$2 == DIR { exit 1; }' /proc/mounts ; then
+                $bb echo -e "Unmounting $SD_EXT_DIRECTORY"
+                $bb umount "$SD_EXT_DIRECTORY"
+            fi
             $bb echo -e "Formating $a2sdblk"
             $make2fs $a2sdblk
             $bb echo -e "$ck done..."
-            reboot_now
+            exit_success
             ;;
     "checkext" | "checksd")
             $bb sync
             if ! awk -vDIR="$SD_EXT_DIRECTORY" '$2 == DIR { exit 1; }' /proc/mounts ; then
-                $bb echo  -e "$er $SD_EXT_DIRECTORY is mounted."
-                $bb echo "  Meaning it does not have any fatal errors"
-                exit_fail
+                $bb echo "$SD_EXT_DIRECTORY is mounted."
+                $bb echo "Forcing check on next boot"
+                setprop persist.a2sd.forcecheck true
+                reboot_now
             fi
             $bb echo -e "checking $a2sdblk"
             $e2fscheck $a2sdblk
@@ -352,17 +356,6 @@ in
                 exit_fail
             fi;
             reboot_now
-            ;;
-    "partlist")
-            $bb echo -e "Partitions Supported with this ROM:"
-            for ll in ext2 ext3 ext4; do
-                if [[ `$bb grep -q -e $ll /proc/filesystems;$bb echo $?;` -eq 0 ]]; then
-                    $bb echo -e "   $ck $ll partition supported"
-                else
-                    $bb echo -e "   $er $ll partition not supported"
-                fi;
-            done;
-            exit_success
             ;;
     *)
             $bb echo -e "$er Invalid command: $1"
