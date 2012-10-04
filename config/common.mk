@@ -58,7 +58,8 @@ PRODUCT_COPY_FILES += \
     vendor/ev/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
     vendor/ev/prebuilt/common/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
     vendor/ev/prebuilt/common/etc/init.d/05mountext:system/etc/init.d/05mountext \
-    vendor/ev/prebuilt/common/etc/init.d/06handleswap:system/etc/init.d/06handleswap
+    vendor/ev/prebuilt/common/etc/init.d/06handleswap:system/etc/init.d/06handleswap \
+    vendor/ev/prebuilt/common/etc/init.d/20extgapps:system/etc/init.d/20extgapps
 
 # Apps2sd files
 PRODUCT_COPY_FILES += \

@@ -1,0 +1,44 @@
+#!/system/bin/sh
+#
+# create symlinks on /system for gapps located on /sd-ext
+#
+# Andrew Sutherland - (20121003)
+
+if [ -z "$SD_EXT_DIRECTORY" ]; then SD_EXT_DIRECTORY=/sd-ext; fi
+BB=/system/xbin/busybox
+logI="log -p i -t extgapps"
+EXT_GAPPS=$SD_EXT_DIRECTORY/gapps
+EXT_GAPPS_SYS=$EXT_GAPPS/system
+OLD_APPS="Provision QuickSearchBox Vending"
+
+if ! awk -vDIR="$SD_EXT_DIRECTORY" '$2 == DIR { exit 1; }' /proc/mounts ; then
+    if [ -f $EXT_GAPPS/.extgapps ]; then
+
+        $BB mount -o rw,remount /system
+
+        for app in $OLD_APPS; do
+            if [ -f /system/app/${app}.apk ]; then
+                $BB rm -f /system/app/${app}.apk
+                $logI "Removed $app"
+            fi
+        done
+
+        filestolink=$($BB find $EXT_GAPPS_SYS -type f -print)
+        for ii in $filestolink; do
+            srcfile=$ii
+            dstlink=${ii#$EXT_GAPPS}
+            linkdir=$($BB dirname $dstlink)
+            if [ ! -d $linkdir ]; then
+                $BB mkdir -p $linkdir
+                $logI "Created $linkdir"
+            fi
+            if [ ! -h $dstlink ]; then
+                $BB ln -s $srcfile $dstlink
+                $logI "Created $dstlink"
+            fi
+        done
+
+        $BB mount -o ro,remount /system
+
+    fi
+fi
