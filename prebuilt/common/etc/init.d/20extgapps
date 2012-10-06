@@ -34,6 +34,8 @@ if ! awk -vDIR="$SD_EXT_DIRECTORY" '$2 == DIR { exit 1; }' /proc/mounts ; then
             fi
             if [ ! -h $dstlink ]; then
                 $BB ln -s $srcfile $dstlink
+                $BB chown root.root $srcfile
+                $BB chmod 644 $srcfile
                 $logI "Created $dstlink"
             fi
         done
