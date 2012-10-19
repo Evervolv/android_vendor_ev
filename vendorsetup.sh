@@ -1,5 +1,6 @@
 add_lunch_combo ev_bravo-eng
 add_lunch_combo ev_desirec-eng
+add_lunch_combo ev_express-eng
 add_lunch_combo ev_grouper-eng
 add_lunch_combo ev_inc-eng
 add_lunch_combo ev_jewel-eng
