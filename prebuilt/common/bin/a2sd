@@ -1,5 +1,4 @@
-#!/bin/bash
-# Evervolv has a symlink from /bin/bash other roms will not have this
+#!/system/xbin/bash
 # Based on Darktremor Apps2SD version 2.7.5
 # Based on Darktremor A2SD 2.6.1-R2 By: Robert Travis Kirton
 # Based on the Cyanogen 1.5 Scripts
