@@ -3,7 +3,7 @@
 # Bring in all audio files
 include frameworks/base/data/sounds/AllAudio.mk
 
-include vendor/ev/config/themes.mk
+#include vendor/ev/config/themes.mk
 
 # English Dictionary
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/dictionaries/english
