@@ -74,7 +74,6 @@ PRODUCT_COPY_FILES += \
     vendor/ev/prebuilt/common/xbin/powertop:system/xbin/powertop \
     vendor/ev/prebuilt/common/etc/profile:system/etc/profile
 
-#PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/wallpapers
 # Backup Transport
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/common
 
