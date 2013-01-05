@@ -13,6 +13,13 @@ KERNEL_DEFCONFIG := $(TARGET_KERNEL_CONFIG)
 KERNEL_OUT := $(ANDROID_BUILD_TOP)/$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ
 KERNEL_CONFIG := $(KERNEL_OUT)/.config
 
+# Allow building kernel with different -mtune/cpu options
+ifneq "" "$(strip $(TARGET_EXTRA_CFLAGS))"
+  ifeq "" "$(strip $(KERNEL_CFLAGS))"
+    KERNEL_CFLAGS := $(TARGET_EXTRA_CFLAGS)
+  endif
+endif
+
 ifeq ($(BOARD_USES_UBOOT),true)
 	TARGET_PREBUILT_INT_KERNEL := $(KERNEL_OUT)/arch/$(TARGET_ARCH)/boot/uImage
 	TARGET_PREBUILT_INT_KERNEL_TYPE := uImage
@@ -110,6 +117,7 @@ ifeq ($(TARGET_ARCH),arm)
     endif
     ARM_CROSS_COMPILE:=CROSS_COMPILE="$(ccache) $(ARM_EABI_TOOLCHAIN)/arm-eabi-"
     ccache = 
+    ARM_KCFLAGS:=KCFLAGS="$(KERNEL_CFLAGS)"
 endif
 
 ifeq ($(TARGET_KERNEL_MODULES),)
