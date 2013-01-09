@@ -21,8 +21,19 @@ except:
 if not depsonly:
     print "Device %s not found. Attempting to retrieve device repository from Evervolv Github (http://github.com/Evervolv)." % device
 
-repositories = []
+local_manifest_dir = ".repo/local_manifests"
+local_manifest = os.path.join(local_manifest_dir, "kernels.xml")
 
+try: # Convert from depreciated format
+    if not os.path.isdir(local_manifest_dir):
+        os.makedirs(local_manifest_dir)
+    if os.path.exists(".repo/local_manifest.xml"):
+        os.rename(".repo/local_manifest.xml",local_manifest)
+except OSError as e:
+    print "Fatal: %s" % e
+    sys.exit()
+
+repositories = []
 page = 1
 while not depsonly:
     result = json.loads(urllib2.urlopen("https://api.github.com/users/Evervolv/repos?per_page=100&page=%d" % page).read())
@@ -56,7 +67,7 @@ def indent(elem, level=0):
 
 def get_from_manifest(devicename):
     try:
-        lm = ElementTree.parse(".repo/local_manifest.xml")
+        lm = ElementTree.parse(local_manifest)
         lm = lm.getroot()
     except:
         lm = ElementTree.Element("manifest")
@@ -80,7 +91,7 @@ def get_from_manifest(devicename):
 
 def is_in_manifest(projectname):
     try:
-        lm = ElementTree.parse(".repo/local_manifest.xml")
+        lm = ElementTree.parse(local_manifest)
         lm = lm.getroot()
     except:
         lm = ElementTree.Element("manifest")
@@ -93,7 +104,7 @@ def is_in_manifest(projectname):
 
 def add_to_manifest(repositories):
     try:
-        lm = ElementTree.parse(".repo/local_manifest.xml")
+        lm = ElementTree.parse(local_manifest)
         lm = lm.getroot()
     except:
         lm = ElementTree.Element("manifest")
@@ -118,7 +129,7 @@ def add_to_manifest(repositories):
     raw_xml = ElementTree.tostring(lm)
     raw_xml = '<?xml version="1.0" encoding="UTF-8"?>\n' + raw_xml
 
-    f = open('.repo/local_manifest.xml', 'w')
+    f = open(local_manifest, 'w')
     f.write(raw_xml)
     f.close()
 
@@ -177,4 +188,4 @@ else:
             print "Done"
             sys.exit()
 
-print "Repository for %s not found in the Evervolv Github repository list. If this is in error, you may need to manually add it to your local_manifest.xml." % device
+print "Repository for %s not found in the Evervolv Github repository list. If this is in error, you may need to manually add it to your local_manifests." % device
