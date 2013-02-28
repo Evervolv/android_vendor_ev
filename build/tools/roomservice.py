@@ -4,6 +4,7 @@ import sys
 import urllib2
 import json
 import re
+import netrc, base64
 from xml.etree import ElementTree
 
 product = sys.argv[1];
@@ -21,22 +22,40 @@ except:
 if not depsonly:
     print "Device %s not found. Attempting to retrieve device repository from Evervolv Github (http://github.com/Evervolv)." % device
 
-local_manifest_dir = ".repo/local_manifests"
-local_manifest = os.path.join(local_manifest_dir, "kernels.xml")
+repositories = []
+local_manifests_dir = ".repo/local_manifests"
+local_manifests = []
+local_manifests = os.listdir(local_manifests_dir)
+default_revison = "jellybean"
 
 try: # Convert from depreciated format
-    if not os.path.isdir(local_manifest_dir):
-        os.makedirs(local_manifest_dir)
+    if not os.path.isdir(local_manifests_dir):
+        os.makedirs(local_manifests_dir)
     if os.path.exists(".repo/local_manifest.xml"):
-        os.rename(".repo/local_manifest.xml",local_manifest)
+        os.rename(".repo/local_manifest.xml", os.path.join(local_manifests_dir, "deprecated_manifest.xml"))
 except OSError as e:
     print "Fatal: %s" % e
     sys.exit()
 
-repositories = []
+try:
+    authtuple = netrc.netrc().authenticators("api.github.com")
+
+    if authtuple:
+        githubauth = base64.encodestring('%s:%s' % (authtuple[0], authtuple[2])).replace('\n', '')
+    else:
+        githubauth = None
+except:
+    githubauth = None
+
+def add_auth(githubreq):
+    if githubauth:
+        githubreq.add_header("Authorization","Basic %s" % githubauth)
+
 page = 1
 while not depsonly:
-    result = json.loads(urllib2.urlopen("https://api.github.com/users/Evervolv/repos?per_page=100&page=%d" % page).read())
+    githubreq = urllib2.Request("https://api.github.com/users/Evervolv/repos?per_page=100&page=%d" % page)
+    add_auth(githubreq)
+    result = json.loads(urllib2.urlopen(githubreq).read())
     if len(result) == 0:
         break
     for res in result:
@@ -66,15 +85,16 @@ def indent(elem, level=0):
             elem.tail = i
 
 def get_from_manifest(devicename):
-    try:
-        lm = ElementTree.parse(local_manifest)
-        lm = lm.getroot()
-    except:
-        lm = ElementTree.Element("manifest")
+    for manifest in local_manifests:
+        try:
+            lm = ElementTree.parse(os.path.join(local_manifests_dir, manifest))
+            lm = lm.getroot()
+        except:
+            lm = ElementTree.Element("manifest")
 
-    for localpath in lm.findall("project"):
-        if re.search("android_device_.*_%s$" % device, localpath.get("name")):
-            return localpath.get("path")
+        for localpath in lm.findall("project"):
+            if re.search("android_device_.*_%s$" % device, localpath.get("name")):
+                return localpath.get("path")
 
     # Devices originally from AOSP are in the main manifest...
     try:
@@ -90,26 +110,32 @@ def get_from_manifest(devicename):
     return None
 
 def is_in_manifest(projectname):
-    try:
-        lm = ElementTree.parse(local_manifest)
-        lm = lm.getroot()
-    except:
-        lm = ElementTree.Element("manifest")
+    for manifest in local_manifests:
+        try:
+            lm = ElementTree.parse(os.path.join(local_manifests_dir, manifest))
+            lm = lm.getroot()
+        except:
+            lm = ElementTree.Element("manifest")
 
-    for localpath in lm.findall("project"):
-        if localpath.get("name") == projectname:
-            return 1
+        for localpath in lm.findall("project"):
+            if localpath.get("name") == projectname:
+                return 1
 
     return None
 
 def add_to_manifest(repositories):
-    try:
-        lm = ElementTree.parse(local_manifest)
-        lm = lm.getroot()
-    except:
-        lm = ElementTree.Element("manifest")
-
     for repository in repositories:
+        if 'dep_type' in repository:
+            dep_manifest = os.path.join(local_manifests_dir, repository['dep_type'] + ".xml")
+        else:
+            print 'dep_type not found, assuming device tree, otherwise please update your ev.dependencies config'
+            dep_manifest = os.path.join(local_manifests_dir, "device.xml")
+        try:
+            lm = ElementTree.parse(dep_manifest)
+            lm = lm.getroot()
+        except:
+            lm = ElementTree.Element("manifest")
+
         repo_name = repository['repository']
         repo_target = repository['target_path']
         if exists_in_tree(lm, repo_name):
@@ -122,16 +148,18 @@ def add_to_manifest(repositories):
 
         if 'branch' in repository:
             project.set('revision',repository['branch'])
+        else:
+            project.set('revision',default_revison)
 
         lm.append(project)
 
-    indent(lm, 0)
-    raw_xml = ElementTree.tostring(lm)
-    raw_xml = '<?xml version="1.0" encoding="UTF-8"?>\n' + raw_xml
+        indent(lm, 0)
+        raw_xml = ElementTree.tostring(lm)
+        raw_xml = '<?xml version="1.0" encoding="UTF-8"?>\n' + raw_xml
 
-    f = open(local_manifest, 'w')
-    f.write(raw_xml)
-    f.close()
+        f = open(dep_manifest, 'w')
+        f.write(raw_xml)
+        f.close()
 
 def fetch_dependencies(repo_path):
     print 'Looking for dependencies'
