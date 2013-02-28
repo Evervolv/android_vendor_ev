@@ -1,7 +1,4 @@
 add_lunch_combo ev_bravo-eng
-add_lunch_combo ev_desirec-eng
-add_lunch_combo ev_evita-eng
-add_lunch_combo ev_express-eng
 add_lunch_combo ev_glacier-eng
 add_lunch_combo ev_grouper-eng
 add_lunch_combo ev_inc-eng
@@ -9,7 +6,6 @@ add_lunch_combo ev_jewel-eng
 add_lunch_combo ev_kingdom-eng
 add_lunch_combo ev_manta-eng
 add_lunch_combo ev_passion-eng
-add_lunch_combo ev_primoc-eng
 add_lunch_combo ev_pyramid-eng
 add_lunch_combo ev_ruby-eng
 add_lunch_combo ev_shooter-eng
@@ -18,5 +14,4 @@ add_lunch_combo ev_shootervm-eng
 add_lunch_combo ev_speedy-eng
 add_lunch_combo ev_supersonic-eng
 add_lunch_combo ev_tenderloin-eng
-add_lunch_combo ev_toro-eng
 add_lunch_combo ev_vivow-eng
