@@ -8,6 +8,10 @@ import netrc, base64
 from xml.etree import ElementTree
 
 product = sys.argv[1];
+local_manifests_dir = ".repo/local_manifests"
+default_revison = "jellybean"
+repositories = []
+local_manifests = []
 
 if len(sys.argv) > 2:
     depsonly = sys.argv[2]
@@ -22,12 +26,6 @@ except:
 if not depsonly:
     print "Device %s not found. Attempting to retrieve device repository from Evervolv Github (http://github.com/Evervolv)." % device
 
-repositories = []
-local_manifests_dir = ".repo/local_manifests"
-local_manifests = []
-local_manifests = os.listdir(local_manifests_dir)
-default_revison = "jellybean"
-
 try: # Convert from depreciated format
     if not os.path.isdir(local_manifests_dir):
         os.makedirs(local_manifests_dir)
@@ -36,6 +34,9 @@ try: # Convert from depreciated format
 except OSError as e:
     print "Fatal: %s" % e
     sys.exit()
+
+# list the currently existing manifests
+local_manifests = os.listdir(local_manifests_dir)
 
 try:
     authtuple = netrc.netrc().authenticators("api.github.com")
