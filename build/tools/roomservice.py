@@ -185,6 +185,16 @@ def fetch_dependencies(repo_path):
     else:
         print 'Dependencies file not found, bailing out.'
 
+    vendor = repo_path.split('/')[1]
+    vendor_repo = {
+            'target_path': 'vendor/%s' % vendor,
+            'repository' : 'android_vendor_%s' % vendor,
+            'dep_type'   : 'vendor'
+    }
+    if not is_in_manifest('%s' % vendor_repo['repository']):
+        add_to_manifest([vendor_repo])
+        syncable_repos.append(vendor_repo['target_path'])
+
     if len(syncable_repos) > 0:
         print 'Syncing dependencies'
         os.system('repo sync %s' % ' '.join(syncable_repos))
