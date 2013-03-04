@@ -7,6 +7,7 @@ add_lunch_combo ev_jewel-eng
 add_lunch_combo ev_kingdom-eng
 add_lunch_combo ev_mecha-eng
 add_lunch_combo ev_passion-eng
+add_lunch_combo ev_p350-eng
 add_lunch_combo ev_ruby-eng
 add_lunch_combo ev_shooter-eng
 add_lunch_combo ev_skyrocket-eng
