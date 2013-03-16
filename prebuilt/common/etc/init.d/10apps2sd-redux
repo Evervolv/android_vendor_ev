@@ -63,7 +63,7 @@ if ! awk -vDIR="$SD_EXT_DIRECTORY" '$2 == DIR { exit 1; }' /proc/mounts ; then
 
     # for apks
     if [ -f $SD_EXT_DIRECTORY/.a2sd ]; then
-        for ii in app app-private; do
+        for ii in app app-private app-lib; do
             init_directory $ii
             move_content $ii
             mount_directory $ii
@@ -135,7 +135,7 @@ if ! awk -vDIR="$SD_EXT_DIRECTORY" '$2 == DIR { exit 1; }' /proc/mounts ; then
             #$bb rm -r /data/*;
         fi;
         # dont mess with the old a2sd dirs just copy the apks into the new one
-        for ll in app app-private data; do
+        for ll in app app-private app-lib data; do
             if [ -d $SD_EXT_DIRECTORY/$ll ]; then
                 if [ ! -f $SD_EXT_DIRECTORY/xdata/$ll/.nocp ]; then
                     numfiles=$($bb ls $SD_EXT_DIRECTORY/$ll | $bb wc -l)
