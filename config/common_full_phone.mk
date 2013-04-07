@@ -4,5 +4,6 @@ $(call inherit-product, vendor/ev/config/common_full.mk)
 
 PRODUCT_PACKAGES += \
     Mms \
-    Torch
+    Torch \
+    CellBroadcastReceiver
 
