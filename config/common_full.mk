@@ -1,8 +1,5 @@
 #Config used for full targets, with telephony or without.
 
-# Bring in all audio files
-include frameworks/base/data/sounds/AllAudio.mk
-
 include vendor/ev/config/themes.mk
 
 # English Dictionary
