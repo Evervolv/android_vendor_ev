@@ -5,10 +5,8 @@ add_lunch_combo ev_grouper-eng
 add_lunch_combo ev_hercules-eng
 add_lunch_combo ev_inc-eng
 add_lunch_combo ev_jewel-eng
-add_lunch_combo ev_kingdom-eng
 add_lunch_combo ev_lexikon-eng
 add_lunch_combo ev_mako-eng
-add_lunch_combo ev_manta-eng
 add_lunch_combo ev_passion-eng
 add_lunch_combo ev_pyramid-eng
 add_lunch_combo ev_ruby-eng
