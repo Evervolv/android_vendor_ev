@@ -10,6 +10,7 @@ from xml.etree import ElementTree
 product = sys.argv[1];
 local_manifests_dir = ".repo/local_manifests"
 default_revison = "jellybean"
+dependency_filename = 'ev.dependencies'
 repositories = []
 local_manifests = []
 
@@ -162,42 +163,71 @@ def add_to_manifest(repositories):
         f.write(raw_xml)
         f.close()
 
-def fetch_dependencies(repo_path):
-    print 'Looking for dependencies'
-    dependencies_path = repo_path + '/ev.dependencies'
-    syncable_repos = []
+def fetch_repos(repos):
+    '''Adds repo to manifest and syncs'''
 
-    if os.path.exists(dependencies_path):
-        dependencies_file = open(dependencies_path, 'r')
-        dependencies = json.loads(dependencies_file.read())
-        fetch_list = []
+    fetch_list = []
+    for r in repos:
+        if not is_in_manifest('%s' % r.get('repository')):
+            fetch_list.append(r)
 
-        for dependency in dependencies:
-            if not is_in_manifest("%s" % dependency['repository']):
-                fetch_list.append(dependency)
-                syncable_repos.append(dependency['target_path'])
+    if fetch_list:
+        add_to_manifest(fetch_list)
+        repo_paths = ' '.join([ r.get('target_path') for r in fetch_list ])
+        print 'Syncing', repo_paths
+        os.system('repo sync -f %s' % repo_paths)
 
-        dependencies_file.close()
+def fetch_children(repos):
+    '''Locate any device dependencies'''
 
-        if len(fetch_list) > 0:
-            print 'Adding dependencies to manifest'
-            add_to_manifest(fetch_list)
-    else:
-        print 'Dependencies file not found, bailing out.'
+    children = []
+    for r in repos:
+        if r.get('dep_type') == 'device':
+            try:
+                with open(os.path.join(r.get('target_path'),dependency_filename)) as f:
+                    #print r.get('target_path')
+                    children.extend(json.load(f))
+            except IOError:
+                continue
+    fetch_repos(children)
+    return children
+
+def fetch_vendors(repo_path):
+    '''Add the proper vendor dependency'''
 
     vendor = repo_path.split('/')[1]
-    vendor_repo = {
+    vendor_repos = [
+        {
             'target_path': 'vendor/%s' % vendor,
             'repository' : 'android_vendor_%s' % vendor,
             'dep_type'   : 'vendor'
-    }
-    if not is_in_manifest('%s' % vendor_repo['repository']):
-        add_to_manifest([vendor_repo])
-        syncable_repos.append(vendor_repo['target_path'])
+        },
+    ]
+    fetch_repos(vendor_repos)
 
-    if len(syncable_repos) > 0:
-        print 'Syncing dependencies'
-        os.system('repo sync %s' % ' '.join(syncable_repos))
+def fetch_dependencies(repo_path):
+    '''Add any and all dependencies found'''
+
+    dependencies = []
+
+    try:
+        with open(os.path.join(repo_path,dependency_filename)) as f:
+            dependencies = json.load(f)
+    except IOError as e:
+        print e
+
+    # Fetch toplevel dependencies
+    fetch_repos(dependencies)
+
+    # Locate any extra dependencies
+    children = dependencies
+    while True:
+        children = fetch_children(children)
+        if not children:
+            break
+
+    # Fetch vendor dependencies
+    fetch_vendors(repo_path)
 
 if depsonly:
     repo_path = get_from_manifest(device)
@@ -217,10 +247,12 @@ else:
 
             repo_path = "device/%s/%s" % (manufacturer, device)
 
-            add_to_manifest([{'repository':repo_name,'target_path':repo_path}])
+            add_to_manifest([{'repository':repo_name,
+                              'target_path':repo_path,
+                              'dep_type':'device'}])
 
             print "Syncing repository to retrieve project."
-            os.system('repo sync %s' % repo_path)
+            os.system('repo sync -f %s' % repo_path)
             print "Repository synced!"
 
             fetch_dependencies(repo_path)
