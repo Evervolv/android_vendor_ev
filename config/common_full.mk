@@ -4,6 +4,7 @@
 include frameworks/base/data/sounds/AllAudio.mk
 
 include vendor/ev/config/themes.mk
+include vendor/ev/config/common_tools.mk
 
 # English Dictionary
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/dictionaries/english
