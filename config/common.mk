@@ -122,6 +122,8 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     $(SRC_EVERVOLV_DIR)/build/target/product/security/lineage
 
+-include vendor/ev-priv/keys/keys.mk
+
 # Storage manager
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.storage_manager.enabled=true
