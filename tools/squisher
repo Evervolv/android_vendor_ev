@@ -90,6 +90,7 @@ java -Xmx2048m \
 echo
 printf "Cleaning up..."
 rm -rf $REPACK
+rm -f $OTAPACKAGE
 echo
 
 # Create a md5 checksum image of the repacked package
