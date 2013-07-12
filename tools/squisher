@@ -23,15 +23,14 @@ if [ -z "$OUT" -o ! -d "$OUT" ]; then
 	exit 1
 fi
 
-ROM_VERSION=$1
+ROMVERSION=$1
+MODVERSION=$ROMVERSION-squished
 
-OTAPACKAGE=$OUT/$ROM_VERSION.zip
+OTAPACKAGE=$OUT/$ROMVERSION.zip
 if [ ! -f "$OTAPACKAGE" ]; then
 	echo "$OTAPACKAGE doesn't exist!";
 	exit 1
 fi
-
-MODVERSION=$ROM_VERSION-squished
 
 OPTICHARGER=$ANDROID_BUILD_TOP/vendor/ev/tools/opticharger
 QUIET=-q
@@ -58,10 +57,10 @@ find ./ -name \*.apk | $XARGS $OPTICHARGER
 )
 
 # Fix build.prop
-#$SED -i \
-#	-e '/ro\.kernel\.android\.checkjni/d' \
+$SED -i \
+	-e '/ro\.build\.romversion/s/$/-squished/' \
+	$REPACK/ota/system/build.prop
 #	-e '/ro\.build\.type/s/eng/user/' \
-#	$REPACK/ota/system/build.prop
 
 
 # Delete unnecessary binaries
