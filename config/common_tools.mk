@@ -23,6 +23,10 @@ PRODUCT_PACKAGES += \
     wget \
     wgetrc
 
+# Custom init script
+PRODUCT_COPY_FILES += \
+    vendor/ev/prebuilt/common/etc/init.evervolv.rc:root/init.evervolv.rc
+
 # Utilize init.d scripts
 PRODUCT_COPY_FILES += \
     vendor/ev/prebuilt/common/bin/sysinit:system/bin/sysinit \
@@ -39,4 +43,6 @@ PRODUCT_COPY_FILES += \
     vendor/ev/prebuilt/common/xbin/zipalign:system/xbin/zipalign \
     vendor/ev/prebuilt/common/etc/init.d/10apps2sd-redux:system/etc/init.d/10apps2sd
 
-
+# Misc files
+PRODUCT_COPY_FILES += \
+    vendor/ev/prebuilt/common/bin/enable_zram:system/bin/enable_zram
