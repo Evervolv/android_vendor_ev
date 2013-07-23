@@ -35,3 +35,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
     librsjni
+
+# Updater
+PRODUCT_PACKAGES += \
+      EVUpdater
