@@ -9,7 +9,6 @@ from xml.etree import ElementTree
 
 product = sys.argv[1];
 local_manifests_dir = ".repo/local_manifests"
-default_revison = "jellybean"
 dependency_filename = 'ev.dependencies'
 repositories = []
 local_manifests = []
@@ -151,7 +150,7 @@ def add_to_manifest(repositories):
         if 'branch' in repository:
             project.set('revision',repository['branch'])
         else:
-            project.set('revision',default_revison)
+            print("Using default branch for %s" % repo_name)
 
         lm.append(project)
 
