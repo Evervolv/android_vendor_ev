@@ -144,8 +144,9 @@ def add_to_manifest(repositories):
             continue
 
         print 'Adding dependency: %s -> %s' % (repo_name, repo_target)
-        project = ElementTree.Element("project", attrib = { "path": repo_target,
-            "remote": "github", "name": "%s" % repo_name })
+        project = ElementTree.Element("project", attrib = {
+            "path": repo_target, "name": "%s" % repo_name
+            })
 
         if 'branch' in repository:
             project.set('revision',repository['branch'])
