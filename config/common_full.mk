@@ -9,11 +9,6 @@ include vendor/ev/config/common_tools.mk
 # English Dictionary
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/dictionaries/english
 
-# Proprietary LatinIME Gesture Support
-PRODUCT_COPY_FILES += \
-    vendor/ev/prebuilt/common/lib/libjni_latinime.so:obj/lib/libjni_latinime.so \
-    vendor/ev/prebuilt/common/lib/libjni_latinime.so:system/lib/libjni_latinime.so
-
 # Provide non-english dictionaries if required
 ifeq ($(TARGET_USE_KEYBOARD), international)
     PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/dictionaries/international
