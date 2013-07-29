@@ -1,4 +1,5 @@
 add_lunch_combo ev_bravo-eng
+add_lunch_combo ev_d2tmo-eng
 add_lunch_combo ev_d710-eng
 add_lunch_combo ev_glacier-eng
 add_lunch_combo ev_grouper-eng
