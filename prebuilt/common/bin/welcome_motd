@@ -1,0 +1,3 @@
+#!/system/bin/sh
+L="log -p i -t ev"
+$L "Welcome to Android `getprop ro.build.version.release` / `getprop ro.build.romversion`";

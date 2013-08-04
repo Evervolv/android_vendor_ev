@@ -5,9 +5,9 @@ on init
     mkdir /sd-ext 0771 system system
 
 on post-fs-data
-    start sysinit
+    start welcome_motd
 
-service sysinit /system/bin/sysinit
+service welcome_motd /system/bin/welcome_motd
     user root
     group root
     oneshot

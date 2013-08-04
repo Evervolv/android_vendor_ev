@@ -45,4 +45,5 @@ PRODUCT_COPY_FILES += \
 
 # Misc files
 PRODUCT_COPY_FILES += \
-    vendor/ev/prebuilt/common/bin/enable_zram:system/bin/enable_zram
+    vendor/ev/prebuilt/common/bin/enable_zram:system/bin/enable_zram \
+    vendor/ev/prebuilt/common/bin/welcome_motd:system/bin/welcome_motd
