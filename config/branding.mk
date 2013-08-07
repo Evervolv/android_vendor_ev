@@ -36,6 +36,8 @@ endif
 
 PRODUCT_PACKAGES += \
     com.evervolv.font.xml \
+    com.evervolv.hardware \
+    com.evervolv.hardware.xml \
     com.evervolv.platform-res \
     com.evervolv.platform \
     com.evervolv.platform.xml \
