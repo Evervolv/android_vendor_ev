@@ -19,6 +19,12 @@ service enable_zram /system/bin/enable_zram
     group root
     oneshot
 
+# no-op without additional args
+service dumplogcat /system/bin/dumplogcat
+    class main
+    disabled
+    oneshot
+
 # su daemon
 service su_daemon /system/xbin/su --daemon
     class main

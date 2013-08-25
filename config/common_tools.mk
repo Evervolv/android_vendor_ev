@@ -5,6 +5,7 @@ PRODUCT_PACKAGES += \
     busybox \
     ca-bundle \
     curl \
+    dumplogcat \
     e2fsck \
     mke2fs \
     resize2fs \
