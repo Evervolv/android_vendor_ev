@@ -43,8 +43,8 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     persist.sys.strictmode.disable=true
 
 # Version Info
-PRODUCT_VERSION_MAJOR = 3
-PRODUCT_VERSION_MINOR = 3
+PRODUCT_VERSION_MAJOR = 4
+PRODUCT_VERSION_MINOR = 0
 PRODUCT_VERSION_MAINTENANCE = 0
 
 # Allow overriding p1/2 etc from commandline
