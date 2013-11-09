@@ -1,9 +1,4 @@
 # Inherit common stuff
-$(call inherit-product, vendor/ev/config/common.mk)
-$(call inherit-product, vendor/ev/config/common_full.mk)
-
-PRODUCT_PACKAGES += \
-    Mms \
-    Torch \
-    CellBroadcastReceiver
+$(call inherit-product, $(SRC_EVERVOLV_DIR)/config/phone.mk)
+$(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common_full.mk)
 

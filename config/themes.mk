@@ -5,4 +5,4 @@ PRODUCT_PACKAGES += \
    com.tmobile.themes
 
 PRODUCT_COPY_FILES += \
-    vendor/ev/prebuilt/common/etc/permissions/com.tmobile.software.themes.xml:system/etc/permissions/com.tmobile.software.themes.xml
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/permissions/com.tmobile.software.themes.xml:system/etc/permissions/com.tmobile.software.themes.xml

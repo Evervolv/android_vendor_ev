@@ -1,28 +1,12 @@
 #Config used for full targets, with telephony or without.
 
-# Bring in all audio files
-include frameworks/base/data/sounds/AllAudio.mk
+$(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common.mk)
 
-include vendor/ev/config/themes.mk
-include vendor/ev/config/common_tools.mk
-
-# English Dictionary
-PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/dictionaries/english
-
-# Provide non-english dictionaries if required
-ifeq ($(TARGET_USE_KEYBOARD), international)
-    PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/dictionaries/international
-endif
-
+# Optional external packages
 PRODUCT_PACKAGES += \
-    VideoEditor \
-    VoiceDialer \
-    Basic \
-    HoloSpiralWallpaper \
-    MagicSmokeWallpapers \
-    NoiseField \
-    Galaxy4 \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    VisualizationWallpapers \
-    PhaseBeam
+    AndroidTerm
+
+# Optional Evervolv packages
+PRODUCT_PACKAGES += \
+    EVTips \
+    EVWidgets
