@@ -6,7 +6,8 @@ TARGET_AUTO_KDIR := $(shell echo $(TARGET_DEVICE_DIR) | sed -e 's/^device/kernel
 # kernel location - optional, defaults to kernel/<vendor>/<device>
 TARGET_KERNEL_SOURCE ?= $(TARGET_AUTO_KDIR)
 KERNEL_SRC := $(TARGET_KERNEL_SOURCE)
-# kernel configuration - mandatory
+# kernel configuration
+TARGET_KERNEL_CONFIG ?= $(TARGET_DEVICE)_defconfig
 KERNEL_DEFCONFIG := $(TARGET_KERNEL_CONFIG)
 VARIANT_DEFCONFIG := $(TARGET_KERNEL_VARIANT_CONFIG)
 SELINUX_DEFCONFIG := $(TARGET_KERNEL_SELINUX_CONFIG)
@@ -30,30 +31,17 @@ else
 	TARGET_PREBUILT_INT_KERNEL_TYPE := zImage
 endif
 
-# by default dont build even if source is present
-ifeq (,$(filter true 1,$(BUILD_KERNEL)))
+# allow forcing prebuilt
+ifneq ($(filter false 0,$(strip $(BUILD_KERNEL))),)
     KERNEL_SRC:=
-endif
-# if there is no prebuilt kernel we must build from source
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-    KERNEL_SRC := $(TARGET_KERNEL_SOURCE)
 endif
 
 ifeq "$(wildcard $(KERNEL_SRC) )" ""
-    ifneq (,$(filter true 1,$(BUILD_KERNEL)))
-        $(warning ************************************************)
-        $(warning *        ERROR: Can't find kernel source       *)
-        $(warning *                                              *)
-        $(warning * You asked me to build the kernel but did not *)
-        $(warning *              provide the source!             *)
-        $(warning *                                              *)
-        $(warning * Please run find_deps to sync the kernel repo *)
-        $(warning ************************************************)
-        $(error "NO SOURCE")
-    endif
     ifneq ($(TARGET_PREBUILT_KERNEL),)
         $(warning ************************************************)
         $(warning *         Using prebuilt kernel binary         *)
+        $(warning *              This is depreciated             *)
+        $(warning *       Your build will most likely fail!      *)
         $(warning ************************************************)
         FULL_KERNEL_BUILD := false
         KERNEL_BIN := $(TARGET_PREBUILT_KERNEL)
