@@ -4,7 +4,7 @@
 #
 L="log -p i -t ev"
 
-$L "Attempting to boot Evervolv AOSP JellyBean ROM.";
+$L "Attempting to boot Evervolv AOSP Kitkat.";
 $L "Please visit www.evervolv.com for updates.";
 $L "__________                               ______       ";
 $L "___  ____/__   ________________   __________  /__   __";
