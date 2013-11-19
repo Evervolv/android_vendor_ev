@@ -33,6 +33,8 @@ PRODUCT_PACKAGES += \
     Launcher3 \
     EVToolbox \
     EVUpdater \
+    EVTips \
+    EVWidgets \
     su
 
 # Backup Transport
