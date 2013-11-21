@@ -330,15 +330,17 @@ function repolog() {
 	    opts:
 	        -r|--reverse     : reverse log
 	        --full           : omit --oneline
-	        -g|--github      : only show github projects
+	        -g|--github      : only show projects with github remote
+		-a|--aosp        : only show projects with aosp remote
 	examples:
 	        repolog github/kitkat HEAD --full
-	        repolog android-4.4_r1 android-4.4_r1.1 -r -g
+	        repolog android-4.4_r1 android-4.4_r1.1 -r -a
 
 	EOF
 	)
 	local gitopts="--oneline"
 	local github=0
+	local aosp=0
 	if [ $# -lt 2 ]; then
 		echo "$usage"
 		return 1
@@ -353,6 +355,8 @@ function repolog() {
 				gitopts=${gitopts/--oneline/};;
 			-g|--github)
 				github=1;;
+			-a|--aosp)
+				aosp=1;;
 			-h|--help)
 				echo "$usage"; return 1;;
 		esac
@@ -364,6 +368,8 @@ function repolog() {
 	fi
 	if [ $github -eq 1 ]; then
 		gopt=$gitopts br1=$branch1 br2=$branch2 repo forall -pvc 'if [ "$(git config --get remote.github.url)" ]; then git log ${gopt} ${br1}..${br2}; fi;'
+	elif [ $aosp -eq 1 ]; then
+		gopt=$gitopts br1=$branch1 br2=$branch2 repo forall -pvc 'if [ "$(git config --get remote.aosp.url)" ]; then git log ${gopt} ${br1}..${br2}; fi;'
 	else
 		gopt=$gitopts br1=$branch1 br2=$branch2 repo forall -pvc 'git log ${gopt} ${br1}..${br2}'
 	fi
