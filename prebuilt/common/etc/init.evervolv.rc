@@ -13,12 +13,6 @@ service welcome_motd /system/bin/welcome_motd
     oneshot
     disabled
 
-service enable_zram /system/bin/enable_zram
-    class main
-    user root
-    group root
-    oneshot
-
 # no-op without additional args
 service dumplogcat /system/bin/dumplogcat
     class main
@@ -40,3 +34,7 @@ on property:persist.sys.root_access=1
 
 on property:persist.sys.root_access=3
     start su_daemon
+
+on property:sys.zram.restored=true
+    write /proc/sys/vm/page-cluster 0
+    swapon_all /data/system/fstab.zram

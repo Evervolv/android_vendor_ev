@@ -34,7 +34,6 @@ PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.d/05mountext:system/etc/init.d/05mountext \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.d/06handleswap:system/etc/init.d/06handleswap \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.d/20extgapps:system/etc/init.d/20extgapps
 
 # Apps2sd files
@@ -46,5 +45,4 @@ PRODUCT_COPY_FILES += \
 
 # Misc files
 PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/enable_zram:system/bin/enable_zram \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/welcome_motd:system/bin/welcome_motd
