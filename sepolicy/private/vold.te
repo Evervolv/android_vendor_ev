@@ -1,3 +1,9 @@
+# Allow vold to access fuse for fuse-based fs
+allow vold fuseblk:chr_file rw_file_perms;
+
+# NTFS-3g wants to drop permission
+allow vold self:capability { setgid setuid };
+
 # External storage
 allow vold mkfs_exec:file { execute read open getattr execute_no_trans };
 allow vold mnt_media_rw_stub_file:dir r_dir_perms;
