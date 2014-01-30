@@ -76,8 +76,13 @@ $(warning Choices are 720p, 1080p, 1440p, hvga, qhd, wvga, and xga.)
 $(warning Please update your device tree to a valid choice.)
 $(warning ************************************************************)
 $(error Invalid option for BOOT_ANIMATION_SIZE.)
-else
+endif
+
 # Copy boot animation
+ifeq ($(TARGET_BOOTANIMATION_HALF_RES),true)
+PRODUCT_COPY_FILES += \
+    vendor/ev/prebuilt/bootanimation/halfres/$(BOOT_ANIMATION_SIZE).zip:system/media/bootanimation.zip
+else
 PRODUCT_COPY_FILES += \
     vendor/ev/prebuilt/bootanimation/$(BOOT_ANIMATION_SIZE).zip:system/media/bootanimation.zip
 endif
