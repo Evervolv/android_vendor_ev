@@ -175,7 +175,11 @@ int main(int argc, char *argv[]) {
         do_dmesg();
     }
     if (last_kmsg) {
+#ifdef USES_ALT_KMSG_LOCATION
+        dump_file("LAST KMSG", USES_ALT_KMSG_LOCATION);
+#else
         dump_file("LAST KMSG", "/proc/last_kmsg");
+#endif
     }
         //run_command("EVENT LOG", 20, "logcat", "-b", "events", "threadtime", "-d", "*:v", NULL);
 
