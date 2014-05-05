@@ -17,6 +17,7 @@ add_lunch_combo ev_m7tmo-eng
 add_lunch_combo ev_m7ul-eng
 add_lunch_combo ev_mako-eng
 add_lunch_combo ev_mecha-eng
+add_lunch_combo ev_n1-eng
 add_lunch_combo ev_passion-eng
 add_lunch_combo ev_pyramid-eng
 add_lunch_combo ev_ruby-eng
