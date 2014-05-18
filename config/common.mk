@@ -44,6 +44,10 @@ PRODUCT_PACKAGE_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay/common
 ADDITIONAL_DEFAULT_PROPERTIES += \
     persist.sys.strictmode.disable=true
 
+# SELinux
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.selinux=1
+
 # Theme support
 $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/themes.mk)
 
