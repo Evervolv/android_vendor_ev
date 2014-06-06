@@ -35,6 +35,7 @@ PRODUCT_PACKAGES += \
     EVUpdater \
     EVTips \
     EVWidgets \
+    EVWallpapers \
     su
 
 # Backup Transport
