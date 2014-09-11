@@ -40,6 +40,8 @@
 
 #include "dumplogcat.h"
 
+static const int64_t NANOS_PER_SEC = 1000000000;
+
 void do_dmesg() {
     printf("------ KERNEL LOG (dmesg) ------\n");
     /* Get size of kernel buffer */
@@ -106,10 +108,16 @@ int dump_file(const char *title, const char* path) {
     return 0;
 }
 
+static int64_t nanotime() {
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return (int64_t)ts.tv_sec * NANOS_PER_SEC + ts.tv_nsec;
+}
+
 /* forks a command and waits for it to finish */
 int run_command(const char *title, int timeout_seconds, const char *command, ...) {
     fflush(stdout);
-    time_t start = time(NULL);
+    int64_t start = nanotime();
     pid_t pid = fork();
 
     /* handle error case */
@@ -162,18 +170,18 @@ int run_command(const char *title, int timeout_seconds, const char *command, ...
     for (;;) {
         int status;
         pid_t p = waitpid(pid, &status, WNOHANG);
-        time_t elapsed = time(NULL) - start;
+        int64_t elapsed = nanotime() - start;
         if (p == pid) {
             if (WIFSIGNALED(status)) {
                 printf("*** %s: Killed by signal %d\n", command, WTERMSIG(status));
             } else if (WIFEXITED(status) && WEXITSTATUS(status) > 0) {
                 printf("*** %s: Exit code %d\n", command, WEXITSTATUS(status));
             }
-            if (title) printf("[%s: %ds elapsed]\n\n", command, elapsed);
+            if (title) printf("[%s: %.3fs elapsed]\n\n", command, (float)elapsed / NANOS_PER_SEC);
             return status;
         }
 
-        if (timeout_seconds && elapsed > timeout_seconds) {
+        if (timeout_seconds && elapsed / NANOS_PER_SEC > timeout_seconds) {
             printf("*** %s: Timed out after %ds (killing pid %d)\n", command, (int) elapsed, pid);
             kill(pid, SIGTERM);
             return -1;

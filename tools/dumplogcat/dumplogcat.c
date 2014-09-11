@@ -51,6 +51,11 @@ static void usage() {
         );
 }
 
+static void vibrate(FILE* vibrator, int ms) {
+    fprintf(vibrator, "%d\n", ms);
+    fflush(vibrator);
+}
+
 int main(int argc, char *argv[]) {
     int logcat = 0;
     int radio = 0;
@@ -99,9 +104,11 @@ int main(int argc, char *argv[]) {
 
     FILE *vibrator = 0;
     if (do_vibrate) {
-        /* open the vibrator before dropping root */
         vibrator = fopen("/sys/class/timed_output/vibrator/enable", "w");
-        if (vibrator) fcntl(fileno(vibrator), F_SETFD, FD_CLOEXEC);
+        if (vibrator) {
+            fcntl(fileno(vibrator), F_SETFD, FD_CLOEXEC);
+            vibrate(vibrator, 150);
+        }
     }
 
     if (prctl(PR_SET_KEEPCAPS, 1) < 0) {
@@ -160,11 +167,6 @@ int main(int argc, char *argv[]) {
         redirect_to_file(stdout, tmp_path, 0);
     }
 
-    if (vibrator) {
-        fputs("150", vibrator);
-        fflush(vibrator);
-    }
-
     if (logcat) {
         run_command("SYSTEM LOG", 20, "logcat", "-d", "*:v", NULL);
     }
@@ -184,10 +186,8 @@ int main(int argc, char *argv[]) {
         //run_command("EVENT LOG", 20, "logcat", "-b", "events", "threadtime", "-d", "*:v", NULL);
 
     if (vibrator) {
-        int i;
-        for (i = 0; i < 3; i++) {
-            fputs("75\n", vibrator);
-            fflush(vibrator);
+        for (int i = 0; i < 3; i++) {
+            vibrate(vibrator, 75);
             usleep((75 + 50) * 1000);
         }
         fclose(vibrator);
