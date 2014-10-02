@@ -102,6 +102,12 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
+    // If we are going to use a socket, do it as early as possible
+    // to avoid timeouts.
+    if (use_socket) {
+        redirect_to_socket(stdout, "dumplogcat");
+    }
+
     FILE *vibrator = 0;
     if (do_vibrate) {
         vibrator = fopen("/sys/class/timed_output/vibrator/enable", "w");
@@ -151,9 +157,7 @@ int main(int argc, char *argv[]) {
 
     char path[PATH_MAX], tmp_path[PATH_MAX];
 
-    if (use_socket) {
-        redirect_to_socket(stdout, "dumplogcat");
-    } else if (use_outfile) {
+    if (!use_socket && use_outfile) {
         strlcpy(path, use_outfile, sizeof(path));
         if (do_add_date) {
             char date[80];
