@@ -55,6 +55,9 @@ $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/tools.mk)
 # LatinIME english dictionary
 $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/dictionaries/english.mk)
 
+# Hot reboot
+PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/hot_reboot
+
 #
 # Version Info
 #
