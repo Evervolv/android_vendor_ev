@@ -49,9 +49,6 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.selinux=1
 
-# Theme support
-$(call inherit-product, $(SRC_EVERVOLV_DIR)/config/themes.mk)
-
 # Commandline / Init stuff
 $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/tools.mk)
 
@@ -62,7 +59,7 @@ $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/dictionaries/english.mk)
 # Version Info
 #
 
-PRODUCT_VERSION_MAJOR = 4
+PRODUCT_VERSION_MAJOR = 5
 PRODUCT_VERSION_MINOR = 0
 PRODUCT_VERSION_MAINTENANCE = 0
 
