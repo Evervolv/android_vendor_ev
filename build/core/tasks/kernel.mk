@@ -16,6 +16,13 @@ SELINUX_DEFCONFIG := $(TARGET_KERNEL_SELINUX_CONFIG)
 KERNEL_OUT := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ
 KERNEL_CONFIG := $(KERNEL_OUT)/.config
 
+# You can set KERNEL_TOOLCHAIN_PREFIX to get gcc from somewhere else
+ifeq ($(strip $(KERNEL_TOOLCHAIN_PREFIX)),)
+KERNEL_TOOLCHAIN_ROOT:=$(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_PREBUILT_TAG)/arm/arm-eabi-$(TARGET_GCC_VERSION)
+KERNEL_TOOLCHAIN_PREFIX:=$(KERNEL_TOOLCHAIN_ROOT)/bin/arm-eabi-
+endif
+
+
 # Allow building kernel with different -mtune/cpu options
 ifneq "" "$(strip $(TARGET_EXTRA_CFLAGS))"
   ifeq "" "$(strip $(KERNEL_CFLAGS))"
@@ -115,7 +122,7 @@ ifeq ($(TARGET_ARCH),arm)
       # Check that the executable is here.
       ccache := $(strip $(wildcard $(ccache)))
     endif
-    ARM_CROSS_COMPILE:=CROSS_COMPILE="$(ccache) $(ARM_EABI_TOOLCHAIN)/arm-eabi-"
+    ARM_CROSS_COMPILE:=CROSS_COMPILE="$(ccache) $(KERNEL_TOOLCHAIN_PREFIX)"
     ccache = 
     ARM_KCFLAGS:=KCFLAGS="$(KERNEL_CFLAGS)"
 endif
