@@ -25,29 +25,21 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
     endif
     endif
 
-    ifneq ($(filter msm8084 msm8x84,$(TARGET_BOARD_PLATFORM)),)
+    ifneq ($(filter msm8084,$(TARGET_BOARD_PLATFORM)),)
         #This is for 8084 based platforms
         QCOM_AUDIO_VARIANT := audio-caf/msm8084
         QCOM_DISPLAY_VARIANT := display-caf/msm8084
         QCOM_MEDIA_VARIANT := media-caf/msm8084
-    else
-    ifneq ($(filter msm8974 msm8x74,$(TARGET_BOARD_PLATFORM)),)
+    else ifneq ($(filter msm8610 msm8226 msm8974,$(TARGET_BOARD_PLATFORM)),)
         #This is for 8974 based (and B-family) platforms
         QCOM_AUDIO_VARIANT := audio-caf/msm8974
         QCOM_DISPLAY_VARIANT := display-caf/msm8974
         QCOM_MEDIA_VARIANT := media-caf/msm8974
     else
-    ifneq ($(filter msm8226 msm8x26,$(TARGET_BOARD_PLATFORM)),)
-        QCOM_AUDIO_VARIANT := audio-caf/msm8226
-        QCOM_DISPLAY_VARIANT := display-caf/msm8226
-        QCOM_MEDIA_VARIANT := media-caf/msm8226
-    else
         #This is for 8960 based platforms
         QCOM_AUDIO_VARIANT := audio-caf/msm8960
         QCOM_DISPLAY_VARIANT := display-caf/msm8960
         QCOM_MEDIA_VARIANT := media-caf/msm8960
-    endif
-    endif
     endif
 
 else
