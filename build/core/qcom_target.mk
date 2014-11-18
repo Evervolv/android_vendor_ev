@@ -25,17 +25,40 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
     endif
     endif
 
-$(call project-set-path,qcom-audio,hardware/qcom/audio-caf)
-$(call qcom-set-path-variant,CAMERA,camera)
-$(call project-set-path,qcom-display,hardware/qcom/display-caf)
-$(call qcom-set-path-variant,GPS,gps)
-$(call project-set-path,qcom-media,hardware/qcom/media-caf)
-$(call qcom-set-path-variant,SENSORS,sensors)
+    ifneq ($(filter msm8084 msm8x84,$(TARGET_BOARD_PLATFORM)),)
+        #This is for 8084 based platforms
+        QCOM_AUDIO_VARIANT := audio-caf/msm8084
+        QCOM_DISPLAY_VARIANT := display-caf/msm8084
+        QCOM_MEDIA_VARIANT := media-caf/msm8084
+    else
+    ifneq ($(filter msm8974 msm8x74,$(TARGET_BOARD_PLATFORM)),)
+        #This is for 8974 based (and B-family) platforms
+        QCOM_AUDIO_VARIANT := audio-caf/msm8974
+        QCOM_DISPLAY_VARIANT := display-caf/msm8974
+        QCOM_MEDIA_VARIANT := media-caf/msm8974
+    else
+    ifneq ($(filter msm8226 msm8x26,$(TARGET_BOARD_PLATFORM)),)
+        QCOM_AUDIO_VARIANT := audio-caf/msm8226
+        QCOM_DISPLAY_VARIANT := display-caf/msm8226
+        QCOM_MEDIA_VARIANT := media-caf/msm8226
+    else
+        #This is for 8960 based platforms
+        QCOM_AUDIO_VARIANT := audio-caf/msm8960
+        QCOM_DISPLAY_VARIANT := display-caf/msm8960
+        QCOM_MEDIA_VARIANT := media-caf/msm8960
+    endif
+    endif
+    endif
+
 else
-$(call project-set-path,qcom-audio,hardware/qcom/audio)
-$(call qcom-set-path-variant,CAMERA,camera)
-$(call project-set-path,qcom-display,hardware/qcom/display)
-$(call qcom-set-path-variant,GPS,gps)
-$(call project-set-path,qcom-media,hardware/qcom/media)
-$(call qcom-set-path-variant,SENSORS,sensors)
+    QCOM_AUDIO_VARIANT := audio
+    QCOM_DISPLAY_VARIANT := display
+    QCOM_MEDIA_VARIANT := media
 endif
+
+$(call project-set-path,qcom-audio,hardware/qcom/$(QCOM_AUDIO_VARIANT))
+$(call project-set-path,qcom-display,hardware/qcom/$(QCOM_DISPLAY_VARIANT))
+$(call project-set-path,qcom-media,hardware/qcom/$(QCOM_MEDIA_VARIANT))
+$(call qcom-set-path-variant,CAMERA,camera)
+$(call qcom-set-path-variant,GPS,gps)
+$(call qcom-set-path-variant,SENSORS,sensors)
