@@ -4,6 +4,9 @@
 define qcom-set-path-variant
 $(call project-set-path-variant,qcom-$(2),TARGET_QCOM_$(1)_VARIANT,hardware/qcom/$(2))
 endef
+define ril-set-path-variant
+$(call project-set-path-variant,ril,TARGET_RIL_VARIANT,hardware/$(1))
+endef
 
 ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
 
@@ -76,3 +79,4 @@ $(call project-set-path,qcom-media,hardware/qcom/$(QCOM_MEDIA_VARIANT))
 $(call qcom-set-path-variant,CAMERA,camera)
 $(call qcom-set-path-variant,GPS,gps)
 $(call qcom-set-path-variant,SENSORS,sensors)
+$(call ril-set-path-variant,ril)
