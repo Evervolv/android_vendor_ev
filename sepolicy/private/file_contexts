@@ -1,2 +1,5 @@
 # Themes data
 /data/system/theme(/.*)?    u:object_r:theme_data_file:s0
+
+# Sysinit
+/system/bin/sysinit         u:object_r:sysinit_exec:s0
