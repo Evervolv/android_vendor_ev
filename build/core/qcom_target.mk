@@ -36,16 +36,31 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
         QCOM_DISPLAY_VARIANT := display-caf/msm8974
         QCOM_MEDIA_VARIANT := media-caf/msm8974
     else
-        #This is for 8960 based platforms
         QCOM_AUDIO_VARIANT := audio-caf/msm8960
-        QCOM_DISPLAY_VARIANT := display-caf/msm8960
-        QCOM_MEDIA_VARIANT := media-caf/msm8960
+        # Enables legacy repos to be handled
+        ifeq ($(BOARD_USES_LEGACY_QCOM_DISPLAY),true)
+            QCOM_DISPLAY_VARIANT := display-legacy
+            QCOM_MEDIA_VARIANT := media-legacy
+        else
+            QCOM_DISPLAY_VARIANT := display-caf/msm8960
+            QCOM_MEDIA_VARIANT := media-caf/msm8960
+        endif
     endif
 
 else
-    QCOM_AUDIO_VARIANT := audio
-    QCOM_DISPLAY_VARIANT := display
-    QCOM_MEDIA_VARIANT := media
+    # QSD8K doesn't use QCOM_HARDWARE flag
+    ifneq ($(filter qsd8k,$(TARGET_BOARD_PLATFORM)),)
+        QCOM_AUDIO_VARIANT := audio-caf/msm8960
+    else
+        QCOM_AUDIO_VARIANT := audio
+    endif
+    ifeq ($(BOARD_USES_LEGACY_QCOM_DISPLAY),true)
+        QCOM_DISPLAY_VARIANT := display-legacy
+        QCOM_MEDIA_VARIANT := media-legacy
+    else
+        QCOM_DISPLAY_VARIANT := display
+        QCOM_MEDIA_VARIANT := media
+    endif
 endif
 
 $(call project-set-path,qcom-audio,hardware/qcom/$(QCOM_AUDIO_VARIANT))
