@@ -26,6 +26,10 @@ PRODUCT_PACKAGES += \
     mkfs.exfat
 endif
 
+# Music
+PRODUCT_PACKAGES += \
+    Eleven
+
 # Include explicitly to work around GMS issues
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
