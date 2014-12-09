@@ -1,6 +1,10 @@
 # Inherit common stuff
 $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common.mk)
 
+# Audio
+PRODUCT_PACKAGES += \
+    AudioFX
+
 # Browser
 PRODUCT_PACKAGES += \
     Jelly
