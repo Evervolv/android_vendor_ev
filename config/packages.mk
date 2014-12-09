@@ -28,6 +28,7 @@ endif
 
 # Music
 PRODUCT_PACKAGES += \
+    AudioFX \
     Eleven
 
 # Include explicitly to work around GMS issues
