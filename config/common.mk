@@ -62,17 +62,6 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/hot_reboot
 # Version Info
 #
 
-PRODUCT_VERSION_MAJOR = 5
-PRODUCT_VERSION_MINOR = 0
-PRODUCT_VERSION_MAINTENANCE = 0
-
-# Allow overriding p1/2 etc from commandline
-ifneq "" "$(DEVICE_VERSION_OVERRIDE)"
-  PRODUCT_VERSION_EXTRA = $(DEVICE_VERSION_OVERRIDE)
-else
-  PRODUCT_VERSION_EXTRA = $(PRODUCT_VERSION_DEVICE_SPECIFIC)
-endif
-
 ifneq ($(APPEND_ZIP_VERSION),)
 APPEND_ZIP=-$(APPEND_ZIP_VERSION)
 endif
@@ -82,10 +71,21 @@ ifeq ($(NIGHTLY_BUILD),true)
 else ifeq ($(TESTING_BUILD),true)
   ROM_VERSION := $(TARGET_PRODUCT)-testing-$(shell date +%Y.%m.%d)$(APPEND_ZIP)
 else
-  ROM_VERSION := $(TARGET_PRODUCT)-$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_EXTRA)-$(PRODUCT_CODENAME)$(APPEND_ZIP)
+  ifeq ($(PRODUCT_CODENAME),)
+    $(warning ************************************************************)
+    $(warning You have not defined PRODUCT_CODENAME.)
+    $(warning Please refer to the following website for options.)
+    $(warning www.math.ubc.ca/~cass/frivs/latin/latin-dict-full.html.)
+    $(warning ************************************************************)
+    $(error Invalid option for PRODUCT_CODENAME.)
+  else
+    ROM_VERSION := $(TARGET_PRODUCT)-$(shell date +%Y.%m.%d)-$(PRODUCT_CODENAME)$(APPEND_ZIP)
+  endif
 endif
 
 ROM_VERSION := $(shell echo ${ROM_VERSION} | tr [:upper:] [:lower:])
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.romversion=$(ROM_VERSION)
+    ro.evervolv.device=$(PRODUCT_CODENAME) \
+    ro.evervolv.version=$(ROM_VERSION)
+
