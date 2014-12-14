@@ -24,6 +24,8 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
     endif
         # Enable legacy graphics functions
         TARGET_USES_QCOM_BSP_LEGACY := true
+        TARGET_GLOBAL_CFLAGS += -DQCOM_BSP_LEGACY
+        TARGET_GLOBAL_CPPFLAGS += -DQCOM_BSP_LEGACY
     endif
 
     ifneq ($(filter msm8084,$(TARGET_BOARD_PLATFORM)),)
