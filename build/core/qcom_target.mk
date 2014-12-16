@@ -33,6 +33,8 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
 
     TARGET_GLOBAL_CFLAGS += $(qcom_flags)
     TARGET_GLOBAL_CPPFLAGS += $(qcom_flags)
+    CLANG_TARGET_GLOBAL_CFLAGS += $(qcom_flags)
+    CLANG_TARGET_GLOBAL_CPPFLAGS += $(qcom_flags)
 
     ifneq ($(filter msm8084,$(TARGET_BOARD_PLATFORM)),)
         #This is for 8084 based platforms
