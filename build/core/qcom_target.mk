@@ -26,7 +26,6 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
         endif
         ifneq ($(BOARD_USES_LEGACY_QCOM_DISPLAY),true)
             # Enable legacy graphics functions
-            TARGET_USES_QCOM_BSP_LEGACY := true
             qcom_flags += -DQCOM_BSP_LEGACY
         endif
     endif
