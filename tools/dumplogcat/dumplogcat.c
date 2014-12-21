@@ -166,10 +166,10 @@ int main(int argc, char *argv[]) {
     }
 
     if (logcat) {
-        run_command("SYSTEM LOG", 20, "logcat", "threadtime", "-d", "*:v", NULL);
+        run_command("SYSTEM LOG", 20, "logcat", "-d", "*:v", NULL);
     }
     if (radio) {
-        run_command("RADIO LOG", 20, "logcat", "-b", "radio", "threadtime", "-d", "*:v", NULL);
+        run_command("RADIO LOG", 20, "logcat", "-b", "radio", "-d", "*:v", NULL);
     }
     if (dmesg) {
         do_dmesg();
