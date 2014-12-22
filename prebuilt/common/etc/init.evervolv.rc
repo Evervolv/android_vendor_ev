@@ -21,7 +21,6 @@ service dumplogcat /system/bin/dumplogcat
 
 # su daemon
 service su_daemon /system/xbin/su --daemon
-    seclabel u:r:sudaemon:s0
     class main
 
 on property:persist.sys.root_access=0
@@ -35,12 +34,6 @@ on property:persist.sys.root_access=1
 
 on property:persist.sys.root_access=3
     start su_daemon
-
-on property:init.svc.su_daemon=running
-    mkdir /dev/com.evervolv.toolbox.daemon 0755 root root
-    restorecon_recursive /dev/com.evervolv.toolbox.daemon
-    mkdir /dev/com.evervolv.toolbox 0755 root root
-    restorecon_recursive /dev/com.evervolv.toolbox
 
 on property:sys.zram.restored=true
     write /proc/sys/vm/page-cluster 0
