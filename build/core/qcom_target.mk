@@ -35,6 +35,12 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
     CLANG_TARGET_GLOBAL_CFLAGS += $(qcom_flags)
     CLANG_TARGET_GLOBAL_CPPFLAGS += $(qcom_flags)
 
+    # Multiarch needs these too..
+    2ND_TARGET_GLOBAL_CFLAGS += $(qcom_flags)
+    2ND_TARGET_GLOBAL_CPPFLAGS += $(qcom_flags)
+    2ND_CLANG_TARGET_GLOBAL_CFLAGS += $(qcom_flags)
+    2ND_CLANG_TARGET_GLOBAL_CFLAGS += $(qcom_flags)
+
     ifneq ($(filter msm8084,$(TARGET_BOARD_PLATFORM)),)
         #This is for 8084 based platforms
         QCOM_AUDIO_VARIANT := audio-caf/msm8084
