@@ -76,7 +76,11 @@ endif
 $(call project-set-path,qcom-audio,hardware/qcom/$(QCOM_AUDIO_VARIANT))
 $(call project-set-path,qcom-display,hardware/qcom/$(QCOM_DISPLAY_VARIANT))
 $(call project-set-path,qcom-media,hardware/qcom/$(QCOM_MEDIA_VARIANT))
+ifeq ($(USE_DEVICE_SPECIFIC_CAMERA),true)
+$(call project-set-path,qcom-camera,$(TARGET_DEVICE_DIR)/camera)
+else
 $(call qcom-set-path-variant,CAMERA,camera)
+endif
 $(call qcom-set-path-variant,GPS,gps)
 $(call qcom-set-path-variant,SENSORS,sensors)
 $(call ril-set-path-variant,ril)
