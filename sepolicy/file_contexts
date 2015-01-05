@@ -15,15 +15,14 @@
 #############################
 # performance-related sysfs files (CM)
 /sys/devices/system/cpu.*/cpufreq(/.*)? --  u:object_r:sysfs_devices_system_cpu:s0
-/sys/block/mmcblk0/queue/scheduler  --    u:object_r:sysfs_writable:s0
+/sys/block/mmcblk.*/queue/scheduler  --    u:object_r:sysfs_devices_system_iosched:s0
 
 /data/hostapd(/.*)?         u:object_r:wifi_data_file:s0
 /data/misc/radio(/.*)?      u:object_r:radio_data_file:s0
 
 #############
 # Superuser's control sockets
-/dev/com.android.settings.daemon(/.*)?   u:object_r:superuser_device:s0
-/dev/com.android.settings(/.*)?   u:object_r:superuser_device:s0
+/dev/socket/su-daemon(/.*)?   u:object_r:superuser_device:s0
 
 # Expansion of these hooks is a bit unconventional
 /cache/com.cyanogenmod.keyhandler.dex   u:object_r:dalvikcache_data_file:s0
