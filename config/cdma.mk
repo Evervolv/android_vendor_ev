@@ -1,5 +1,3 @@
-
-# World APN list
-PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
+# Backwards compat: new devices should use apns.mk
+$(call inherit-product, $(SRC_EVERVOLV_DIR)/config/apns.mk)
 
