@@ -93,6 +93,7 @@ PRODUCT_PACKAGES += \
     com.evervolv.platform-res \
     com.evervolv.platform \
     EVSettingsProvider \
+    EVSetupWizard \
     EVToolbox \
     EVUpdater
 
