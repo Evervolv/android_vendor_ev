@@ -70,20 +70,11 @@ APPEND_ZIP=-$(APPEND_ZIP_VERSION)
 endif
 
 ifeq ($(NIGHTLY_BUILD),true)
-  ROM_VERSION := $(TARGET_PRODUCT)-nightly-$(shell date +%Y.%m.%d)$(APPEND_ZIP)
+  ROM_VERSION := $(TARGET_PRODUCT)-$(PLATFORM_VERSIONN)-nightly-$(shell date +%Y.%m.%d)$(APPEND_ZIP)
 else ifeq ($(TESTING_BUILD),true)
-  ROM_VERSION := $(TARGET_PRODUCT)-testing-$(shell date +%Y.%m.%d)$(APPEND_ZIP)
+  ROM_VERSION := $(TARGET_PRODUCT)-$(PLATFORM_VERSION)-testing-$(shell date +%Y.%m.%d)$(APPEND_ZIP)
 else
-  ifeq ($(PRODUCT_CODENAME),)
-    $(warning ************************************************************)
-    $(warning You have not defined PRODUCT_CODENAME.)
-    $(warning Please refer to the following website for options.)
-    $(warning www.math.ubc.ca/~cass/frivs/latin/latin-dict-full.html.)
-    $(warning ************************************************************)
-    $(error Invalid option for PRODUCT_CODENAME.)
-  else
-    ROM_VERSION := $(TARGET_PRODUCT)-$(shell date +%Y.%m.%d)-$(PRODUCT_CODENAME)$(APPEND_ZIP)
-  endif
+  ROM_VERSION := $(TARGET_PRODUCT)-$(PLATFORM_VERSION)-userbuild-$(shell date +%Y.%m.%d)$(APPEND_ZIP)
 endif
 
 ROM_VERSION := $(shell echo ${ROM_VERSION} | tr [:upper:] [:lower:])
