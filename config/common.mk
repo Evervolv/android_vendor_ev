@@ -17,6 +17,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.notification_sound=Merope.ogg \
     ro.config.alarm_alert=Scandium.ogg
 
+# Backup Tool
+PRODUCT_COPY_FILES += \
+    vendor/ev/prebuilt/common/bin/backuptool/backuptool.sh:install/bin/backuptool.sh \
+    vendor/ev/prebuilt/common/bin/backuptool/backuptool.functions:install/bin/backuptool.functions \
+    vendor/ev/prebuilt/common/bin/backuptool/50-cm.sh:system/addon.d/50-cm.sh \
+    vendor/ev/prebuilt/common/bin/backuptool/blacklist:system/addon.d/blacklist
+
 # Make sure our default sounds make it in.
 FW_SNDS_PATH := frameworks/base/data/sounds
 PRODUCT_COPY_FILES += \
