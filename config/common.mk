@@ -77,7 +77,7 @@ APPEND_ZIP=-$(APPEND_ZIP_VERSION)
 endif
 
 ifeq ($(NIGHTLY_BUILD),true)
-  ROM_VERSION := $(TARGET_PRODUCT)-$(PLATFORM_VERSIONN)-nightly-$(shell date +%Y.%m.%d)$(APPEND_ZIP)
+  ROM_VERSION := $(TARGET_PRODUCT)-$(PLATFORM_VERSION)-nightly-$(shell date +%Y.%m.%d)$(APPEND_ZIP)
 else ifeq ($(TESTING_BUILD),true)
   ROM_VERSION := $(TARGET_PRODUCT)-$(PLATFORM_VERSION)-testing-$(shell date +%Y.%m.%d)$(APPEND_ZIP)
 else
