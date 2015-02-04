@@ -1,0 +1,3 @@
+type userinit_exec, exec_type, file_type;
+
+set_prop(userinit_exec, userinit_prop)

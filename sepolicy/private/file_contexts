@@ -3,3 +3,6 @@
 
 # Sysinit
 /system/bin/sysinit         u:object_r:sysinit_exec:s0
+
+# Userinit
+/system/etc/init\.d/90userinit          u:object_r:userinit_exec:s0
