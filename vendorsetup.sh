@@ -3,6 +3,7 @@ supported_devices=(
   'flo'
   'hammerhead'
   'oneplus3'
+  'shamu'
   'tenderloin'
 )
 
