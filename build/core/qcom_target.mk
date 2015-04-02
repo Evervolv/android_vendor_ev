@@ -74,7 +74,7 @@ else
         QCOM_DISPLAY_VARIANT := display-legacy
         QCOM_MEDIA_VARIANT := media-legacy
     else
-        QCOM_DISPLAY_VARIANT := display
+        QCOM_DISPLAY_VARIANT := display/$(TARGET_BOARD_PLATFORM)
         QCOM_MEDIA_VARIANT := media
     endif
 endif
