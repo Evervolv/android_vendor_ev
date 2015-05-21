@@ -71,7 +71,8 @@ PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/hot_reboot
 # Check if set to valid option
 ifeq ($(filter 720p 1080p 1440p hvga qhd wvga xga,$(BOOT_ANIMATION_SIZE)),)
 $(warning ************************************************************)
-$(warning You defined an invalid BOOT_ANIMATION_SIZE.)
+$(warning BOOT_ANIMATION_SIZE is either null or invalid.)
+$(warning Choices are 720p, 1080p, 1440p, hvga, qhd, wvga, and xga.)
 $(warning Please update your device tree to a valid choice.)
 $(warning ************************************************************)
 $(error Invalid option for BOOT_ANIMATION_SIZE.)
