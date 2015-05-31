@@ -6,6 +6,7 @@ on init
 
 on post-fs-data
     mkdir /data/.ssh 0750 root shell
+    mkdir /cache/recovery 0770 system cache
 
 on boot
     start sysinit
