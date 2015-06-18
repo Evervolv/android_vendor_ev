@@ -35,9 +35,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
 
+# Stagefright FFMPEG plugin
+PRODUCT_PACKAGES += \
+    libstagefright_soft_ffmpegadec \
+    libstagefright_soft_ffmpegvdec \
+    libFFmpegExtractor \
+    media_codecs_ffmpeg.xml
+
 # Required packages
 PRODUCT_PACKAGES += \
-    Launcher3 \
     EVToolbox \
     EVUpdater \
     EVTips \
