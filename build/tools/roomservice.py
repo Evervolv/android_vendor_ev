@@ -175,7 +175,7 @@ def fetch_repos(repos):
         add_to_manifest(fetch_list)
         repo_paths = ' '.join([ r.get('target_path') for r in fetch_list ])
         print 'Syncing', repo_paths
-        os.system('repo sync -f %s' % repo_paths)
+        os.system('repo sync --force-sync %s' % repo_paths)
 
 def fetch_children(repos):
     '''Locate any device dependencies'''
@@ -252,7 +252,7 @@ else:
                               'dep_type':'device'}])
 
             print "Syncing repository to retrieve project."
-            os.system('repo sync -f %s' % repo_path)
+            os.system('repo sync --force-sync %s' % repo_path)
             print "Repository synced!"
 
             fetch_dependencies(repo_path)
