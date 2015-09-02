@@ -15,10 +15,10 @@
     <seinfo value="release" />
   </signer>
 
-  <!-- CMUpdater -->
+  <!-- EVUpdater -->
   <signer signature="@RELEASE" >
-    <package name="com.cyanogenmod.updater" >
-      <seinfo value="cmupdater" />
+    <package name="com.evervolv.updater" >
+      <seinfo value="evupdater" />
     </package>
   </signer>
 </policy>
