@@ -1,3 +1,18 @@
+on init
+    # Set up the BFQIO hierarchy
+    mkdir /dev/bfqio 0755 root system
+    mount cgroup none /dev/bfqio bfqio
+    chown root system /dev/bfqio/tasks
+    chmod 0664 /dev/bfqio/tasks
+    chmod 0220 /dev/bfqio/cgroup.event_control
+
+    # Soft realtime class for display service
+    mkdir /dev/bfqio/rt-display 0755 root system
+    write /dev/bfqio/rt-display/bfqio.ioprio_class 1
+    chown system system /dev/bfqio/rt-display/tasks
+    chmod 0664 /dev/bfqio/rt-display/tasks
+    chmod 0220 /dev/bfqio/rt-display/cgroup.event_control
+
 on boot
     restorecon --recursive /sys/block/mmcblk0/queue
     chown system system /sys/block/mmcblk0/queue/scheduler
