@@ -85,13 +85,8 @@ $(error Invalid option for BOOT_ANIMATION_SIZE.)
 endif
 
 # Copy boot animation
-ifeq ($(TARGET_BOOTANIMATION_HALF_RES),true)
-PRODUCT_COPY_FILES += \
-    vendor/ev/prebuilt/bootanimation/halfres/$(BOOT_ANIMATION_SIZE).zip:system/media/bootanimation.zip
-else
 PRODUCT_COPY_FILES += \
     vendor/ev/prebuilt/bootanimation/$(BOOT_ANIMATION_SIZE).zip:system/media/bootanimation.zip
-endif
 
 #
 # Version Info
