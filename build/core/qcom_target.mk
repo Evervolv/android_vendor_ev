@@ -15,6 +15,7 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
     ifneq ($(BOARD_USES_LEGACY_QCOM_DISPLAY),true)
         TARGET_USES_QCOM_BSP := true
         qcom_flags += -DQCOM_BSP
+        qcom_flags += -DQTI_BSP
     endif
 
     TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
