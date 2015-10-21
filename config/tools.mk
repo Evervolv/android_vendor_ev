@@ -1,28 +1,26 @@
 # Command line tools
 
-# PRODUCT_PACKAGES += \
-#     bash \
-#     busybox \
-#     ca-bundle \
-#     curl \
-#     dumplogcat \
-#     e2fsck \
-#     mke2fs \
-#     resize2fs \
-#     rsync \
-#     scp \
-#     sftp \
-#     ssh \
-#     ssh-keygen \
-#     sshd \
-#     sshd_config \
-#     sshd_motd \
-#     start-ssh \
-#     tune2fs \
-#     vim \
-#     vimrc \
-#     wget \
-#     wgetrc
+PRODUCT_PACKAGES += \
+    bash \
+    busybox \
+    ca-bundle \
+    curl \
+    dumplogcat \
+    e2fsck \
+    mke2fs \
+    resize2fs \
+    rsync \
+    scp \
+    sftp \
+    ssh \
+    ssh-keygen \
+    sshd \
+    sshd_config \
+    sshd_motd \
+    start-ssh \
+    tune2fs \
+    vim \
+    vimrc
 
 # Custom init script
 PRODUCT_COPY_FILES += \

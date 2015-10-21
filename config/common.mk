@@ -43,13 +43,13 @@ PRODUCT_COPY_FILES += \
 #     media_codecs_ffmpeg.xml
 
 # Required packages
-# PRODUCT_PACKAGES += \
-#     EVToolbox \
-#     EVUpdater \
-#     EVTips \
-#     EVWidgets \
-#     EVWallpapers \
-#     su
+PRODUCT_PACKAGES += \
+    EVToolbox \
+    EVUpdater \
+    EVTips \
+    EVWidgets \
+    EVWallpapers \
+    su
 
 # Backup Transport
 PRODUCT_PACKAGE_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay/common
@@ -66,13 +66,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # include $(SRC_EVERVOLV_DIR)/config/themes_common.mk
 
 # Commandline / Init stuff
-# $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/tools.mk)
+$(call inherit-product, $(SRC_EVERVOLV_DIR)/config/tools.mk)
 
 # LatinIME english dictionary
 $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/dictionaries/english.mk)
 
 # Hot reboot
-# PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/hot_reboot
+PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/hot_reboot
 
 # Check if set to valid option
 ifeq ($(filter 720p 1080p 1440p hvga qhd wvga xga,$(BOOT_ANIMATION_SIZE)),)
