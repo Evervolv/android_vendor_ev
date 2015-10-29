@@ -63,7 +63,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.selinux=1
 
 # Theme support
-# include $(SRC_EVERVOLV_DIR)/config/themes_common.mk
+-include $(SRC_EVERVOLV_DIR)/config/themes_common.mk
 
 # Commandline / Init stuff
 $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/tools.mk)
