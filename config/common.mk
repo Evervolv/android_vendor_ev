@@ -75,22 +75,16 @@ $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/dictionaries/english.mk)
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/hot_reboot
 
 # Check if set to valid option
-ifeq ($(filter 720p 1080p 1440p hvga qhd wvga xga,$(BOOT_ANIMATION_SIZE)),)
+ifneq ($(filter 720p 1080p 1440p hvga qhd wvga xga,$(BOOT_ANIMATION_SIZE)),)
+PRODUCT_COPY_FILES += \
+    vendor/ev/prebuilt/bootanimation/$(BOOT_ANIMATION_SIZE).zip:system/media/bootanimation.zip
+else
 $(warning ************************************************************)
 $(warning BOOT_ANIMATION_SIZE is either null or invalid.)
 $(warning Choices are 720p, 1080p, 1440p, hvga, qhd, wvga, and xga.)
 $(warning Please update your device tree to a valid choice.)
+$(warning Otherwise, no animation will be present.)
 $(warning ************************************************************)
-$(error Invalid option for BOOT_ANIMATION_SIZE.)
-endif
-
-# Copy boot animation
-ifeq ($(TARGET_BOOTANIMATION_HALF_RES),true)
-PRODUCT_COPY_FILES += \
-    vendor/ev/prebuilt/bootanimation/halfres/$(BOOT_ANIMATION_SIZE).zip:system/media/bootanimation.zip
-else
-PRODUCT_COPY_FILES += \
-    vendor/ev/prebuilt/bootanimation/$(BOOT_ANIMATION_SIZE).zip:system/media/bootanimation.zip
 endif
 
 #
