@@ -1,2 +1,3 @@
 type font_manager_service, app_api_service, system_server_service, service_manager_type;
 type style_service, system_api_service, system_server_service, service_manager_type;
+type performance_service, system_api_service, system_server_service, service_manager_type;
