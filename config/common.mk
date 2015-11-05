@@ -55,6 +55,10 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 # Build information
 PRODUCT_OVERRIDE_FINGERPRINT ?= google/redfin/redfin:12/SP2A.220305.012/8177914:user/release-keys
 
+# Calculator
+PRODUCT_PACKAGES += \
+    ExactCalculator
+
 # Command line
 PRODUCT_PACKAGES += \
     bash \
