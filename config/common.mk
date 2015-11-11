@@ -54,6 +54,10 @@ PRODUCT_PACKAGES += \
 # Backup Transport
 PRODUCT_PACKAGE_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay/common
 
+# Chromium Browser
+PRODUCT_PACKAGES += \
+    Chromium
+
 # Disable strict mode
 ADDITIONAL_DEFAULT_PROPERTIES += \
     persist.sys.strictmode.disable=true
