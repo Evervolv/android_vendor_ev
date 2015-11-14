@@ -9,7 +9,8 @@ PRODUCT_PACKAGES += \
     htop \
     mke2fs \
     nano \
-    tune2fs
+    tune2fs \
+    wget
 
 # ExFAT support
 WITH_EXFAT ?= true
