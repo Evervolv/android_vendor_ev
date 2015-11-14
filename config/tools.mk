@@ -50,7 +50,8 @@ PRODUCT_PACKAGES += \
     su \
     tune2fs \
     vim \
-    vimrc
+    vimrc \
+    wget
 
 # Init
 PRODUCT_COPY_FILES += \
