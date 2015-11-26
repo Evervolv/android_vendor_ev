@@ -4,7 +4,7 @@
 # cyanogen
 #
 
-. $ANDROID_BUILD_TOP/vendor/cm/tools/functions
+. $ANDROID_BUILD_TOP/vendor/ev/tools/functions
 
 OUT_TARGET_HOST=`uname -s`
 if [ x"$OUT_TARGET_HOST" = x"Linux" ]
@@ -25,7 +25,7 @@ if [ -z "$OUT" -o ! -d "$OUT" ]; then
 	exit 1
 fi
 
-OPTICHARGER="$ANDROID_BUILD_TOP"/vendor/cm/tools/opticharger
+OPTICHARGER="$ANDROID_BUILD_TOP"/vendor/ev/tools/opticharger
 QUIET=-q
 DELETE_BINS="applypatch applypatch_static check_prereq recovery updater"
 
