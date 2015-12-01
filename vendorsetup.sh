@@ -1,6 +1,7 @@
 # Add devices below
 supported_devices=(
   'flo'
+  'gt58wifi'
   'hammerhead'
   'oneplus3'
   'shamu'
