@@ -34,7 +34,7 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
     # Tell HALs that we're compiling an AOSP build with an in-line kernel
     TARGET_COMPILE_WITH_MSM_KERNEL := true
 
-    ifneq ($(filter msm7x30 msm8660 msm8960,$(TARGET_BOARD_PLATFORM)),)
+    ifneq ($(filter msm7x27a msm7x30 msm8660 msm8960,$(TARGET_BOARD_PLATFORM)),)
         ifneq ($(BOARD_USES_LEGACY_QCOM_DISPLAY),true)
             # Enable legacy graphics functions
             qcom_flags += -DQCOM_BSP_LEGACY
@@ -63,6 +63,9 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
         ifneq ($(filter msm8909 msm8916,$(TARGET_BOARD_PLATFORM)),)
             QCOM_HARDWARE_VARIANT := msm8916
         else
+        ifneq ($(filter msm8953 msm8937,$(TARGET_BOARD_PLATFORM)),)
+            QCOM_HARDWARE_VARIANT := msm8937
+        else
         ifneq ($(filter msm8992 msm8994,$(TARGET_BOARD_PLATFORM)),)
             QCOM_HARDWARE_VARIANT := msm8994
         else
@@ -70,6 +73,7 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
             QCOM_HARDWARE_VARIANT := msm8960
         else
             QCOM_HARDWARE_VARIANT := $(TARGET_BOARD_PLATFORM)
+        endif
         endif
         endif
         endif
