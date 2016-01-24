@@ -63,9 +63,9 @@ while not depsonly:
         repositories.append(res)
     page = page + 1
 
-def exists_in_tree(lm, repository):
+def exists_in_tree(lm, path):
     for child in lm.getchildren():
-        if child.attrib['name'].endswith(repository):
+        if child.attrib['path'] == path:
             return True
     return False
 
@@ -110,7 +110,7 @@ def get_from_manifest(devicename):
 
     return None
 
-def is_in_manifest(projectname):
+def is_in_manifest(projectpath):
     for manifest in local_manifests:
         try:
             lm = ElementTree.parse(os.path.join(local_manifests_dir, manifest))
@@ -119,10 +119,10 @@ def is_in_manifest(projectname):
             lm = ElementTree.Element("manifest")
 
         for localpath in lm.findall("project"):
-            if localpath.get("name") == projectname:
-                return 1
+            if localpath.get("path") == projectpath:
+                return True
 
-    return None
+    return False
 
 def add_to_manifest(repositories):
     for repository in repositories:
@@ -139,8 +139,8 @@ def add_to_manifest(repositories):
 
         repo_name = repository['repository']
         repo_target = repository['target_path']
-        if exists_in_tree(lm, repo_name):
-            print '%s already exists' % (repo_name)
+        if is_in_manifest(repo_target):
+            print '%s already fetched to %s' % (repo_name, repo_target)
             continue
 
         print 'Adding dependency: %s -> %s' % (repo_name, repo_target)
@@ -168,7 +168,7 @@ def fetch_repos(repos):
 
     fetch_list = []
     for r in repos:
-        if not is_in_manifest('%s' % r.get('repository')):
+        if not is_in_manifest(r.get('target_path')):
             fetch_list.append(r)
 
     if fetch_list:
