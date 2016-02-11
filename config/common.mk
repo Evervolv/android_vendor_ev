@@ -19,18 +19,6 @@ PRODUCT_COPY_FILES += \
     vendor/ev/prebuilt/common/bin/backuptool/50-cm.sh:system/addon.d/50-cm.sh \
     vendor/ev/prebuilt/common/bin/backuptool/blacklist:system/addon.d/blacklist
 
-# Make sure our default sounds make it in.
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.ringtone=Pyxis.ogg \
-    ro.config.notification_sound=Merope.ogg \
-    ro.config.alarm_alert=Scandium.ogg
-
-FW_SNDS_PATH := frameworks/base/data/sounds
-PRODUCT_COPY_FILES += \
-    $(FW_SNDS_PATH)/ringtones/ogg/Pyxis.ogg:system/media/audio/ringtones/Pyxis.ogg \
-    $(FW_SNDS_PATH)/notifications/Merope.ogg:system/media/audio/notifications/Merope.ogg \
-    $(FW_SNDS_PATH)/alarms/ogg/Scandium.ogg:system/media/audio/alarms/Scandium.ogg
-
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
