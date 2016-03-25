@@ -1,1 +1,2 @@
 OEMExService                              u:object_r:oem_extra_service:s0
+performance                               u:object_r:performance_service:s0

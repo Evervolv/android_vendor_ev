@@ -39,4 +39,10 @@
         <item>com.google.android.gms/com.google.android.gms.update.SystemUpdateService</item>
     </string-array>
 
+    <string-array name="config_auto_perf_activities" translatable="false">
+        <item>com.aurorasoftworks.quadrant.*BenchmarkExecutionActivity,2</item>
+        <item>com.antutu.ABenchMark.*,2</item>
+        <item>.*com.antutu.benchmark.*,2</item>
+    </string-array>
+
 </resources>
