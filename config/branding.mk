@@ -11,6 +11,7 @@ EV_PLATFORM_REV ?= 0
 PRODUCT_PACKAGES += \
     com.evervolv.globalactions.xml \
     com.evervolv.hardware.xml \
+    com.evervolv.livedisplay.xml \
     com.evervolv.performance.xml \
     com.evervolv.platform-res \
     com.evervolv.platform \
