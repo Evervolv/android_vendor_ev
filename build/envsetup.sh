@@ -90,6 +90,9 @@ function cafremote()
     then
         echo .git directory not found. Please run this from the root directory of the Android repository you wish to set up.
     fi
+    if [ ! "$ANDROID_BUILD_TOP" ]; then
+        export ANDROID_BUILD_TOP=$(gettop)
+    fi
     PROJECT=`pwd | sed s#$ANDROID_BUILD_TOP/##g`
     if (echo $PROJECT | grep -qv "^device")
     then
