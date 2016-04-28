@@ -1,4 +1,5 @@
 add_lunch_combo ev_bravo-eng
+add_lunch_combo ev_celox-eng
 add_lunch_combo ev_d2tmo-eng
 add_lunch_combo ev_d710-eng
 add_lunch_combo ev_deb-eng
@@ -6,7 +7,6 @@ add_lunch_combo ev_flo-eng
 add_lunch_combo ev_glacier-eng
 add_lunch_combo ev_grouper-eng
 add_lunch_combo ev_gt58wifixx-eng
-add_lunch_combo ev_hammerhead-eng
 add_lunch_combo ev_hercules-eng
 add_lunch_combo ev_inc-eng
 add_lunch_combo ev_jewel-eng
@@ -26,7 +26,6 @@ add_lunch_combo ev_shamu-eng
 add_lunch_combo ev_shooter-eng
 add_lunch_combo ev_shooteru-eng
 add_lunch_combo ev_shootervm-eng
-add_lunch_combo ev_skyrocket-eng
 add_lunch_combo ev_speedy-eng
 add_lunch_combo ev_supersonic-eng
 add_lunch_combo ev_tenderloin-eng
