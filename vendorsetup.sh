@@ -7,7 +7,7 @@ add_lunch_combo ev_flo-eng
 add_lunch_combo ev_glacier-eng
 add_lunch_combo ev_grouper-eng
 add_lunch_combo ev_gt58wifixx-eng
-add_lunch_combo ev_hercules-eng
+add_lunch_combo ev_hammerhead-eng
 add_lunch_combo ev_inc-eng
 add_lunch_combo ev_jewel-eng
 add_lunch_combo ev_jfltevzw-eng
