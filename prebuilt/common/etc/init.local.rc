@@ -11,10 +11,26 @@ on post-fs-data
 
 on boot
     start sysinit
+
     chown system system /sys/block/mmcblk0/queue/scheduler
     chmod 0664 /sys/block/mmcblk0/queue/scheduler
 
-# allow system to modify ksm control files
+    chown system system /sys/block/sda/queue/scheduler
+    chmod 0664 /sys/block/sda/queue/scheduler
+    restorecon /sys/block/sda/queue/scheduler
+
+    chown system system /sys/block/sde/queue/scheduler
+    chmod 0664 /sys/block/sde/queue/scheduler
+    restorecon /sys/block/sde/queue/scheduler
+
+    chown system system /sys/block/dm-0/queue/scheduler
+    chmod 0664 /sys/block/dm-0/queue/scheduler
+    restorecon /sys/block/dm-0/queue/scheduler
+
+    chown system system /dev/cpuctl/cpu.notify_on_migrate
+    chmod 0664 /dev/cpuctl/cpu.notify_on_migrate
+
+    # allow system to modify ksm control files
     chown root system /sys/kernel/mm/ksm/pages_to_scan
     chmod 0664 /sys/kernel/mm/ksm/pages_to_scan
     chown root system /sys/kernel/mm/ksm/sleep_millisecs
@@ -23,9 +39,6 @@ on boot
     chmod 0664 /sys/kernel/mm/ksm/run
     write /sys/kernel/mm/ksm/sleep_millisecs 1500
     write /sys/kernel/mm/ksm/pages_to_scan 256
-
-    chown system system /dev/cpuctl/cpu.notify_on_migrate
-    chmod 0664 /dev/cpuctl/cpu.notify_on_migrate
 
 # adb over network
 on property:service.adb.tcp.port=5555
@@ -47,6 +60,9 @@ on property:persist.radio.noril=1
 # Configure IO scheduler
 on property:sys.io.scheduler=*
     write /sys/block/mmcblk0/queue/scheduler ${sys.io.scheduler}
+    write /sys/block/sda/queue/scheduler ${sys.io.scheduler}
+    write /sys/block/sde/queue/scheduler ${sys.io.scheduler}
+    write /sys/block/dm-0/queue/scheduler ${sys.io.scheduler}
 
 on property:persist.sys.io.scheduler=*
     setprop sys.io.scheduler ${persist.sys.io.scheduler}
