@@ -17,8 +17,11 @@
 TARGET_AUTO_KDIR := $(shell echo $(TARGET_DEVICE_DIR) | sed -e 's/^device/kernel/g')
 
 ## Kernel tools
-KERNEL_TOOLS := \
-  $(HOST_OUT_EXECUTABLES)/mkimage
+ifeq ($(BOARD_USES_UBOOT),true)
+KERNEL_TOOLS := $(HOST_OUT_EXECUTABLES)/mkimage
+else
+KERNEL_TOOLS :=
+endif
 
 ## Externally influenced variables
 # kernel location - optional, defaults to kernel/<vendor>/<device>
