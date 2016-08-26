@@ -3,5 +3,5 @@
 # inherit from EV
 #
 
-# BOARD_SEPOLICY_DIRS += \
-#     vendor/ev/sepolicy
+BOARD_SEPOLICY_DIRS += \
+    vendor/ev/sepolicy
