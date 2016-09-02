@@ -28,7 +28,7 @@ PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/permissions/org.cyanogenmod.theme.xml:system/etc/permissions/org.cyanogenmod.theme.xml
 
 # Backup Transport
-# PRODUCT_PACKAGE_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay/common
+PRODUCT_PACKAGE_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay/common
 
 # Disable strict mode
 ADDITIONAL_DEFAULT_PROPERTIES += \
@@ -45,7 +45,7 @@ $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/tools.mk)
 $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/dictionaries/english.mk)
 
 # Hot reboot
-# PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/hot_reboot
+PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/hot_reboot
 
 # Check if set to valid option
 ifneq ($(filter 720p 1080p 1440p hvga qhd wvga xga,$(BOOT_ANIMATION_SIZE)),)
