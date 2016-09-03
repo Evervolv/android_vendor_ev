@@ -70,3 +70,8 @@ PRODUCT_PACKAGES += \
 # Root
 PRODUCT_PACKAGES += \
     adb_root
+
+# Inherit GMS, Pixel Features, and Modules.
+ifeq ($(WITH_GMS),true)
+$(call inherit-product-if-exists, vendor/google/gms/config.mk)
+endif
