@@ -1,31 +1,45 @@
-# Browser
-PRODUCT_PACKAGES += \
-    Jelly
-
 # Extra tools
 PRODUCT_PACKAGES += \
-    e2fsck \
+    7z \
+    awk \
+    bash \
+    bzip2 \
+    curl \
     htop \
-    mke2fs \
-    nano \
-    openvpn \
-    tune2fs \
-    wget
+    lib7z \
+    libsepol \
+    pigz \
+    powertop \
+    rsync \
+    scp \
+    sftp \
+    ssh \
+    sshd \
+    sshd_config \
+    ssh-keygen \
+    start-ssh \
+    unrar \
+    unzip \
+    vim \
+    wget \
+    zip
 
-# ExFAT support
-WITH_EXFAT ?= true
-ifeq ($(WITH_EXFAT),true)
-TARGET_USES_EXFAT := true
+# Filesystems tools
 PRODUCT_PACKAGES += \
-    mount.exfat \
     fsck.exfat \
-    mkfs.exfat
-endif
+    fsck.ntfs \
+    mke2fs \
+    mkfs.exfat \
+    mkfs.ntfs \
+    mount.ntfs
 
-# Music
+# Extra packages
 PRODUCT_PACKAGES += \
     AudioFX \
-    Eleven
+    Eleven \
+    EVUpdater \
+    Jelly \
+    WallpaperPicker
 
 # Include explicitly to work around GMS issues
 PRODUCT_PACKAGES += \
@@ -39,11 +53,3 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.boot.vendor.overlay.theme=com.google.android.theme.pixel
-
-# Updater
-PRODUCT_PACKAGES += \
-    EVUpdater
-
-# Wallpaper picker
-PRODUCT_PACKAGES += \
-    WallpaperPicker
