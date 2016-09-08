@@ -4,6 +4,9 @@ on init
     export TERMINFO /system/etc/terminfo
     mkdir /sd-ext 0771 system system
 
+    # Create cgroup mount point for BFQ
+    mount tmpfs none /sys/fs/cgroup mode=0750,uid=0,gid=1000
+
     # Set up the BFQIO hierarchy
     chmod 0755 /sys/fs/cgroup
     mkdir /sys/fs/cgroup/bfqio 0755 root system
