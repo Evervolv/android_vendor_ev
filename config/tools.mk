@@ -55,8 +55,7 @@ PRODUCT_PACKAGES += \
 
 # Init
 PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.evervolv.rc:root/init.evervolv.rc \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.superuser.rc:root/init.superuser.rc
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.evervolv.rc:root/init.evervolv.rc
 
 # Init.d
 PRODUCT_COPY_FILES += \
