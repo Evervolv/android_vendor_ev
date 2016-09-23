@@ -1,0 +1,21 @@
+type motd, domain;
+type motd_exec, exec_type, file_type;
+
+init_daemon_domain(motd)
+
+#============= motd ==============
+allow motd devpts:chr_file { rw_file_perms };
+allow motd shell_exec:file { rx_file_perms };
+allow motd system_file:file { rx_file_perms };
+allow motd self:process setcurrent;
+
+userdebug_or_eng(`
+    allow motd userinit_data_exec:file { r_file_perms relabelto };
+    allow motd property_socket:sock_file write;
+    allow motd init:unix_stream_socket connectto;
+    allow motd userinit_prop:property_service set;
+    allow motd sysfs:file rw_file_perms;
+    allow motd sysfs_devices_system_cpu:file write;
+    allow motd self:capability dac_override;
+    allow motd userinit_exec:file { rx_file_perms };
+')
