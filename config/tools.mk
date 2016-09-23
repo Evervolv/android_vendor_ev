@@ -13,16 +13,20 @@ PRODUCT_PACKAGES += \
     EVUpdater \
     EVTips \
     EVWidgets \
-    EVWallpapers
+    EVWallpapers \
+    init.evervolv.rc \
+    welcome_motd
 
 # Theme engine
+ifneq ($(wildcard packages/apps/ThemeChooser/Android.mk),)
 PRODUCT_PACKAGES += \
     aapt \
     ThemeChooser \
     ThemesProvider
+endif
 
 # Stagefright FFMPEG plugin
- PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
      libstagefright_soft_ffmpegadec \
      libstagefright_soft_ffmpegvdec \
      libFFmpegExtractor \
@@ -47,31 +51,29 @@ PRODUCT_PACKAGES += \
     sshd_config \
     sshd_motd \
     start-ssh \
+    sysinit \
     su \
     tune2fs \
     vim \
     vimrc \
     wget
 
-# Init
+# Backup Tool
 PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.evervolv.rc:root/init.evervolv.rc
+    $(SRC_EVERVOLV_DIR)/prebuilt/bin/backuptool/backuptool.sh:install/bin/backuptool.sh \
+    $(SRC_EVERVOLV_DIR)/prebuilt/bin/backuptool/backuptool.functions:install/bin/backuptool.functions \
+    $(SRC_EVERVOLV_DIR)/prebuilt/bin/backuptool/50-cm.sh:system/addon.d/50-cm.sh \
+    $(SRC_EVERVOLV_DIR)/prebuilt/bin/backuptool/blacklist:system/addon.d/blacklist
 
 # Init.d
 PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/sysinit:system/bin/sysinit \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.d/05mountext:system/etc/init.d/05mountext \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.d/20extgapps:system/etc/init.d/20extgapps
+    $(SRC_EVERVOLV_DIR)/prebuilt/etc/init.d/00banner:system/etc/init.d/00banner \
+    $(SRC_EVERVOLV_DIR)/prebuilt/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
+    $(SRC_EVERVOLV_DIR)/prebuilt/etc/init.d/05mountext:system/etc/init.d/05mountext \
+    $(SRC_EVERVOLV_DIR)/prebuilt/etc/init.d/20extgapps:system/etc/init.d/20extgapps
 
-# Apps2sd
+# Themes
+ifneq ($(wildcard packages/apps/ThemeChooser/Android.mk),)
 PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/a2sd:system/bin/a2sd \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/fix_permissions:system/bin/fix_permissions \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/xbin/zipalign:system/xbin/zipalign \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.d/10apps2sd-redux:system/etc/init.d/10apps2sd
-
-# MOTD
-PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/welcome_motd:system/bin/welcome_motd
+    $(SRC_EVERVOLV_DIR)/prebuilt/etc/permissions/org.cyanogenmod.theme.xml:system/etc/permissions/org.cyanogenmod.theme.xml
+endif
