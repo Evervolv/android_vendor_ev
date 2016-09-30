@@ -21,17 +21,13 @@
 # performance-related sysfs files (CM)
 /sys/kernel/mm/ksm(/.*)?                   u:object_r:sysfs_ksm:s0
 /sys/devices/system/cpu.*/cpufreq(/.*)?    u:object_r:sysfs_devices_system_cpu:s0
-/sys/block/mmcblk*/queue/scheduler         u:object_r:sysfs_ioscheduler:s0
-/sys/devices/.*/queue/scheduler            u:object_r:sysfs_ioscheduler:s0
-/sys/devices/.*/queue/read_ahead_kb        u:object_r:sysfs_ioscheduler:s0
+/sys/block/mmcblk*/queue/scheduler         u:object_r:sysfs_devices_system_iosched:s0
 
 /data/hostapd(/.*)?         u:object_r:wifi_data_file:s0
 
 #############
-# Superuser's control sockets
+# Superuser control sockets
 /dev/socket/su-daemon(/.*)?   u:object_r:superuser_device:s0
-
-# EVToolbox control sockets
 /dev/com.evervolv.toolbox.daemon(/.*)?   u:object_r:superuser_device:s0
 /dev/com.evervolv.toolbox(/.*)?   u:object_r:superuser_device:s0
 

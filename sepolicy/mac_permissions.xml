@@ -15,10 +15,4 @@
     <seinfo value="release" />
   </signer>
 
-  <!-- EVUpdater -->
-  <signer signature="@RELEASE" >
-    <package name="com.evervolv.updater" >
-      <seinfo value="evupdater" />
-    </package>
-  </signer>
 </policy>
