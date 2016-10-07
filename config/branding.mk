@@ -1,11 +1,14 @@
 # Boot animation
 BOOT_ANIMATION_SIZE ?= 1080p
-ifneq ($(filter 720p 1080p 1440p hvga qhd wvga xga,$(BOOT_ANIMATION_SIZE)),)
-PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/bootanimation/$(BOOT_ANIMATION_SIZE).zip:$(TARGET_COPY_OUT_SYSTEM)/media/bootanimation.zip
-
-PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
-    system/media/bootanimation.zip
+ifeq ($(BOOT_ANIMATION_SIZE),1440p)
+TARGET_SCREEN_HEIGHT := 3120
+TARGET_SCREEN_WIDTH := 1440
+else ifeq ($(BOOT_ANIMATION_SIZE),1080p)
+TARGET_SCREEN_HEIGHT := 1920
+TARGET_SCREEN_WIDTH := 1080
+else ifeq ($(BOOT_ANIMATION_SIZE),720p)
+TARGET_SCREEN_HEIGHT := 1920
+TARGET_SCREEN_WIDTH := 1080
 endif
 
 # AOSP has no support of loading framework resources from /system_ext
@@ -18,6 +21,7 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/framework/com.evervolv.platform.jar
 
 PRODUCT_PACKAGES += \
+    bootanimation.zip \
     com.evervolv.platform-res \
     com.evervolv.platform \
     EVSettingsProvider \
