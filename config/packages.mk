@@ -8,11 +8,11 @@ PRODUCT_PACKAGES += \
 
 # Extra tools
 PRODUCT_PACKAGES += \
-    openvpn \
     e2fsck \
     htop \
     mke2fs \
     nano \
+    openvpn \
     tune2fs \
     wget
 
@@ -43,4 +43,8 @@ PRODUCT_PACKAGES += \
 
 # Updater
 PRODUCT_PACKAGES += \
-      EVUpdater
+    EVUpdater
+
+# Wallpaper picker
+PRODUCT_PACKAGES += \
+    WallpaperPicker
