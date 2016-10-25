@@ -1,6 +1,7 @@
 add_lunch_combo ev_celox-eng
 add_lunch_combo ev_gt58wifixx-eng
 add_lunch_combo ev_hammerhead-eng
+add_lunch_combo ev_oneplus3-eng
 add_lunch_combo ev_shamu-eng
 add_lunch_combo ev_tenderloin-eng
 add_lunch_combo ev_tenderloin4g-eng
