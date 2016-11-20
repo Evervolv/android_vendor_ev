@@ -1,4 +1,5 @@
 add_lunch_combo ev_celox-eng
+add_lunch_combo ev_flo-eng
 add_lunch_combo ev_gt58wifixx-eng
 add_lunch_combo ev_hammerhead-eng
 add_lunch_combo ev_oneplus3-eng
