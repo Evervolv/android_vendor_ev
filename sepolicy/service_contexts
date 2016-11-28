@@ -1,3 +1,4 @@
 edgegestureservice                        u:object_r:edge_gesture_service:s0
 themes                                    u:object_r:themes_service:s0
 torch                                     u:object_r:torch_service:s0
+OEMExService                              u:object_r:oem_extra_service:s0
