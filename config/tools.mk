@@ -14,6 +14,7 @@ PRODUCT_PACKAGES += \
     EVTips \
     EVWidgets \
     EVWallpapers \
+    Sudo \
     init.evervolv.rc \
     welcome_motd
 
