@@ -18,6 +18,10 @@ PRODUCT_PACKAGES += \
     init.evervolv.rc \
     welcome_motd
 
+# Substratum helper packages
+PRODUCT_PACKAGES += \
+    masquerade
+
 # Theme engine
 ifneq ($(wildcard packages/apps/ThemeChooser/Android.mk),)
 PRODUCT_PACKAGES += \
