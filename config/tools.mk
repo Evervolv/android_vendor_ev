@@ -22,14 +22,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     masquerade
 
-# Theme engine
-ifneq ($(wildcard packages/apps/ThemeChooser/Android.mk),)
-PRODUCT_PACKAGES += \
-    aapt \
-    ThemeChooser \
-    ThemesProvider
-endif
-
 # Stagefright FFMPEG plugin
 PRODUCT_PACKAGES += \
      libstagefright_soft_ffmpegadec \
@@ -76,9 +68,3 @@ PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
     $(SRC_EVERVOLV_DIR)/prebuilt/etc/init.d/05mountext:system/etc/init.d/05mountext \
     $(SRC_EVERVOLV_DIR)/prebuilt/etc/init.d/20extgapps:system/etc/init.d/20extgapps
-
-# Themes
-ifneq ($(wildcard packages/apps/ThemeChooser/Android.mk),)
-PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/etc/permissions/org.cyanogenmod.theme.xml:system/etc/permissions/org.cyanogenmod.theme.xml
-endif
