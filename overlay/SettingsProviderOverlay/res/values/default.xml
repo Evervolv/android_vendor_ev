@@ -16,6 +16,7 @@
 -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <bool name="def_bluetooth_on">false</bool>
     <bool name="def_wifi_on">true</bool>
     <!-- Set the automatic brightness mode on by default -->
     <bool name="def_screen_brightness_automatic_mode">true</bool>
