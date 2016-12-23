@@ -25,8 +25,8 @@
 #############
 # Superuser control sockets
 /dev/socket/su-daemon(/.*)?   u:object_r:superuser_device:s0
-/dev/com.evervolv.sudo.daemon(/.*)?   u:object_r:superuser_device:s0
-/dev/com.evervolv.sudo(/.*)?   u:object_r:superuser_device:s0
+/dev/com\.evervolv\.sudo\.daemon(/.*)?   u:object_r:superuser_device:s0
+/dev/com\.evervolv\.sudo(/.*)?   u:object_r:superuser_device:s0
 
 # Expansion of these hooks is a bit unconventional
 /cache/com\.cyanogenmod\.keyhandler\.dex       u:object_r:dalvikcache_data_file:s0
