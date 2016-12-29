@@ -4,7 +4,8 @@ $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common.mk)
 # Audio
 PRODUCT_PACKAGES += \
     AudioFX \
-    Eleven
+    Eleven \
+    Recorder
 
 # Browser
 PRODUCT_PACKAGES += \
