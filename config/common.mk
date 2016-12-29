@@ -70,5 +70,5 @@ ROM_VERSION := $(shell echo ${ROM_VERSION} | tr [:upper:] [:lower:])
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.evervolv.device=$(PRODUCT_CODENAME) \
-    ro.evervolv.version=$(PLATFORM_VERSION)
+    ro.evervolv.version=$(ROM_VERSION)
 
