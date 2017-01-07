@@ -106,6 +106,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.disable_rescue=true
 
+# Security
+PRODUCT_EXTRA_RECOVERY_KEYS += \
+    $(SRC_EVERVOLV_DIR)/build/target/product/security/lineage
+
 # Storage manager
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.storage_manager.enabled=true
