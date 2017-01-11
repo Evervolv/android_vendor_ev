@@ -102,7 +102,7 @@ $(call set-device-specific-path,LOC_API,loc-api,vendor/qcom/opensource/location)
 
 $(call ril-set-path-variant,ril)
 $(call wlan-set-path-variant,wlan)
-$(call bt-vendor-set-path-variant,bt)
+$(call bt-vendor-set-path-variant,bt-caf)
 
 else
 
