@@ -9,16 +9,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    keyguard.no_require_sim=true \
+    keyguard.no_require_sim=true
+
+PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.debug.alloc=0 \
-    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
-    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
-    ro.com.android.wifi-watchlist=GoogleGuest \
-    ro.setupwizard.enterprise_mode=1 \
-    ro.com.android.dateformat=MM-dd-yyyy \
+    persist.sys.disable_rescue=true \
     ro.boot.vendor.overlay.theme=com.google.android.theme.pixel \
-    ro.build.selinux=1 \
-    persist.sys.disable_rescue=true
+    ro.build.selinux=1
 
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
