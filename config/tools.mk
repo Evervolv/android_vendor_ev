@@ -3,10 +3,6 @@ PRODUCT_PACKAGES += \
     AudioFX \
     Eleven
 
-# Chromium Browser
-PRODUCT_PACKAGES += \
-    Chromium
-
 # Evervolv packages
 PRODUCT_PACKAGES += \
     EVToolbox \
