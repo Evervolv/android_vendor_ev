@@ -10,9 +10,7 @@ PRODUCT_PACKAGES += \
     EVTips \
     EVWidgets \
     EVWallpapers \
-    Sudo \
-    init.evervolv.rc \
-    welcome_motd
+    init.evervolv.rc
 
 # Substratum helper packages
 PRODUCT_PACKAGES += \
@@ -28,15 +26,16 @@ PRODUCT_PACKAGES += \
 # Command line tools
 PRODUCT_PACKAGES += \
     bash \
-    busybox \
     ca-bundle \
     curl \
     dumplogcat \
     e2fsck \
     mke2fs \
+    nano \
     resize2fs \
     rsync \
     scp \
+    sysinit \
     sftp \
     ssh \
     ssh-keygen \
@@ -44,12 +43,17 @@ PRODUCT_PACKAGES += \
     sshd_config \
     sshd_motd \
     start-ssh \
-    sysinit \
-    su \
+    toybox \
     tune2fs \
-    vim \
-    vimrc \
+    welcome_motd \
     wget
+
+# Do not build and include root access on user builds
+ifneq ($(filter userdebug eng,$(TARGET_BUILD_VARIANT)),)
+PRODUCT_PACKAGES += \
+    Sudo \
+    su
+endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \

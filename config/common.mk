@@ -1,10 +1,6 @@
 # Evervolv
 PRODUCT_BRAND ?= evervolv
 
-# Disable strict mode
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    persist.sys.strictmode.disable=true
-
 # Default propety overrides
 PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
@@ -15,24 +11,16 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.setupwizard.enterprise_mode=1 \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false \
-    ro.build.selinux=1
-
-# Disable Substratum warning
-PRODUCT_PROPERTY_OVERRIDES := \
+    ro.build.selinux=1 \
+    persist.sys.strictmode.disable=true \
     ro.substratum.verified=true
 
 # Disable UTC date
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_UTC_DATE=0
 
-# Permissions
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
-
 # Overlays
-PRODUCT_PACKAGE_OVERLAYS += \
-    $(SRC_EVERVOLV_DIR)/overlay/common \
-    $(SRC_EVERVOLV_DIR)/overlay/hot_reboot
+PRODUCT_PACKAGE_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay/common
 
 # Check BOOT_ANIMATION_SIZE for a valid size
 ifneq ($(filter 720p 1080p 1440p hvga qhd wvga xga,$(BOOT_ANIMATION_SIZE)),)

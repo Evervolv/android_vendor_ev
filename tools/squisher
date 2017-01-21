@@ -4,8 +4,6 @@
 # cyanogen
 #
 
-. $ANDROID_BUILD_TOP/vendor/ev/tools/functions
-
 OUT_TARGET_HOST=`uname -s`
 if [ x"$OUT_TARGET_HOST" = x"Linux" ]
 then
@@ -16,12 +14,12 @@ then
    OUT_TARGET_HOST=darwin-x86
    XARGS="xargs -n 1 -P `sysctl hw.ncpu | awk '{print $2}'`"
 else
-   echo -e $CL_RED"ERROR: unknown/unsupported host OS!"$CL_RST
+   echo -e "ERROR: unknown/unsupported host OS!"
    exit 1
 fi
 
 if [ -z "$OUT" -o ! -d "$OUT" ]; then
-	echo -e $CL_RED"ERROR: $0 only works with a full build environment. $OUT should exist."$CL_RST
+	echo -e "ERROR: $0 only works with a full build environment. $OUT should exist."
 	exit 1
 fi
 
