@@ -33,9 +33,110 @@
 #include "private/android_filesystem_config.h"
 
 #define LOG_TAG "dumplogcat"
-#include <utils/Log.h>
+#include <cutils/log.h>
 
 #include "dumplogcat.h"
+
+#define PSTORE_LAST_KMSG "/sys/fs/pstore/console-ramoops"
+#define ALT_PSTORE_LAST_KMSG "/sys/fs/pstore/console-ramoops-0"
+
+/* Copied policy from system/core/logd/LogBuffer.cpp */
+
+#define LOG_BUFFER_SIZE (256 * 1024)
+#define LOG_BUFFER_MIN_SIZE (64 * 1024UL)
+#define LOG_BUFFER_MAX_SIZE (256 * 1024 * 1024UL)
+
+static bool valid_size(unsigned long value) {
+    if ((value < LOG_BUFFER_MIN_SIZE) || (LOG_BUFFER_MAX_SIZE < value)) {
+        return false;
+    }
+
+    long pages = sysconf(_SC_PHYS_PAGES);
+    if (pages < 1) {
+        return true;
+    }
+
+    long pagesize = sysconf(_SC_PAGESIZE);
+    if (pagesize <= 1) {
+        pagesize = PAGE_SIZE;
+    }
+
+    // maximum memory impact a somewhat arbitrary ~3%
+    pages = (pages + 31) / 32;
+    unsigned long maximum = pages * pagesize;
+
+    if ((maximum < LOG_BUFFER_MIN_SIZE) || (LOG_BUFFER_MAX_SIZE < maximum)) {
+        return true;
+    }
+
+    return value <= maximum;
+}
+
+static unsigned long property_get_size(const char *key) {
+    unsigned long value;
+    char *cp, property[PROPERTY_VALUE_MAX];
+
+    property_get(key, property, "");
+    value = strtoul(property, &cp, 10);
+
+    switch(*cp) {
+    case 'm':
+    case 'M':
+        value *= 1024;
+    /* FALLTHRU */
+    case 'k':
+    case 'K':
+        value *= 1024;
+    /* FALLTHRU */
+    case '\0':
+        break;
+
+    default:
+        value = 0;
+    }
+
+    if (!valid_size(value)) {
+        value = 0;
+    }
+
+    return value;
+}
+
+unsigned long worst_write_perf = 20000; /* in KB/s */
+
+/* timeout in ms */
+static unsigned long logcat_timeout(const char *name) {
+    static const char global_tuneable[] = "persist.logd.size"; // Settings App
+    static const char global_default[] = "ro.logd.size";       // BoardConfig.mk
+    char key[PROP_NAME_MAX];
+    unsigned long property_size, default_size;
+
+    default_size = property_get_size(global_tuneable);
+    if (!default_size) {
+        default_size = property_get_size(global_default);
+    }
+
+    snprintf(key, sizeof(key), "%s.%s", global_tuneable, name);
+    property_size = property_get_size(key);
+
+    if (!property_size) {
+        snprintf(key, sizeof(key), "%s.%s", global_default, name);
+        property_size = property_get_size(key);
+    }
+
+    if (!property_size) {
+        property_size = default_size;
+    }
+
+    if (!property_size) {
+        property_size = LOG_BUFFER_SIZE;
+    }
+
+    /* Engineering margin is ten-fold our guess */
+    return 10 * (property_size + worst_write_perf) / worst_write_perf;
+}
+
+/* End copy from system/core/logd/LogBuffer.cpp */
 
 static void usage() {
     fprintf(stderr, "usage: dumplogcat -mrdk [-o file [-D] [-B]] [-s] [-q]\n"
@@ -57,6 +158,7 @@ static void vibrate(FILE* vibrator, int ms) {
 }
 
 int main(int argc, char *argv[]) {
+    unsigned long timeout;
     int logcat = 0;
     int radio = 0;
     int dmesg = 0;
@@ -71,7 +173,7 @@ int main(int argc, char *argv[]) {
 
     /* set as high priority, and protect from OOM killer */
     setpriority(PRIO_PROCESS, 0, -20);
-    FILE *oom_adj = fopen("/proc/self/oom_adj", "w");
+    FILE *oom_adj = fopen("/proc/self/oom_adj", "we");
     if (oom_adj) {
         fputs("-17", oom_adj);
         fclose(oom_adj);
@@ -110,9 +212,8 @@ int main(int argc, char *argv[]) {
 
     FILE *vibrator = 0;
     if (do_vibrate) {
-        vibrator = fopen("/sys/class/timed_output/vibrator/enable", "w");
+        vibrator = fopen("/sys/class/timed_output/vibrator/enable", "we");
         if (vibrator) {
-            fcntl(fileno(vibrator), F_SETFD, FD_CLOEXEC);
             vibrate(vibrator, 150);
         }
     }
@@ -172,22 +273,41 @@ int main(int argc, char *argv[]) {
     }
 
     if (logcat) {
-        run_command("SYSTEM LOG", 20, "logcat", "-d", "*:v", NULL);
+        timeout = logcat_timeout("main") + logcat_timeout("system") + logcat_timeout("crash");
+        if (timeout < 20000) {
+            timeout = 20000;
+        }
+        run_command("SYSTEM LOG", timeout / 1000, "logcat", "-v", "threadtime", "-d", "*:v", NULL);
     }
+
     if (radio) {
-        run_command("RADIO LOG", 20, "logcat", "-b", "radio", "-d", "*:v", NULL);
+        timeout = logcat_timeout("radio");
+        if (timeout < 20000) {
+            timeout = 20000;
+        }
+        run_command("RADIO LOG", timeout / 1000, "logcat", "-b", "radio", "-v", "threadtime", "-d", "*:v", NULL);
     }
+
     if (dmesg) {
         do_dmesg();
     }
+
     if (last_kmsg) {
+        struct stat st;
+        if (!stat(PSTORE_LAST_KMSG, &st)) {
+            /* Also TODO: Make console-ramoops CAP_SYSLOG protected. */
+            dump_file("LAST KMSG", PSTORE_LAST_KMSG);
+        } else if (!stat(ALT_PSTORE_LAST_KMSG, &st)) {
+            dump_file("LAST KMSG", ALT_PSTORE_LAST_KMSG);
 #ifdef USES_ALT_KMSG_LOCATION
-        dump_file("LAST KMSG", USES_ALT_KMSG_LOCATION);
-#else
-        dump_file("LAST KMSG", "/proc/last_kmsg");
+        } else if (!stat(USES_ALT_KMSG_LOCATION, &st)) {
+            dump_file("LAST KMSG", USES_ALT_KMSG_LOCATION);
 #endif
+        } else {
+            /* TODO: Make last_kmsg CAP_SYSLOG protected. b/5555691 */
+            dump_file("LAST KMSG", "/proc/last_kmsg");
+        }
     }
-        //run_command("EVENT LOG", 20, "logcat", "-b", "events", "threadtime", "-d", "*:v", NULL);
 
     if (vibrator) {
         for (int i = 0; i < 3; i++) {
