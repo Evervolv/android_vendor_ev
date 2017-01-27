@@ -12,4 +12,6 @@ LOCAL_SHARED_LIBRARIES := libcutils liblog
 
 LOCAL_CFLAGS += -Wall -Werror -Wno-unused-parameter
 
+LOCAL_INIT_RC := dumplogcat.rc
+
 include $(BUILD_EXECUTABLE)

@@ -1,0 +1,13 @@
+# no-op without additional args
+service pull_logcat /system/bin/dumplogcat \
+                   -D -B -o /data/user/0/com.evervolv.toolbox/files/logcat -m
+    class main
+    disabled
+    oneshot
+
+# no-op without additional args
+service pull_all /system/bin/dumplogcat \
+                   -D -B -o /data/user/0/com.evervolv.toolbox/files/logcat -mrdk
+    class main
+    disabled
+    oneshot

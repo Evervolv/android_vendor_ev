@@ -162,12 +162,6 @@ service welcome_motd /system/bin/welcome_motd
     oneshot
     disabled
 
-# no-op without additional args
-service dumplogcat /system/bin/dumplogcat
-    class main
-    disabled
-    oneshot
-
 # adb over network
 on property:adb.network.port=*
     setprop service.adb.tcp.port ${adb.network.port}
