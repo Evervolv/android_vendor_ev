@@ -11,6 +11,11 @@
 # Minivold
 /sbin/minivold                          u:object_r:vold_exec:s0
 
+# Postinstall
+/system/bin/backuptool_ab\.functions              u:object_r:otapreopt_chroot_exec:s0
+/system/bin/backuptool_ab\.sh                     u:object_r:otapreopt_chroot_exec:s0
+/system/bin/backuptool_postinstall\.sh            u:object_r:otapreopt_chroot_exec:s0
+
 # Sysinit
 /system/bin/sysinit         u:object_r:sysinit_exec:s0
 
