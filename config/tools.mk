@@ -7,9 +7,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     EVToolbox \
     EVUpdater \
-    EVTips \
-    EVWidgets \
-    EVWallpapers \
     init.evervolv.rc
 
 # Substratum helper packages
