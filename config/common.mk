@@ -13,8 +13,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dataroaming=false \
     ro.build.selinux=1 \
     persist.sys.strictmode.disable=true \
-    ro.substratum.verified=true \
-    ro.opa.eligible_device=true
+    ro.substratum.verified=true
 
 # Disable UTC date
 PRODUCT_BUILD_PROP_OVERRIDES += \
