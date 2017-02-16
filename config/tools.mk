@@ -48,13 +48,6 @@ PRODUCT_PACKAGES += \
     welcome_motd \
     wget
 
-# Do not build and include root access on user builds
-ifneq ($(filter userdebug eng,$(TARGET_BUILD_VARIANT)),)
-PRODUCT_PACKAGES += \
-    Sudo \
-    su
-endif
-
 # Backup Tool
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/bin/backuptool/backuptool.sh:install/bin/backuptool.sh \
