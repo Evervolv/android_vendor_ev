@@ -1,7 +1,15 @@
 function __print_ev_functions_help() {
 cat <<EOF
 Additional Evervolv functions:
+- find_deps:       Roomservice utility to fetch device dependencies.
+- cleantree:       Wipes local changes from git repository.
+- aospremote:      Add git remote for matching AOSP repository.
+- cafremote:       Add git remote for matching CodeAurora repository.
+- evgerrit:        A Git wrapper that fetches/pushes patch from/to Evervolv Gerrit Review.
+- repodiff:        Utility to fetch diff logs between branches.
+- repolog:        Utility to fetch diff logs between branches between different remotes.
 EOF
+}
 
 function find_deps() {
 
