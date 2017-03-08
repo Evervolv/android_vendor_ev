@@ -11,7 +11,7 @@ PRODUCT_PACKAGES += \
 
 # Substratum helper packages
 PRODUCT_PACKAGES += \
-    masquerade
+    ThemeInterfacer
 
 # Stagefright FFMPEG plugin
 PRODUCT_PACKAGES += \
