@@ -26,27 +26,29 @@ endef
 
 ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
 
-    A_FAMILY := msm7x30 msm8660 msm8960
+    A_FAMILY := msm7x27a msm7x30 msm8660 msm8960
     B_FAMILY := msm8226 msm8610 msm8974
     B64_FAMILY := msm8992 msm8994
     BR_FAMILY := msm8909 msm8916
     UM_FAMILY := msm8937 msm8953
 
     qcom_flags := -DQCOM_HARDWARE
-    ifneq ($(BOARD_USES_LEGACY_QCOM_DISPLAY),true)
-        qcom_flags += -DQCOM_BSP
-        qcom_flags += -DQTI_BSP
 
-        BOARD_USES_ADRENO := true
-
+    ifneq ($(TARGET_USES_AOSP),true)
         TARGET_USES_QCOM_BSP := true
+        ifeq ($(TARGET_USES_QCOM_BSP),true)
+            qcom_flags += -DQCOM_BSP
+            qcom_flags += -DQTI_BSP
+        endif
     endif
+
+    BOARD_USES_ADRENO := true
 
     # Tell HALs that we're compiling an AOSP build with an in-line kernel
     TARGET_COMPILE_WITH_MSM_KERNEL := true
 
-    ifneq ($(filter msm7x27a msm7x30 msm8660 msm8960,$(TARGET_BOARD_PLATFORM)),)
-        ifneq ($(BOARD_USES_LEGACY_QCOM_DISPLAY),true)
+    ifeq ($(call is-board-platform-in-list, $(A_FAMILY)),true)
+        ifeq ($(TARGET_USES_QCOM_BSP),true)
             # Enable legacy graphics functions
             qcom_flags += -DQCOM_BSP_LEGACY
         endif
@@ -96,16 +98,8 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
     endif
 
 $(call project-set-path,qcom-audio,hardware/qcom/audio-caf/$(QCOM_HARDWARE_VARIANT))
-ifeq ($(BOARD_USES_LEGACY_QCOM_DISPLAY),true)
-$(call project-set-path,qcom-display,hardware/qcom/display-legacy)
-else
 $(call project-set-path,qcom-display,hardware/qcom/display-caf/$(QCOM_HARDWARE_VARIANT))
-endif
-ifeq ($(BOARD_USES_LEGACY_QCOM_DISPLAY),true)
-$(call project-set-path,qcom-media,hardware/qcom/media-legacy)
-else
 $(call project-set-path,qcom-media,hardware/qcom/media-caf/$(QCOM_HARDWARE_VARIANT))
-endif
 
 $(call set-device-specific-path,CAMERA,camera,hardware/qcom/camera)
 $(call set-device-specific-path,GPS,gps,hardware/qcom/gps)
