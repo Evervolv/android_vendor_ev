@@ -2,6 +2,10 @@
 PRODUCT_PACKAGES += \
     Jelly
 
+# Battery Usage Alerts
+PRODUCT_PACKAGES += \
+    Turbo
+
 # Extra tools
 PRODUCT_PACKAGES += \
     openvpn \
