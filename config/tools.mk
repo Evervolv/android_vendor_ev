@@ -3,6 +3,10 @@ PRODUCT_PACKAGES += \
     AudioFX \
     Eleven
 
+# Battery Usage Alerts
+PRODUCT_PACKAGES += \
+    Turbo
+
 # Evervolv packages
 PRODUCT_PACKAGES += \
     EVToolbox \
