@@ -1,3 +1,7 @@
+# Browser
+PRODUCT_PACKAGES += \
+    Jelly
+
 # Extra tools
 PRODUCT_PACKAGES += \
     openvpn \
