@@ -22,5 +22,13 @@ PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/sysinit:system/bin/sysinit
 
+# Init file
+PRODUCT_COPY_FILES += \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.local.rc:root/init.local.rc
+
+# Don't export PS1 in /system/etc/mkshrc.
+PRODUCT_COPY_FILES += \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/mkshrc:system/etc/mkshrc
+
 # Packages
 include $(SRC_EVERVOLV_DIR)/config/packages.mk
