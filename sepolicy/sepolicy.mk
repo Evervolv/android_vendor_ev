@@ -1,0 +1,2 @@
+BOARD_SEPOLICY_DIRS += \
+    $(SRC_EVERVOLV_DIR)/sepolicy
