@@ -3,6 +3,7 @@ add_lunch_combo ev_flo-userdebug
 add_lunch_combo ev_gt58wifixx-userdebug
 add_lunch_combo ev_hammerhead-userdebug
 add_lunch_combo ev_oneplus3-userdebug
+add_lunch_combo ev_ovation-userdebug
 add_lunch_combo ev_shamu-userdebug
 add_lunch_combo ev_soho-userdebug
 add_lunch_combo ev_tenderloin-userdebug
