@@ -41,13 +41,6 @@ $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/tools.mk)
 # LatinIME english dictionary
 $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/dictionaries/english.mk)
 
-# Copy LatinIME for gesture typing
-PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/lib/libjni_latinime.so:system/lib/libjni_latinime.so \
-    $(SRC_EVERVOLV_DIR)/prebuilt/lib/libjni_latinimegoogle.so:system/lib/libjni_latinimegoogle.so \
-    $(SRC_EVERVOLV_DIR)/prebuilt/lib64/libjni_latinime.so:system/lib64/libjni_latinime.so \
-    $(SRC_EVERVOLV_DIR)/prebuilt/lib64/libjni_latinimegoogle.so:system/lib64/libjni_latinimegoogle.so
-
 # Version Info
 ifneq ($(APPEND_ZIP_VERSION),)
 APPEND_ZIP=-$(APPEND_ZIP_VERSION)
