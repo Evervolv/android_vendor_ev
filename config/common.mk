@@ -25,7 +25,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Overlays
-PRODUCT_PACKAGE_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay/common
+PRODUCT_PACKAGE_OVERLAYS += \
+    $(SRC_EVERVOLV_DIR)/overlay/common \
+    $(SRC_EVERVOLV_DIR)/overlay/theme
 
 # Check BOOT_ANIMATION_SIZE for a valid size
 ifneq ($(filter 720p 1080p 1440p hvga qhd wvga xga,$(BOOT_ANIMATION_SIZE)),)
