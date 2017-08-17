@@ -139,4 +139,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.com.google.clientidbase=$(PRODUCT_GMS_CLIENTID_BASE)
 endif
 
+# Vendor restrictions
+PRODUCT_RESTRICT_VENDOR_FILES := false
+
 include $(SRC_EVERVOLV_DIR)/config/partner_gms.mk
