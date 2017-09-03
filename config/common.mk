@@ -16,6 +16,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.wifi-watchlist=GoogleGuest \
     ro.setupwizard.enterprise_mode=1 \
     ro.com.android.dateformat=MM-dd-yyyy \
+    ro.boot.vendor.overlay.theme=com.google.android.theme.pixel \
     ro.build.selinux=1 \
     persist.sys.disable_rescue=true
 
