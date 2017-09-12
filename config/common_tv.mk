@@ -14,3 +14,5 @@ PRODUCT_PACKAGES += \
 # Permissions
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.control_privapp_permissions=log
+
+PRODUCT_PACKAGE_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay/tv
