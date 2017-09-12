@@ -36,6 +36,11 @@ PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
     librsjni
 
+# Themes
+PRODUCT_PACKAGES += \
+    PixelTheme \
+    StockTheme
+
 # Updater
 PRODUCT_PACKAGES += \
       EVUpdater
