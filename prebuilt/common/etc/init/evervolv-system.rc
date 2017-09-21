@@ -1,0 +1,16 @@
+# LineageOS core functionality
+on init
+    export ANDROID_CACHE /cache
+    export TERMINFO /system/etc/terminfo
+
+on post-fs-data
+    mkdir /cache/recovery 0770 system cache
+
+    # Run sysinit
+    start sysinit
+
+# sysinit (/system/etc/init.d)
+service sysinit /system/bin/sysinit
+    user root
+    oneshot
+    disabled
