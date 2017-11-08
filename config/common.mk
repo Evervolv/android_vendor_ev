@@ -23,7 +23,9 @@ PRODUCT_COPY_FILES += \
 
 # Backup tool
 PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/50-backup.sh:system/addon.d/50-backup.sh
 
 # Init file
 PRODUCT_PACKAGES += \
