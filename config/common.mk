@@ -21,6 +21,10 @@ PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/sysinit:system/bin/sysinit
 
+# Backup tool
+PRODUCT_COPY_FILES += \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh
+
 # Init file
 PRODUCT_PACKAGES += \
     init.evervolv.rc
