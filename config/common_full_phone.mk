@@ -5,6 +5,12 @@ $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common.mk)
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
 
-# SIM Toolkit
+# Telephony packages
 PRODUCT_PACKAGES += \
-    Stk
+    messaging \
+    Stk \
+    CellBroadcastReceiver
+
+# Default ringtone
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.config.ringtone=Orion.ogg
