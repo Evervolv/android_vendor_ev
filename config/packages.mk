@@ -33,6 +33,21 @@ PRODUCT_PACKAGES += \
     mkfs.ntfs \
     mount.ntfs
 
+# Berry styles
+PRODUCT_PACKAGES += \
+    PlatformBlackTheme \
+    PlatformDarkTheme \
+    PlatformBlackAccent \
+    PlatformBlueAccent \
+    PlatformBrownAccent \
+    PlatformCyanAccent \
+    PlatformGreenAccent \
+    PlatformOrangeAccent \
+    PlatformPinkAccent \
+    PlatformPurpleAccent \
+    PlatformRedAccent \
+    PlatformYellowAccent
+
 # Extra packages
 PRODUCT_PACKAGES += \
     AudioFX \
@@ -44,11 +59,3 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
     librsjni
-
-# Themes
-PRODUCT_PACKAGES += \
-    PixelTheme \
-    StockTheme
-
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.boot.vendor.overlay.theme=com.google.android.theme.pixel
