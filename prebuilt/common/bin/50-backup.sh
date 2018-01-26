@@ -1,4 +1,6 @@
 #!/sbin/sh
+#
+# ADDOND_VERSION=2
 # 
 # /system/addon.d/50-backup.sh
 # During a system upgrade, this script backs up /system/etc/hosts,
