@@ -1,3 +1,7 @@
+# Dex preopt
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    SystemUI
+
 # Extra tools
 PRODUCT_PACKAGES += \
     7z \
