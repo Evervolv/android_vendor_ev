@@ -1,6 +1,3 @@
-# Allow vold to access fuse for fuse-based fs
-allow vold fuseblk:chr_file rw_file_perms;
-
 # NTFS-3g wants to drop permission
 allow vold self:capability { setgid setuid };
 
