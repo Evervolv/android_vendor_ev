@@ -1,2 +1,5 @@
-BOARD_SEPOLICY_DIRS += \
-    $(SRC_EVERVOLV_DIR)/sepolicy
+BOARD_PLAT_PUBLIC_SEPOLICY_DIR += \
+    $(SRC_EVERVOLV_DIR)/sepolicy/public
+
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += \
+    $(SRC_EVERVOLV_DIR)/sepolicy/private
