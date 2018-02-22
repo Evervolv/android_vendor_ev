@@ -38,6 +38,7 @@ PRODUCT_PACKAGES += \
     com.evervolv.platform-res \
     com.evervolv.platform \
     com.evervolv.platform.xml \
+    com.evervolv.style.xml \
     EVSettingsProvider
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
