@@ -1,0 +1,6 @@
+recovery_only(`
+
+allow recovery sysfs_graphics:dir search;
+allow recovery sysfs_graphics:file { getattr open read write };
+
+')
