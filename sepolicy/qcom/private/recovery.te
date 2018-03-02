@@ -3,4 +3,10 @@ recovery_only(`
 allow recovery sysfs_graphics:dir search;
 allow recovery sysfs_graphics:file { getattr open read write };
 
+# Battery and USB status
+allow recovery sysfs_battery_supply:dir search;
+allow recovery sysfs_battery_supply:file { getattr open read };
+allow recovery sysfs_usb_supply:dir search;
+allow recovery sysfs_usb_supply:file { getattr open read };
+
 ')
