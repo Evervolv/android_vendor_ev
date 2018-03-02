@@ -14,8 +14,10 @@ r_dir_file(recovery, adb_keys_file)
 set_prop(recovery, shell_prop)
 
 # Manage fstab and /adb_keys
+userdebug_or_eng(`
 allow recovery rootfs:file create_file_perms;
 allow recovery rootfs:file link;
+')
 allow recovery rootfs:dir { write create rmdir add_name remove_name };
 
 # Sideload cache
