@@ -12,5 +12,5 @@ PRODUCT_PACKAGES += \
     CellBroadcastReceiver
 
 # Default ringtone
-PRODUCT_PROPERTY_OVERRIDES += \
-ro.config.ringtone=Orion.ogg
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.config.ringtone=Orion.ogg

@@ -41,6 +41,9 @@ PRODUCT_PACKAGES += \
     PixelTheme \
     StockTheme
 
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.boot.vendor.overlay.theme=com.google.android.theme.pixel
+
 # Updater
 PRODUCT_PACKAGES += \
     EVUpdater

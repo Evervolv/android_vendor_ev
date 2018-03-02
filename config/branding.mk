@@ -30,6 +30,6 @@ endif
 ROM_VERSION := $(shell echo ${ROM_VERSION} | tr [:upper:] [:lower:])
 TARGET_OTA_PACKAGE_NAME := $(ROM_VERSION)
 
-PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.evervolv.device=$(PRODUCT_CODENAME) \
     ro.evervolv.version=$(ROM_VERSION)
