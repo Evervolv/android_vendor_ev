@@ -11,4 +11,5 @@ allow vold storage_stub_file:dir rw_dir_perms;
 # Vold can also run as minivold in the rootfs
 recovery_only(`
   allow vold rootfs:dir { add_name write };
+  allow vold rootfs:file execute_no_trans;
 ')
