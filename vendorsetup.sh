@@ -1,5 +1,7 @@
 # Add devices below
-add_lunch_combo ev_hammerhead-userdebug
-add_lunch_combo ev_potter-userdebug
-add_lunch_combo ev_shamu-userdebug
-add_lunch_combo ev_tenderloin-userdebug
+supported_devices=(
+)
+
+for device in ${supported_devices[@]}; do
+    add_lunch_combo ev_${device}-userdebug
+done
