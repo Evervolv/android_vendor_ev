@@ -12,3 +12,6 @@ allow adbroot adbroot_data_file:file create_file_perms;
 
 set_prop(adbroot, shell_prop)
 set_prop(adbroot, ctl_adbd_prop)
+
+# ignore spurious denials
+dontaudit adbroot self:global_capability_class_set sys_resource;
