@@ -47,10 +47,6 @@ PRODUCT_PACKAGES += \
     com.evervolv.platform.xml \
     EVSettingsProvider
 
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.evervolv.build.version.plat.sdk=$(EV_PLATFORM_SDK_VERSION) \
-    ro.evervolv.build.version.plat.rev=$(EV_PLATFORM_REV)
-
 # Toolbox
 PRODUCT_PACKAGES += \
     EVToolbox
@@ -82,8 +78,3 @@ endif
 
 ROM_VERSION := $(TARGET_PRODUCT)-$(PRODUCT_VERSION)-$(PRODUCT_BUILD)-$(shell date +%Y.%m.%d)-$(shell date -u +%H%M)
 TARGET_OTA_PACKAGE_NAME := $(shell echo ${ROM_VERSION} | tr [:upper:] [:lower:])
-
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.evervolv.display.version=$(PRODUCT_VERSION) \
-    ro.evervolv.device=$(PRODUCT_CODENAME) \
-    ro.evervolv.version=$(TARGET_OTA_PACKAGE_NAME)
