@@ -36,7 +36,8 @@ PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/mkshrc:system/etc/mkshrc
 
 # Overlays
-PRODUCT_PACKAGE_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay
+DEVICE_PACKAGE_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay
 
 # Branding
 include $(SRC_EVERVOLV_DIR)/config/branding.mk
