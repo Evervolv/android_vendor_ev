@@ -6,7 +6,6 @@ allow recovery sysfs_graphics:dir search;
 allow recovery sysfs_graphics:file { getattr open read write };
 get_prop(recovery, sf_lcd_density_prop)
 r_dir_file(recovery, pstorefs)
-unix_socket_connect(recovery, vold, vold)
 allow recovery system_file:dir mounton;
 
 # Secure adb (setup_adbd)
