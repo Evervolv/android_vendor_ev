@@ -1,5 +1,8 @@
 # Add devices below
 supported_devices=(
+  'flo'
+  'hammerhead'
+  'oneplus3'
 )
 
 for device in ${supported_devices[@]}; do
