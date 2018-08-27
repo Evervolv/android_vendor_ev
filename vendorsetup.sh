@@ -3,6 +3,7 @@ supported_devices=(
   'flo'
   'hammerhead'
   'oneplus3'
+  'tenderloin'
 )
 
 for device in ${supported_devices[@]}; do
