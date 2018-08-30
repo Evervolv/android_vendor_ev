@@ -37,7 +37,8 @@ PRODUCT_COPY_FILES += \
 
 # Permissions for our apps
 PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/permissions/privapp-permissions.xml:system/etc/permissions/privapp-permissions-evervolv.xml
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/permissions/privapp-permissions.xml:system/etc/permissions/privapp-permissions-evervolv.xml \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/permissions/hiddenapi-package-whitelist.xml:system/etc/permissions/evervolv-hiddenapi-package-whitelist.xml
 
 # Overlays
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay
