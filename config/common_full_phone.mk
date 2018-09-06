@@ -2,8 +2,8 @@
 $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common.mk)
 
 # World APN list
-PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/apns-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
+PRODUCT_PACKAGES += \
+    apns-conf.xml
 
 # Sensitive Phone Numbers list
 PRODUCT_COPY_FILES += \
