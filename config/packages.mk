@@ -37,6 +37,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     AudioFX \
     Eleven \
+    EVToolbox \
     EVUpdater \
     Jelly \
     WallpaperPicker
