@@ -1,0 +1,1 @@
+allow init sysfs_io_sched_tuneable:file { setattr w_file_perms };

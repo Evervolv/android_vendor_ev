@@ -5,6 +5,9 @@
 /system/bin/mkfs\.f2fs                  u:object_r:mkfs_exec:s0
 /system/bin/mkfs\.ntfs                  u:object_r:mkfs_exec:s0
 
+# I/O Scheduler
+/sys/devices/.*/block/(dm-|mmcblk|sd)[a-z0-9]+/queue(/.*)? u:object_r:sysfs_io_sched_tuneable:s0
+
 # Themes data
 /data/system/theme(/.*)?    u:object_r:theme_data_file:s0
 
