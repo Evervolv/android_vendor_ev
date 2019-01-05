@@ -54,8 +54,3 @@ PRODUCT_PACKAGES += \
     Eleven \
     Jelly \
     WallpaperPicker
-
-# Include explicitly to work around GMS issues
-PRODUCT_PACKAGES += \
-    libprotobuf-cpp-full \
-    librsjni
