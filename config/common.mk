@@ -48,6 +48,3 @@ include $(SRC_EVERVOLV_DIR)/config/branding.mk
 
 # Packages
 include $(SRC_EVERVOLV_DIR)/config/packages.mk
-
-# Sounds
-$(call inherit-product-if-exists, vendor/google/GoogleAudio.mk)
