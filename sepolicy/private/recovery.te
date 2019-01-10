@@ -4,7 +4,6 @@ recovery_only(`
 ##allow init rootfs:file write;
 allow recovery sysfs_graphics:dir search;
 allow recovery sysfs_graphics:file { getattr open read write };
-get_prop(recovery, sf_lcd_density_prop)
 r_dir_file(recovery, pstorefs)
 allow recovery system_file:dir mounton;
 
