@@ -1,1 +1,4 @@
 allow system_server storage_stub_file:dir getattr;
+
+# Use HALs
+hal_client_domain(system_server, hal_evervolv_touch)

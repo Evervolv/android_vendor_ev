@@ -1,0 +1,4 @@
+vendor.evervolv.touch::IGloveMode                     u:object_r:hal_evervolv_touch_hwservice:s0
+vendor.evervolv.touch::IKeyDisabler                   u:object_r:hal_evervolv_touch_hwservice:s0
+vendor.evervolv.touch::IStylusMode                    u:object_r:hal_evervolv_touch_hwservice:s0
+vendor.evervolv.touch::ITouchscreenGesture            u:object_r:hal_evervolv_touch_hwservice:s0
