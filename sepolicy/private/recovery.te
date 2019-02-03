@@ -1,12 +1,5 @@
 recovery_only(`
-
-# XXX
-##allow init rootfs:file write;
-r_dir_file(recovery, pstorefs)
-allow recovery system_file:dir mounton;
-
 # Secure adb (setup_adbd)
-allow adbd adb_keys_file:dir search;
 r_dir_file(recovery, adb_keys_file)
 set_prop(recovery, shell_prop)
 
@@ -15,16 +8,15 @@ userdebug_or_eng(`
 allow recovery rootfs:file create_file_perms;
 allow recovery rootfs:file link;
 ')
-allow recovery rootfs:dir { write create rmdir add_name remove_name };
+allow recovery rootfs:dir create_dir_perms;
 
 # Sideload cache
-allow recovery proc_meminfo:file { getattr open read };
+allow recovery proc_meminfo:file r_file_perms;
 
 # Read storage files and directories
 allow recovery tmpfs:dir mounton;
 r_dir_file(recovery, media_rw_data_file)
 r_dir_file(recovery, sdcard_type)
-r_dir_file(recovery, vfat)
 
 # Control properties
 set_prop(recovery, ffs_prop)
@@ -33,4 +25,6 @@ set_prop(recovery, recovery_prop)
 # Set system properties for various things
 set_prop(recovery, system_prop)
 
+# Some addons require this for A/B installation compatibility
+allow recovery system_file:dir mounton;
 ')
