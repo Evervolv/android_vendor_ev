@@ -3,18 +3,8 @@ type sysinit_exec, exec_type, file_type;
 
 # Allow for transition from init domain to sysinit
 init_daemon_domain(sysinit)
-
-allow sysinit devpts:chr_file rw_file_perms;
-allow sysinit self:process setcurrent;
-allow sysinit shell_exec:file rx_file_perms;
-allow sysinit system_file:dir r_dir_perms;
-allow sysinit system_file:file rx_file_perms;
-allow sysinit toolbox_exec:file rx_file_perms;
+neverallow { domain -init } sysinit:process transition;
 
 userdebug_or_eng(`
-    allow sysinit userinit_data_exec:file { r_file_perms relabelto };
-    allow sysinit sysfs:file rw_file_perms;
-    allow sysinit sysfs_devices_system_cpu:file write;
-    allow sysinit userinit_exec:file rx_file_perms;
-    set_prop(sysinit, userinit_prop)
+    permissive sysinit;
 ')
