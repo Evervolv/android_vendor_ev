@@ -1,6 +1,8 @@
 app_domain(gallery_app)
 net_domain(gallery_app)
 
+typeattribute gallery_app system_executes_vendor_violators;
+
 # Access standard system services
 allow gallery_app app_api_service:service_manager find;
 allow gallery_app audioserver_service:service_manager find;
