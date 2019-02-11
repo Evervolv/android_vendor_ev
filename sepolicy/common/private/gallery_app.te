@@ -1,3 +1,5 @@
+type gallery_app, domain, coredomain;
+
 app_domain(gallery_app)
 net_domain(gallery_app)
 
