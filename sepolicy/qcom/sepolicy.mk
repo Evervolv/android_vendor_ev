@@ -13,5 +13,5 @@ BOARD_PLAT_PRIVATE_SEPOLICY_DIR += \
 
 ifneq ($(TARGET_USES_PREBUILT_VENDOR_SEPOLICY), true)
 BOARD_SEPOLICY_DIRS += \
-    $(SRC_EVERVOLV_DIR)/sepolicy/qcom/common
+    $(SRC_EVERVOLV_DIR)/sepolicy/qcom/vendor
 endif
