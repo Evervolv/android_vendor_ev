@@ -11,8 +11,12 @@ endif
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += \
     $(SRC_EVERVOLV_DIR)/sepolicy/qcom/private
 
-ifneq ($(TARGET_USES_PREBUILT_VENDOR_SEPOLICY), true)
+ifeq ($(TARGET_USES_PREBUILT_VENDOR_SEPOLICY), true)
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += \
+    $(SRC_EVERVOLV_DIR)/sepolicy/qcom/dynamic
+else
 BOARD_VENDOR_SEPOLICY_DIRS += \
+    $(SRC_EVERVOLV_DIR)/sepolicy/qcom/dynamic \
     $(SRC_EVERVOLV_DIR)/sepolicy/qcom/vendor
 endif
 
