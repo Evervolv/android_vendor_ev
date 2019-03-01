@@ -18,3 +18,8 @@ allow gallery_app hidl_token_hwservice:hwservice_manager find;
 # Allow to read and execute camera app modules
 typeattribute gallery_app system_executes_vendor_violators;
 allow gallery_app vendor_file:file { rx_file_perms };
+
+# Read and write system app data files passed over Binder.
+# Motivating case was /data/data/com.android.settings/cache/*.jpg for
+# cropping or taking user photos.
+allow gallery_app system_app_data_file:file { read write getattr };
