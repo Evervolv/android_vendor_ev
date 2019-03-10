@@ -20,4 +20,7 @@
 
     <!-- Whether wallpaper attribution should be shown or not. -->
     <bool name="config_show_wallpaper_attribution">false</bool>
+
+    <!-- Whether or not we should show the option to show battery percentage -->
+    <bool name="config_disable_battery_percentage_setting">true</bool>
 </resources>
