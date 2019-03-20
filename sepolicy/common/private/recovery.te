@@ -2,4 +2,7 @@ recovery_only(`
 userdebug_or_eng(`
 permissive recovery;
 ')
+
+# Volume manager
+allow recovery self:netlink_kobject_uevent_socket create_socket_perms_no_ioctl;
 ')
