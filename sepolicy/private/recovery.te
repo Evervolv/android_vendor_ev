@@ -24,6 +24,7 @@ set_prop(recovery, recovery_prop)
 
 # Set system properties for various things
 set_prop(recovery, system_prop)
+set_prop(recovery, system_radio_prop)
 
 # Some addons require this for A/B installation compatibility
 allow recovery system_file:dir mounton;
