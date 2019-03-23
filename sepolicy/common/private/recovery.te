@@ -4,5 +4,6 @@ permissive recovery;
 ')
 
 # Volume manager
+allow recovery proc_filesystems:file r_file_perms;
 allow recovery self:netlink_kobject_uevent_socket create_socket_perms_no_ioctl;
 ')
