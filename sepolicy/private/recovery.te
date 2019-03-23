@@ -29,6 +29,7 @@ set_prop(recovery, system_prop)
 allow recovery system_file:dir mounton;
 
 # Volume manager
+allow recovery block_device:dir create_dir_perms;
 allow recovery proc_filesystems:file r_file_perms;
 allow recovery self:netlink_kobject_uevent_socket create_socket_perms_no_ioctl;
 allow recovery tmpfs:file link;
