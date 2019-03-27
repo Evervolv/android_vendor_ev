@@ -11,10 +11,13 @@ $(warning Otherwise, no animation will be present.)
 $(warning ************************************************************)
 endif
 
-# Packages
-PRODUCT_PACKAGES += \
-    EVToolbox \
-    EVUpdater
+# Build type
+PRODUCT_BUILD := userbuild
+ifeq ($(NIGHTLY_BUILD),true)
+PRODUCT_BUILD := nightly
+else ifeq ($(TESTING_BUILD),true)
+PRODUCT_BUILD := testing
+endif
 
 # SDK
 ifndef EV_PLATFORM_SDK_VERSION
@@ -52,6 +55,16 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 # SELinux
 include $(SRC_EVERVOLV_DIR)/sepolicy/sepolicy.mk
 
+# Toolbox
+PRODUCT_PACKAGES += \
+    EVToolbox
+
+# Updater
+ifneq ($(filter nightly testing,$(PRODUCT_BUILD)),)
+PRODUCT_PACKAGES += \
+    EVUpdater
+endif
+
 # Version Info
 PRODUCT_VERSION_MAJOR = 9
 PRODUCT_VERSION_MINOR = 0
@@ -65,13 +78,6 @@ ifneq ($(PRODUCT_VERSION_MINOR),0)
 PRODUCT_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)
 endif
 endif
-endif
-
-PRODUCT_BUILD := userbuild
-ifeq ($(NIGHTLY_BUILD),true)
-PRODUCT_BUILD := nightly
-else ifeq ($(TESTING_BUILD),true)
-PRODUCT_BUILD := testing
 endif
 
 ifeq ($(PRODUCT_CODENAME),)
