@@ -1,8 +1,0 @@
-allow system_server storage_stub_file:dir getattr;
-
-# Allow LineageHW (running as system server) to access LiveDisplay tuneables
-allow system_server sysfs_livedisplay_tuneable:file rw_file_perms;
-
-# Use HALs
-hal_client_domain(system_server, hal_lineage_livedisplay)
-hal_client_domain(system_server, hal_lineage_touch)

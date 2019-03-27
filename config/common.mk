@@ -9,16 +9,11 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 endif
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    keyguard.no_require_sim=true
-
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    keyguard.no_require_sim=true \
+    persist.sys.disable_rescue=true \
     ro.build.selinux=1
 
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    persist.sys.disable_rescue=true
-
 PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 # Backup tool
