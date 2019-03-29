@@ -40,4 +40,7 @@ allow recovery tmpfs:file link;
 
 # Read battery percentage
 allow recovery sysfs_batteryinfo:dir search;
+
+# Read fbe encryption info
+r_dir_file(recovery, unencrypted_data_file)
 ')
