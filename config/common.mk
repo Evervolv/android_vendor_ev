@@ -48,6 +48,9 @@ PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay
 DEVICE_PACKAGE_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay/common
 
+# AOSP audio files
+include $(SRC_EVERVOLV_DIR)/config/aosp_audio.mk
+
 # Branding
 include $(SRC_EVERVOLV_DIR)/config/branding.mk
 
