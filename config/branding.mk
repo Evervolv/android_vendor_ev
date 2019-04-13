@@ -38,7 +38,6 @@ ifndef EV_PLATFORM_REV
 endif
 
 PRODUCT_PACKAGES += \
-    com.evervolv.font.xml \
     com.evervolv.hardware \
     com.evervolv.hardware.xml \
     com.evervolv.performance.xml \
