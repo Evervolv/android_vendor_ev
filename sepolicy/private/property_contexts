@@ -1,4 +1,2 @@
 recovery.perf.mode            u:object_r:recovery_prop:s0
-# Theme refresh property
-sys.refresh_theme       u:object_r:theme_prop:s0
-vendor.userinit.active       u:object_r:userinit_prop:s0
+vendor.userinit.active        u:object_r:userinit_prop:s0
