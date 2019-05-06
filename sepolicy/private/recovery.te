@@ -27,7 +27,9 @@ set_prop(recovery, system_prop)
 set_prop(recovery, system_radio_prop)
 
 # Some addons require this for A/B installation compatibility
+userdebug_or_eng(`
 allow recovery system_file:dir mounton;
+')
 
 # Volume manager
 allow recovery block_device:dir create_dir_perms;
