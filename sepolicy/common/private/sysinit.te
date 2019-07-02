@@ -8,3 +8,8 @@ neverallow { domain -init } sysinit:process transition;
 userdebug_or_eng(`
     permissive sysinit;
 ')
+
+dontaudit sysinit shell_exec:file rx_file_perms;
+dontaudit sysinit toolbox_exec:file rx_file_perms;
+dontaudit sysinit system_file:file rx_file_perms;
+dontaudit sysinit system_file:dir r_dir_perms;
