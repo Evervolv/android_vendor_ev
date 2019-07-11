@@ -19,6 +19,8 @@ else ifeq ($(TESTING_BUILD),true)
 PRODUCT_BUILD := testing
 endif
 
+PRODUCT_MOTD ?="\n\n\n--------------------MESSAGE---------------------\nThank you for choosing Evervolv\nPlease visit us at \#evervolv on irc.freenode.net\nFollow @preludedrew for the latest Evervolv updates\nGet the latest rom at evervolv.com\n------------------------------------------------\n"
+
 # SDK
 ifndef EV_PLATFORM_SDK_VERSION
   # This is the canonical definition of the SDK version, which defines
