@@ -1,6 +1,7 @@
 # Add devices below
 supported_devices=(
   'gt58wifi'
+  'guacamole'
   'oneplus3'
   'tenderloin'
 )
