@@ -58,6 +58,7 @@ PRODUCT_PACKAGES += \
     AudioFX \
     Eleven \
     Jelly \
+    Longshot \
     WallpaperPicker
 
 # Root
