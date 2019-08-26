@@ -53,9 +53,6 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.evervolv.build.version.plat.sdk=$(EV_PLATFORM_SDK_VERSION) \
     ro.evervolv.build.version.plat.rev=$(EV_PLATFORM_REV)
 
-# SELinux
-include $(SRC_EVERVOLV_DIR)/sepolicy/sepolicy.mk
-
 # Toolbox
 PRODUCT_PACKAGES += \
     EVToolbox
