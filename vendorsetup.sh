@@ -1,9 +1,13 @@
 # Add devices below
 supported_devices=(
+  'arm'
+  'arm64'
   'gt58wifi'
   'guacamole'
   'oneplus3'
   'tenderloin'
+  'x86'
+  'x86_64'
 )
 
 for device in ${supported_devices[@]}; do
