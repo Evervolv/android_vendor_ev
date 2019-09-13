@@ -10,8 +10,7 @@ endif
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     keyguard.no_require_sim=true \
-    persist.sys.disable_rescue=true \
-    ro.build.selinux=1
+    persist.sys.disable_rescue=true
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.dun.override=0
