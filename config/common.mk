@@ -32,6 +32,7 @@ $(foreach f,$(wildcard $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init/*.rc),\
 # Permissions for our apps
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/permissions/privapp-permissions.xml:system/etc/permissions/privapp-permissions-evervolv.xml \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/permissions/privapp-permissions-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-evervolv-product.xml \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/permissions/hiddenapi-package-whitelist.xml:system/etc/permissions/evervolv-hiddenapi-package-whitelist.xml \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/sysconfig/power-whitelist.xml:system/etc/sysconfig/evervolv-power-whitelist.xml \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/sysconfig/sysconfig.xml:system/etc/sysconfig/evervolv-sysconfig.xml
