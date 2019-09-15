@@ -17,25 +17,25 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.dun.override=0
 endif
 
 PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/sysinit:system/bin/sysinit
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/sysinit:$(TARGET_COPY_OUT_SYSTEM)/bin/sysinit
 
 # Backup tool
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/50-backup.sh:system/addon.d/50-backup.sh
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/50-backup.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-backup.sh
 
 # Init file
 $(foreach f,$(wildcard $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init/*.rc),\
-	$(eval PRODUCT_COPY_FILES += $(f):system/etc/init/$(notdir $f)))
+	$(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM)/etc/init/$(notdir $f)))
 
 # Permissions for our apps
 PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/permissions/privapp-permissions.xml:system/etc/permissions/privapp-permissions-evervolv.xml \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/permissions/privapp-permissions.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-evervolv.xml \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/permissions/privapp-permissions-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-evervolv-product.xml \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/permissions/hiddenapi-package-whitelist.xml:system/etc/permissions/evervolv-hiddenapi-package-whitelist.xml \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/sysconfig/power-whitelist.xml:system/etc/sysconfig/evervolv-power-whitelist.xml \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/sysconfig/sysconfig.xml:system/etc/sysconfig/evervolv-sysconfig.xml
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/permissions/hiddenapi-package-whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/evervolv-hiddenapi-package-whitelist.xml \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/sysconfig/power-whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/evervolv-power-whitelist.xml \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/sysconfig/sysconfig.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/evervolv-sysconfig.xml
 
 # Enforce privapp-permissions whitelist
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \

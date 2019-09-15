@@ -1,7 +1,7 @@
 # Check BOOT_ANIMATION_SIZE for a valid size
 ifneq ($(filter 720p 1080p 1440p hvga qhd wvga xga,$(BOOT_ANIMATION_SIZE)),)
 PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/bootanimation/$(BOOT_ANIMATION_SIZE).zip:system/media/bootanimation.zip
+    $(SRC_EVERVOLV_DIR)/prebuilt/bootanimation/$(BOOT_ANIMATION_SIZE).zip:$(TARGET_COPY_OUT_SYSTEM)/media/bootanimation.zip
 else
 $(warning ************************************************************)
 $(warning BOOT_ANIMATION_SIZE is either null or invalid.)
