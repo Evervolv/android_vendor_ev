@@ -32,8 +32,4 @@
         <permission name="android.permission.STATUS_BAR"/>
     </privapp-permissions>
 
-    <privapp-permissions package="com.android.systemui">
-        <permission name="android.permission.MODIFY_DAY_NIGHT_MODE"/>
-    </privapp-permissions>
-
 </permissions>
