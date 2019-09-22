@@ -34,6 +34,7 @@ PRODUCT_PACKAGES += \
     mount.ntfs
 
 # Berry styles
+ifeq ($(shell test $(PLATFORM_SDK_VERSION) -lt 29; echo $$?),0)
 PRODUCT_PACKAGES += \
     PlatformBlackTheme \
     PlatformDarkTheme \
@@ -47,6 +48,7 @@ PRODUCT_PACKAGES += \
     PlatformPurpleAccent \
     PlatformRedAccent \
     PlatformYellowAccent
+endif
 
 # Extra packages
 PRODUCT_PACKAGES += \
