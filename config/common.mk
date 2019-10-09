@@ -16,9 +16,6 @@ ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.dun.override=0
 endif
 
-PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/sysinit:$(TARGET_COPY_OUT_SYSTEM)/bin/sysinit
-
 # Backup tool
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
