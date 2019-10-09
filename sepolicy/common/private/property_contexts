@@ -1,3 +1,2 @@
 recovery.perf.mode            u:object_r:recovery_prop:s0
-vendor.userinit.active        u:object_r:userinit_prop:s0
 ro.evervolv.build.version.security_patch u:object_r:exported2_default_prop:s0
