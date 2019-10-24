@@ -16,6 +16,10 @@ ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.dun.override=0
 endif
 
+# Android Beam
+PRODUCT_COPY_FILES += \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.nfc.beam.xml
+
 # Backup tool
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
