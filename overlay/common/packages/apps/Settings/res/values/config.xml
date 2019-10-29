@@ -21,6 +21,9 @@
     -->
     <bool name="config_use_legacy_suggestion">false</bool>
 
+    <!-- Whether or not homepage should display user's account avatar -->
+    <bool name="config_show_avatar_in_homepage">true</bool>
+
     <!--Whether help links are defined. -->
     <bool name="config_has_help">true</bool>
 
