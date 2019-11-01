@@ -104,6 +104,7 @@ PRODUCT_PACKAGES += \ \
     PlatformFrameworksOverlay \
     PlatformDialerOverlay \
     PlatformDocumentsUIOverlay \
+    PlatformLauncher3Overlay \
     PlatformSettingsOverlay \
     PlatformSettingsProviderOverlay \
     PlatformDeviceConfigOverlay \
