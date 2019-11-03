@@ -1,1 +1,2 @@
 type sysfs_io_sched_tuneable, fs_type, sysfs_type;
+type adbroot_data_file, file_type, data_file_type, core_data_file_type;
