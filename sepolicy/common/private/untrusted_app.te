@@ -1,1 +1,0 @@
-allow untrusted_app_all style_service:service_manager find;

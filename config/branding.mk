@@ -47,11 +47,6 @@ PRODUCT_PACKAGES += \
     com.evervolv.platform.xml \
     EVSettingsProvider
 
-ifeq ($(shell test $(PLATFORM_SDK_VERSION) -lt 29; echo $$?),0)
-PRODUCT_PACKAGES += \
-    com.evervolv.style.xml
-endif
-
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.evervolv.build.version.plat.sdk=$(EV_PLATFORM_SDK_VERSION) \
     ro.evervolv.build.version.plat.rev=$(EV_PLATFORM_REV)
