@@ -29,6 +29,10 @@
         <permission name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     </privapp-permissions>
 
+    <privapp-permissions package="org.lineageos.jelly">
+        <permission name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    </privapp-permissions>
+
     <privapp-permissions package="com.evervolv.toolbox">
         <permission name="android.permission.CHANGE_CONFIGURATION"/>
         <permission name="android.permission.CHANGE_OVERLAY_PACKAGES"/>
