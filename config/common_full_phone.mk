@@ -6,6 +6,10 @@ $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/telephony.mk)
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.support_one_handed_mode=true
 
+# Permissions
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.control_privapp_permissions=enforce
+
 # Sound
 include $(SRC_EVERVOLV_DIR)/config/aosp_audio.mk
 

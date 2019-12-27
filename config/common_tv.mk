@@ -7,3 +7,7 @@ $(call inherit-product-if-exists, device/lineage/atv/lineage_atv.mk)
 # AOSP packages
 PRODUCT_PACKAGES += \
     LeanbackIME
+
+# Permissions
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.control_privapp_permissions=log
