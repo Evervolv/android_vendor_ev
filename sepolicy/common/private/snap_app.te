@@ -35,3 +35,6 @@ allow snap_app self:process ptrace;
 
 # Read and write system app data files passed over Binder.
 allow snap_app system_app_data_file:file { read write getattr };
+
+# Binder call with gpuservice
+binder_call(snap_app, gpuservice)
