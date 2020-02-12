@@ -1,6 +1,7 @@
 # Dex preopt
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUI
+    SystemUI \
+    Launcher3QuickStep
 
 # Extra tools
 PRODUCT_PACKAGES += \
