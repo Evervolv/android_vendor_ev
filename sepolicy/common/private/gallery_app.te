@@ -25,3 +25,6 @@ allow gallery_app vendor_file:file { rx_file_perms };
 # Motivating case was /data/data/com.android.settings/cache/*.jpg for
 # cropping or taking user photos.
 allow gallery_app system_app_data_file:file { read write getattr };
+
+# Binder call with gpuservice
+binder_call(gallery_app, gpuservice)
