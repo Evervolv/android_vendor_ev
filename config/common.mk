@@ -45,19 +45,11 @@ endif
 # Branding
 include $(SRC_EVERVOLV_DIR)/config/branding.mk
 
-# Browser
-PRODUCT_PACKAGES += \
-    Jelly
-
 # Build date override
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Build information
 PRODUCT_OVERRIDE_FINGERPRINT ?= google/redfin/redfin:12/SP2A.220305.012/8177914:user/release-keys
-
-# Calculator
-PRODUCT_PACKAGES += \
-    ExactCalculator
 
 # Command line
 PRODUCT_PACKAGES += \
@@ -83,19 +75,6 @@ PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD ?= false
 PRODUCT_MINIMIZE_JAVA_DEBUG_INFO ?= true
 endif
 
-# DeviceConfig
-PRODUCT_PACKAGES += \
-    SimpleDeviceConfig
-
-# Dex preopt
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUI \
-    Launcher3QuickStep
-
-# Email
-PRODUCT_PACKAGES += \
-    Etar
-
 # Filesystems
 PRODUCT_PACKAGES += \
     fsck.ntfs \
@@ -109,24 +88,6 @@ $(foreach f,$(wildcard $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init/*.rc),\
 # Keyguard
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     keyguard.no_require_sim=true
-
-# Media
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    media.recorder.show_manufacturer_and_model=true
-
-# Overlays
-PRODUCT_PACKAGES += \
-    NavigationBarMode2ButtonOverlay \
-    PlatformFrameworksOverlay \
-    PlatformDialerOverlay \
-    PlatformDocumentsUIOverlay \
-    PlatformLauncher3Overlay \
-    PlatformSettingsOverlay \
-    PlatformSettingsProviderOverlay \
-    PlatformDeviceConfigOverlay \
-    PlatformSystemUIOverlay \
-    PlatformTelephonyOverlay \
-    PlatformThemePickerOverlay
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -155,12 +116,6 @@ ifneq ($(TARGET_BUILD_VARIANT),eng)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.strictmode.disable=true
 endif
-
-# Themes
-PRODUCT_PACKAGES += \
-    PlatformThemesStub \
-    ThemePicker \
-    WallpaperPicker
 
 # Vendor Mobile Services
 ifeq ($(WITH_GMS),true)
