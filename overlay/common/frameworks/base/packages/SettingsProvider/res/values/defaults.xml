@@ -20,4 +20,15 @@
     <!-- Googles Backup transport service -->
     <string name="def_backup_transport">com.google.android.gms/.backup.BackupTransportService</string>
 
+    <!-- user interface sound effects -->
+    <string name="def_low_battery_sound" translatable="false">/product/media/audio/ui/LowBattery.ogg</string>
+    <string name="def_desk_dock_sound" translatable="false">/system/media/audio/ui/Dock.ogg</string>
+    <string name="def_desk_undock_sound" translatable="false">/product/media/audio/ui/Undock.ogg</string>
+    <string name="def_car_dock_sound" translatable="false">/product/media/audio/ui/Dock.ogg</string>
+    <string name="def_car_undock_sound" translatable="false">/product/media/audio/ui/Undock.ogg</string>
+    <string name="def_lock_sound" translatable="false">/product/media/audio/ui/Lock.ogg</string>
+    <string name="def_unlock_sound" translatable="false">/product/media/audio/ui/Unlock.ogg</string>
+    <string name="def_trusted_sound" translatable="false">/product/media/audio/ui/Trusted.ogg</string>
+    <string name="def_wireless_charging_started_sound" translatable="false">/product/media/audio/ui/WirelessChargingStarted.ogg</string>
+    <string name="def_charging_started_sound" translatable="false">/product/media/audio/ui/ChargingStarted.ogg</string>
 </resources> 
