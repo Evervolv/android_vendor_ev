@@ -57,6 +57,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     AudioFX \
     Eleven \
+    Email \
     Jelly \
     Longshot \
     WallpaperPicker
