@@ -152,6 +152,10 @@ else
     include $(SRC_EVERVOLV_DIR)/build/target/product/certificate.mk
 endif
 
+# Seedvault
+PRODUCT_PACKAGES += \
+    Seedvault
+
 # Storage manager
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.storage_manager.enabled=true
