@@ -63,7 +63,5 @@ PRODUCT_PACKAGES += \
     WallpaperPicker
 
 # Root
-ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_PACKAGES += \
     adb_root
-endif
