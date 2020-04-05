@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Help URI, Default [DO NOT TRANSLATE] -->
+    <string name="help_uri_default" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;end</string>
+    <!-- Help URI, Android beam [DO NOT TRANSLATE] -->
+    <string name="help_uri_beam" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_beam;end</string>
+    <!-- Help URI, Display [DO NOT TRANSLATE] -->
+    <string name="help_uri_display" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_display;end</string>
+    <!-- Help URI, Wallpaper [DO NOT TRANSLATE] -->
+    <string name="help_uri_wallpaper" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_wallpaper;end</string>
+    <!-- Help URI, Interruptions [DO NOT TRANSLATE] -->
+    <string name="help_uri_interruptions" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_zen;end</string>
+    <!-- Help URI, Other sounds [DO NOT TRANSLATE] -->
+    <string name="help_uri_other_sounds" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_touch;end</string>
+    <!-- Help URI, Notifications [DO NOT TRANSLATE] -->
+    <string name="help_uri_notifications" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_notification;end</string>
+    <!-- Help URI, manage apps storage [DO NOT TRANSLATE] -->
+    <string name="help_uri_apps_storage" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_apps_storage;end</string>
+    <!-- Help URI, manage apps power [DO NOT TRANSLATE] -->
+    <string name="help_uri_apps_high_power" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_apps_high_power;end</string>
+    <!-- Help URI, manage apps overlay [DO NOT TRANSLATE] -->
+    <string name="help_uri_apps_overlay" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_apps_overlay;end</string>
+    <!-- Help URI, manage apps write settings [DO NOT TRANSLATE] -->
+    <string name="help_uri_apps_write_settings" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_apps_write_settings;end</string>
+    <!-- Help URI, manage apps manage sources [DO NOT TRANSLATE] -->
+    <string name="help_uri_apps_manage_sources" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_apps_manage_sources;end</string>
+    <!-- Help URI, manage apps games [DO NOT TRANSLATE] -->
+    <string name="help_uri_apps_games" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_apps_games;end</string>
+    <!-- Help URI, manage apps movies [DO NOT TRANSLATE] -->
+    <string name="help_uri_apps_movies" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_apps_moves;end</string>
+    <!-- Help URI, manage apps photography [DO NOT TRANSLATE] -->
+    <string name="help_uri_apps_photography" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_apps_photography;end</string>
+    <!-- Help URI, manage apps wifi access [DO NOT TRANSLATE] -->
+    <string name="help_uri_apps_wifi_access" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_apps_wifi_access;end</string>
+    <!-- Help URI, Storage [DO NOT TRANSLATE] -->
+    <string name="help_uri_storage" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_storage;end</string>
+    <!-- Help URI, Accessibility [DO NOT TRANSLATE] -->
+    <string name="help_uri_accessibility" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_accessibility;end</string>
+    <!-- Help URI, Printing [DO NOT TRANSLATE] -->
+    <string name="help_uri_printing" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_print;end</string>
+    <!-- Help URI, About phone [DO NOT TRANSLATE] -->
+    <string name="help_uri_about" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_about;end</string>
+
+    <!-- Help URL, WiFi [DO NOT TRANSLATE] -->
+    <string name="help_url_wifi" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_wi_fi;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_wifi;end</string>
+    <!-- Help URL, WiFi Direct [DO NOT TRANSLATE] -->
+    <string name="help_url_wifi_p2p" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_wi_fi_p2p;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_wifi_p2p;end</string>
+    <!-- Help URL, Bluetooth [DO NOT TRANSLATE] -->
+    <string name="help_url_bluetooth" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_bluetooth;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_bluetooth;end</string>
+    <!-- Help URL, Data usage [DO NOT TRANSLATE] -->
+    <string name="help_url_data_usage" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_data;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_data;end</string>
+    <!-- Help URL, Data Saver [DO NOT TRANSLATE] -->
+    <string name="help_url_data_saver" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_datasaver;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_datasaver;end</string>
+    <!-- Help URL, Unrestricted data access [DO NOT TRANSLATE] -->
+    <string name="help_url_unrestricted_data_access" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_unrestricted_data_access;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_unrestricted_data_access;end</string>
+    <!-- Help URL, More [DO NOT TRANSLATE] -->
+    <string name="help_url_more_networks" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_more;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_wireless;end</string>
+    <!-- Help URL, Vpn [DO NOT TRANSLATE] -->
+    <string name="help_url_vpn" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_vpn;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_vpn;end</string>
+    <!-- Help URL, Sound [DO NOT TRANSLATE] -->
+    <string name="help_url_sound" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_sound;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_sound;end</string>
+    <!-- Help URL, Battery [DO NOT TRANSLATE] -->
+    <string name="help_url_battery" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_battery;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_battery;end</string>
+    <!-- Help URL, Accounts [DO NOT TRANSLATE] -->
+    <string name="help_url_accounts" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_account;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_accounts;end</string>
+    <!-- Help URL, Choose lockscreen [DO NOT TRANSLATE] -->
+    <string name="help_url_choose_lockscreen" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_lock;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_screenlock;end</string>
+    <!-- Help URL, Backup & reset [DO NOT TRANSLATE] -->
+    <string name="help_url_backup_reset" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_backup;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_backup;end</string>
+    <!-- Help URL, Tethering [DO NOT TRANSLATE] -->
+    <string name="help_url_tether" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_tether;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_tether;end</string>
+    <!-- Help URL, Dreams [DO NOT TRANSLATE] -->
+    <string name="help_url_dreams" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_daydream;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_dreams;end</string>
+    <!-- Help URL, User settings [DO NOT TRANSLATE] -->
+    <string name="help_url_users" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_users;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_users;end</string>
+    <!-- Help URL, Location access [DO NOT TRANSLATE] -->
+    <string name="help_url_location_access" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_location;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_location;end</string>
+    <!-- Help URL, Security settings [DO NOT TRANSLATE] -->
+    <string name="help_url_security" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_security;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_security;end</string>
+    <!-- Help URL, Encryption settings [DO NOT TRANSLATE] -->
+    <string name="help_url_encryption" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_encryption_credentials;end</string>
+    <!-- Help URL, Tap & pay [DO NOT TRANSLATE] -->
+    <string name="help_url_nfc_payment" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_tap_pay;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_nfcpayment;end</string>
+    <!-- Help URL, Remote display [DO NOT TRANSLATE] -->
+    <string name="help_url_remote_display" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_cast;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_remote_display;end</string>
+    <!-- Help URL, Face [DO NOT TRANSLATE] -->
+    <string name="help_url_face" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_face;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_face;end</string>
+    <!-- Help URL, Fingerprint [DO NOT TRANSLATE] -->
+    <string name="help_url_fingerprint" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_fingerprint;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_fingerprint;end</string>
+    <!-- Help URL, Gesture settings -->
+    <string name="help_url_gestures" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_gestures;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_gestures;end</string>
+    <!-- Help URL, Manage Storage [DO NOT TRANSLATE]-->
+    <string name="help_url_manage_storage" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_manage_storage;end</string>
+    <!-- Help URL, Android is upgrading [DO NOT TRANSLATE] -->
+    <string name="help_url_upgrading" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_upgrading;end</string>
+    <!-- Help URL, Font size [DO NOT TRANSLATE] -->
+    <string name="help_url_font_size" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_toggle_font;end</string>
+    <!-- Help URL, Display size [DO NOT TRANSLATE] -->
+    <string name="help_url_display_size" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_toggle_display;end</string>
+    <!-- Help URL, Auto brightness [DO NOT TRANSLATE] -->
+    <string name="help_url_auto_brightness" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_auto_brightness;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fmobile%2F%3Fp%3Dsettings_auto_brightness;end</string>
+    <!-- Help URL, Previously connected bluetooth devices [DO NOT TRANSLATE] -->
+    <string name="help_url_previously_connected_devices" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_previously_connected_devices;end</string>
+
+    <string name="help_url_network_dashboard" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_network_dashboard;end</string>
+    <string name="help_url_connected_devices" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_connected_devices;end</string>
+    <string name="help_url_apps_and_notifications" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_apps_and_notifications;end</string>
+    <string name="help_url_night_display" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_night_display;end</string>
+    <string name="help_url_dark_theme" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_dark_theme;end</string>
+    <string name="help_url_screen_saver" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_screen_saver;end</string>
+    <string name="help_url_pickup_gesture" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_pickup_gesture;end</string>
+    <string name="help_url_storage_dashboard" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_storage_dashboard;end</string>
+    <string name="help_url_lockscreen" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_lockscreen_dashboard;end</string>
+    <string name="help_url_trust_agent" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_trust_agent;end</string>
+    <string name="help_url_usage_access" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_usage_access;end</string>
+    <string name="help_url_screen_pinning" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_screen_pinning;end</string>
+    <string name="help_url_user_and_account_dashboard" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_user_and_account_dashboard;end</string>
+    <string name="help_url_accessibility_shortcut" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_accessibility_shortcut;end</string>
+    <string name="help_url_magnification" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_magnification;end</string>
+    <string name="help_url_color_correction" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_color_correction;end</string>
+    <string name="help_url_autoclick" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_accessibility_autoclick;end</string>
+    <string name="help_url_system_dashboard" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_system_dashboard;end</string>
+    <string name="help_url_double_tap_screen" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_double_tap_screen;end</string>
+    <string name="help_url_account_detail" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_account_detail;end</string>
+    <string name="help_url_icc_lock" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_icc_lock;end</string>
+    <string name="help_uri_process_stats_summary" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_process_stats_summary;end</string>
+    <string name="help_uri_process_stats_apps" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_process_stats_apps;end</string>
+    <string name="help_uri_private_dns" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_private_dns;end</string>
+    <string name="help_uri_about_phone_v2" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_about_device;end</string>
+    <string name="help_uri_wifi_calling" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=wifi_calling_settings;end</string>
+    <!-- url for the wifi scanning required dialog help page -->
+    <string name="help_uri_wifi_scanning_required" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=wifi_scanning_required;end</string>
+    <!-- url for the SIM combination warning required dialog help page -->
+    <string name="help_uri_sim_combination_warning" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=android_sim_combination_warning;S.EXTRA_BACKUP_URI=https%3A%2F%2Fsupport.google.com%2Fpixelphone%2F%3Fp%3Dsim_combination_flag;end</string>
+
+    <!-- Help URI, USB Audio [DO NOT TRANSLATE] -->
+    <string name="help_url_audio_accessory_not_supported" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=help_url_audio_accessory_not_supported;end</string>
+
+    <!-- Help URI, USB Contaminant [DO NOT TRANSLATE] -->
+    <string name="help_url_usb_contaminant_detected" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=usb_contaminant_detected;end</string>
+
+    <!-- Help URI, restricted apps page [DO NOT TRANSLATE] -->
+    <string name="help_uri_restricted_apps" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=restricted_apps;end</string>
+
+    <!-- Help URI, battery saver page [DO NOT TRANSLATE] -->
+    <string name="help_url_battery_saver_settings" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=battery_saver_settings;end</string>
+
+    <!-- Help URI, smart battery page [DO NOT TRANSLATE] -->
+    <string name="help_uri_smart_battery_settings" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=smart_battery_settings;end</string>
+
+    <!-- Help URI, prevent ringing gesture [DO NOT TRANSLATE] -->
+    <string name="help_uri_prevent_ringing_gesture" translatable="false">intent:#Intent;action=com.google.android.gms.googlehelp.LAUNCH;S.EXTRA_CONTEXT=prevent_ringing_gesture;end</string>
+
+</resources>
