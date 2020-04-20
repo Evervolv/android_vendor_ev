@@ -5,9 +5,11 @@ allow system_server adbroot_service:service_manager find;
 hal_client_domain(system_server, hal_evervolv_fastcharge)
 hal_client_domain(system_server, hal_evervolv_livedisplay)
 hal_client_domain(system_server, hal_evervolv_touch)
+hal_client_domain(system_server, hal_lineage_powershare)
 
 # Read restart config
 get_prop(system_server, userspace_reboot_config_prop);
 
 # DC Dimming
 add_service(system_server, dc_dimming_service);
+

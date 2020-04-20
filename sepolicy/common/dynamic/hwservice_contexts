@@ -6,6 +6,7 @@ vendor.evervolv.touch::IKeyDisabler                   u:object_r:hal_evervolv_to
 vendor.evervolv.touch::IKeySwapper                    u:object_r:hal_evervolv_touch_hwservice:s0
 vendor.evervolv.touch::IStylusMode                    u:object_r:hal_evervolv_touch_hwservice:s0
 vendor.evervolv.touch::ITouchscreenGesture            u:object_r:hal_evervolv_touch_hwservice:s0
+vendor.lineage.powershare::IPowerShare                                  u:object_r:hal_lineage_powershare_hwservice:s0
 vendor.lineage.livedisplay::IAdaptiveBacklight                          u:object_r:hal_evervolv_livedisplay_hwservice:s0
 vendor.lineage.livedisplay::IAntiFlicker                                u:object_r:hal_evervolv_livedisplay_hwservice:s0
 vendor.lineage.livedisplay::IAutoContrast                               u:object_r:hal_evervolv_livedisplay_hwservice:s0

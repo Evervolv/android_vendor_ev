@@ -6,3 +6,6 @@ hal_client_domain(platform_app, hal_evervolv_fastcharge)
 
 # Allow LiveDisplay HAL service to be found
 hal_client_domain(platform_app, hal_evervolv_livedisplay)
+
+# Allow PowerShare HAL service to be found
+hal_client_domain(platform_app, hal_lineage_powershare)
