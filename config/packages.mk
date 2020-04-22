@@ -5,17 +5,12 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 
 # Extra tools
 PRODUCT_PACKAGES += \
-    7z \
     awk \
     bash \
     bzip2 \
     curl \
-    htop \
     lib7z \
     libsepol \
-    pigz \
-    powertop \
-    rsync \
     scp \
     sftp \
     ssh \
@@ -23,10 +18,7 @@ PRODUCT_PACKAGES += \
     sshd_config \
     ssh-keygen \
     start-ssh \
-    unrar \
     unzip \
-    vim \
-    wget \
     zip
 
 # Filesystems tools
@@ -55,8 +47,6 @@ PRODUCT_PACKAGES += \
 
 # Extra packages
 PRODUCT_PACKAGES += \
-    AudioFX \
-    Eleven \
     Email \
     Jelly \
     Longshot \
