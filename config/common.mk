@@ -68,6 +68,7 @@ PRODUCT_PACKAGES += \
 # Packages
 PRODUCT_PACKAGES += \
     adb_root \
+    Etar \
     Jelly \
     SimpleDeviceConfig \
     ThemePicker \
