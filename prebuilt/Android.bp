@@ -22,4 +22,14 @@ android_app_import {
 	dex_preopt: {
 		enabled: false,
 	},
+	required: [
+		"privapp_whitelist_com.android.screenshot"
+	],
+}
+
+prebuilt_etc {
+	name: "privapp_whitelist_com.android.screenshot",
+	sub_dir: "permissions",
+	src: "common/etc/permissions/privapp_whitelist_com.android.screenshot.xml",
+	filename_from_src: true,
 }
