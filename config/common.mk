@@ -62,13 +62,6 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     media.recorder.show_manufacturer_and_model=true
 
-# Overlays
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay
-DEVICE_PACKAGE_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay/common
-ifeq ($(SELINUX_IGNORE_NEVERALLOWS),true)
-DEVICE_PACKAGE_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay/legacy
-endif
-
 # AOSP audio files
 include $(SRC_EVERVOLV_DIR)/config/aosp_audio.mk
 

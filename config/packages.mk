@@ -61,7 +61,17 @@ PRODUCT_PACKAGES += \
 
 # Extra overlays
 PRODUCT_PACKAGES += \
-    NavigationBarMode2ButtonOverlay
+
+# Overlays
+PRODUCT_PACKAGES += \
+    NavigationBarMode2ButtonOverlay \
+    PlatformFrameworksOverlay \
+    PlatformSettingsOverlay \
+    PlatformSettingsProviderOverlay \
+    PlatformDeviceConfigOverlay \
+    PlatformSystemUIOverlay \
+    PlatformTelephonyOverlay \
+    PlatformThemePickerOverlay
 
 # Config
 PRODUCT_PACKAGES += \
