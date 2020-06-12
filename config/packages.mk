@@ -42,6 +42,7 @@ PRODUCT_PACKAGES += \
     PlatformPurpleAccent \
     PlatformRedAccent \
     PlatformYellowAccent \
+    PlatformBlackTheme \
     PlatformThemesStub \
     ThemePicker
 
