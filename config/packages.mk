@@ -43,12 +43,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     PlatformBlackAccent \
     PlatformBlueAccent \
-    PlatformBrownAccent \
     PlatformCyanAccent \
     PlatformGreenAccent \
     PlatformOrangeAccent \
     PlatformPinkAccent \
-    PlatformPurpleAccent \
     PlatformRedAccent \
     PlatformYellowAccent \
     PlatformBlackTheme \
