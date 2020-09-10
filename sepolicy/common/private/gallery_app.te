@@ -8,7 +8,6 @@ allow gallery_app app_api_service:service_manager find;
 allow gallery_app audioserver_service:service_manager find;
 allow gallery_app cameraserver_service:service_manager find;
 allow gallery_app drmserver_service:service_manager find;
-allow gallery_app mediacodec_service:service_manager find;
 allow gallery_app mediaextractor_service:service_manager find;
 allow gallery_app mediaserver_service:service_manager find;
 allow gallery_app mediametrics_service:service_manager find;
