@@ -1,4 +1,4 @@
 # HALs
-hal_attribute(evervolv_camera_motor)
-hal_attribute(evervolv_fod)
-hal_attribute(evervolv_touch)
+hal_attribute_evervolv(evervolv_camera_motor)
+hal_attribute_evervolv(evervolv_fod)
+hal_attribute_evervolv(evervolv_touch)
