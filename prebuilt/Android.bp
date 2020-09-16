@@ -15,25 +15,6 @@
  *
  */
 
-android_app_import {
-	name: "Longshot",
-	apk: "common/app/Longshot.apk",
-	certificate: "platform",
-	dex_preopt: {
-		enabled: false,
-	},
-	required: [
-		"privapp_whitelist_com.android.screenshot"
-	],
-}
-
-prebuilt_etc {
-	name: "privapp_whitelist_com.android.screenshot",
-	sub_dir: "permissions",
-	src: "common/etc/permissions/privapp_whitelist_com.android.screenshot.xml",
-	filename_from_src: true,
-}
-
 prebuilt_etc {
 	name: "fonts_customization.xml",
 	product_specific: true,

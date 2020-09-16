@@ -4,6 +4,3 @@ allow system_server adbroot_service:service_manager find;
 # Use HALs
 hal_client_domain(system_server, hal_evervolv_fod)
 hal_client_domain(system_server, hal_evervolv_touch)
-
-# Longshot service
-add_service(system_server, longshot_service)

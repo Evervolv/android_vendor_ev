@@ -57,7 +57,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Email \
     Jelly \
-    Longshot \
     WallpaperPicker
 
 # Root

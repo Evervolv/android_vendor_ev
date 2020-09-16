@@ -2,4 +2,3 @@ style                                     u:object_r:style_service:s0
 performance                               u:object_r:performance_service:s0
 hardware_manager                          u:object_r:hardware_manager_service:s0
 adbroot_service                           u:object_r:adbroot_service:s0
-longshot                                  u:object_r:longshot_service:s0
