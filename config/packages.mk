@@ -59,6 +59,10 @@ PRODUCT_PACKAGES += \
     Jelly \
     WallpaperPicker
 
+# Extra overlays
+PRODUCT_PACKAGES += \
+    NavigationBarMode2ButtonOverlay
+
 # Root
 PRODUCT_PACKAGES += \
     adb_root
