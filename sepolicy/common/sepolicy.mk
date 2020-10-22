@@ -20,7 +20,7 @@ ifeq ($(TARGET_USES_PREBUILT_VENDOR_SEPOLICY), true)
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += \
     $(SRC_EVERVOLV_DIR)/sepolicy/common/dynamic
 else
-BOARD_SEPOLICY_DIRS += \
+BOARD_VENDOR_SEPOLICY_DIRS += \
     $(SRC_EVERVOLV_DIR)/sepolicy/common/dynamic \
     $(SRC_EVERVOLV_DIR)/sepolicy/common/vendor
 endif
