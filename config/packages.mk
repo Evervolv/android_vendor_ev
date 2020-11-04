@@ -63,6 +63,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     NavigationBarMode2ButtonOverlay
 
+# Config
+PRODUCT_PACKAGES += \
+    SimpleDeviceConfig
+
 # Root
 PRODUCT_PACKAGES += \
     adb_root
