@@ -18,6 +18,8 @@ PRODUCT_COPY_FILES += \
 
 # APEX
 OVERRIDE_TARGET_FLATTEN_APEX := true
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.apex.updatable=false
 
 # Backup tool
 PRODUCT_COPY_FILES += \
