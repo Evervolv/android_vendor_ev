@@ -21,4 +21,9 @@
 
     <!-- Mainline module -->
     <string name="config_defaultModuleMetadataProvider" translatable="false">com.google.android.modulemetadata</string>
+
+    <string-array name="config_ignored_backup_transports" translatable="false">
+        <item>com.android.localtransport/.LocalTransport</item>
+        <item>com.google.android.gms/.backup.migrate.service.D2dTransport</item>
+    </string-array>
 </resources>
