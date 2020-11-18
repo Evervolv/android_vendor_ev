@@ -24,7 +24,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/system-mount.sh:install/bin/system-mount.sh \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/50-backup.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-backup.sh
 
 ifeq ($(AB_OTA_UPDATER),true)
