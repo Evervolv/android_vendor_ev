@@ -28,6 +28,16 @@ restore_addon_d() {
   fi
 }
 
+# Proceed only if /system is the expected major and minor version
+check_prereq() {
+# If there is no build.prop file the partition is probably empty.
+if [ ! -r $S/build.prop ]; then
+  echo "Backup/restore is not possible. Partition is probably empty"
+  return 1
+fi
+return 0
+}
+
 # Execute /system/addon.d/*.sh scripts with $1 parameter
 run_stage() {
 if [ -d /tmp/addon.d/ ]; then
@@ -66,21 +76,25 @@ determine_system_mount
 case "$1" in
   backup)
     mount_system
-    mkdir -p $C
-    preserve_addon_d
-    run_stage pre-backup
-    run_stage backup
-    run_stage post-backup
+    if check_prereq; then
+      mkdir -p $C
+      preserve_addon_d
+      run_stage pre-backup
+      run_stage backup
+      run_stage post-backup
+    fi
     unmount_system
   ;;
   restore)
     mount_system
-    run_stage pre-restore
-    run_stage restore
-    run_stage post-restore
-    restore_addon_d
-    rm -rf $C
-    sync
+    if check_prereq; then
+      run_stage pre-restore
+      run_stage restore
+      run_stage post-restore
+      restore_addon_d
+      rm -rf $C
+      sync
+    fi
     unmount_system
   ;;
   *)
