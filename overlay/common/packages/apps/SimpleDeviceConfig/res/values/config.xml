@@ -47,5 +47,9 @@
         <item>device_personalization_services/Attention__margin_horizontal_px=1000</item>
         <item>device_personalization_services/Attention__margin_vertical_px=1000</item>
         <item>device_personalization_services/Attention__proximity_sensor_enabled=false</item>
+
+        <!-- Adaptive Sound (Pixel 2020) -->
+        <item>device_personalization_services/AdaptiveAudio__enable_adaptive_audio=true</item>
+        <item>device_personalization_services/AdaptiveAudio__show_promo_notification=true</item>
     </string-array>
 </resources>
