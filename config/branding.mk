@@ -85,7 +85,7 @@ ifeq ($(PRODUCT_CODENAME),)
 PRODUCT_CODENAME := $(TARGET_DEVICE)
 endif
 
-ROM_VERSION := $(TARGET_PRODUCT)-$(PRODUCT_VERSION)-$(PRODUCT_BUILD)-$(shell date +%Y.%m.%d)
+ROM_VERSION := $(TARGET_PRODUCT)-$(PRODUCT_VERSION)-$(PRODUCT_BUILD)-$(shell date +%Y.%m.%d)-$(shell date -u +%H%M)
 TARGET_OTA_PACKAGE_NAME := $(shell echo ${ROM_VERSION} | tr [:upper:] [:lower:])
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
