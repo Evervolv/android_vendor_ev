@@ -1,4 +1,5 @@
 # HALs
 hal_attribute_evervolv(evervolv_camera_motor)
+hal_attribute_evervolv(evervolv_fastcharge)
 hal_attribute_evervolv(evervolv_fod)
 hal_attribute_evervolv(evervolv_touch)

@@ -2,6 +2,7 @@ allow system_server storage_stub_file:dir getattr;
 allow system_server adbroot_service:service_manager find;
 
 # Use HALs
+hal_client_domain(system_server, hal_evervolv_fastcharge)
 hal_client_domain(system_server, hal_evervolv_fod)
 hal_client_domain(system_server, hal_evervolv_touch)
 

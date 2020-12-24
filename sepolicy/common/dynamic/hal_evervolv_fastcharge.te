@@ -1,0 +1,8 @@
+# HWBinder IPC from client to server
+binder_call(hal_evervolv_fastcharge_client, hal_evervolv_fastcharge_server)
+
+add_hwservice(hal_evervolv_fastcharge_server, hal_evervolv_fastcharge_hwservice)
+allow hal_evervolv_fastcharge_client hal_evervolv_fastcharge_hwservice:hwservice_manager find;
+
+# Allow binder communication with platform_app
+binder_call(hal_evervolv_fastcharge, platform_app)
