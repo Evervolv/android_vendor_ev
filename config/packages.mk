@@ -74,5 +74,10 @@ PRODUCT_PACKAGES += \
 # Inherit GMS, Pixel Features, and Modules.
 ifeq ($(WITH_GMS),true)
 $(call inherit-product-if-exists, vendor/google/gms/config.mk)
+ifeq ($(TARGET_FLATTEN_APEX), false)
+$(call inherit-product-if-exists, vendor/google/modules/build/mainline_modules_r.mk)
+else
+$(call inherit-product-if-exists, vendor/google/modules/build/mainline_modules_r_flatten_apex.mk)
+endif
 $(call inherit-product-if-exists, vendor/google/pixel/config.mk)
 endif
