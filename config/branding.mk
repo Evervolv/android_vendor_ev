@@ -14,3 +14,7 @@ PRODUCT_PACKAGES += \
     EVSettingsProvider \
     EVToolbox \
     EVUpdater
+
+# Bootanimation
+TARGET_SCREEN_WIDTH ?= 1080
+TARGET_SCREEN_HEIGHT ?= 1920
