@@ -1,16 +1,10 @@
 # Inherit common stuff
 $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common.mk)
 
-# World APN list
-PRODUCT_PACKAGES += \
-    apns-conf.xml
-
-# Sensitive Phone Numbers list
-PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/sensitive_pn.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sensitive_pn.xml
-
 # Telephony packages
 PRODUCT_PACKAGES += \
+    apns-conf.xml \
+    sensitive_pn.xml \
     messaging \
     Stk \
     CellBroadcastReceiver

@@ -21,3 +21,9 @@ prebuilt_etc {
 	src: "common/etc/fonts_customization.xml",
 	filename_from_src: true,
 }
+
+prebuilt_etc_xml {
+    name: "sensitive_pn.xml",
+    src: "common/etc/sensitive_pn.xml",
+    schema: ":spn-schema",
+}
