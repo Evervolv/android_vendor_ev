@@ -9,6 +9,7 @@ EV_PLATFORM_SDK_VERSION ?= 3
 EV_PLATFORM_REV ?= 0
 
 PRODUCT_PACKAGES += \
+    com.evervolv.globalactions.xml \
     com.evervolv.hardware.xml \
     com.evervolv.performance.xml \
     com.evervolv.platform-res \
