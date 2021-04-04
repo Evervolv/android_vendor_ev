@@ -2,24 +2,16 @@
 ifneq ($(filter 720p 1080p 1440p hvga qhd wvga xga,$(BOOT_ANIMATION_SIZE)),)
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/bootanimation/$(BOOT_ANIMATION_SIZE).zip:$(TARGET_COPY_OUT_SYSTEM)/media/bootanimation.zip
-else
-$(warning ************************************************************)
-$(warning BOOT_ANIMATION_SIZE is either null or invalid.)
-$(warning Choices are 720p, 1080p, 1440p, hvga, qhd, wvga, and xga.)
-$(warning Please update your device tree to a valid choice.)
-$(warning Otherwise, no animation will be present.)
-$(warning ************************************************************)
 endif
 
 # Build type
-PRODUCT_BUILD := userbuild
-ifeq ($(NIGHTLY_BUILD),true)
-PRODUCT_BUILD := nightly
-else ifeq ($(TESTING_BUILD),true)
-PRODUCT_BUILD := testing
+ifneq ($(PRODUCT_BUILD),)
+EV_BUILD_TYPE := $(PRODUCT_BUILD)
+else
+EV_BUILD_TYPE := userbuild
 endif
 
-PRODUCT_MOTD ?="\n\n\n--------------------MESSAGE---------------------\nThank you for choosing Evervolv\nPlease visit us at \#evervolv on irc.freenode.net\nFollow @preludedrew for the latest Evervolv updates\nGet the latest rom at evervolv.com\n------------------------------------------------\n"
+PRODUCT_MOTD ?="\n"
 
 # SDK
 ifndef EV_PLATFORM_SDK_VERSION
@@ -45,29 +37,26 @@ PRODUCT_PACKAGES += \
     com.evervolv.platform-res \
     com.evervolv.platform \
     com.evervolv.platform.xml \
-    EVSettingsProvider
-
-# Toolbox
-PRODUCT_PACKAGES += \
+    EVSettingsProvider \
     EVToolbox
 
 # Updater
-ifneq ($(filter nightly testing,$(PRODUCT_BUILD)),)
+ifneq ($(filter nightly testing,$(EV_BUILD_TYPE)),)
 PRODUCT_PACKAGES += \
     EVUpdater
 endif
 
 # Version Info
-PRODUCT_VERSION_MAJOR = 11
-PRODUCT_VERSION_MINOR = 0
-PRODUCT_VERSION_MAINTENANCE = 0
+EV_VERSION_MAJOR = 11
+EV_VERSION_MINOR = 0
+EV_VERSION_MAINTENANCE = 0
 
-ifeq ($(PRODUCT_VERSION),)
-PRODUCT_VERSION := $(PRODUCT_VERSION_MAJOR)
-ifneq ($(PRODUCT_VERSION_MINOR),0)
-PRODUCT_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)
-ifneq ($(PRODUCT_VERSION_MINOR),0)
-PRODUCT_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)
+ifeq ($(EV_VERSION),)
+EV_VERSION := $(EV_VERSION_MAJOR)
+ifneq ($(EV_VERSION_MINOR),0)
+EV_VERSION := $(EV_VERSION_MAJOR).$(EV_VERSION_MINOR)
+ifneq ($(EV_VERSION_MINOR),0)
+EV_VERSION := $(EV_VERSION_MAJOR).$(EV_VERSION_MINOR).$(EV_VERSION_MAINTENANCE)
 endif
 endif
 endif
@@ -75,6 +64,7 @@ endif
 ifeq ($(PRODUCT_CODENAME),)
 PRODUCT_CODENAME := $(TARGET_DEVICE)
 endif
+EV_CODENAME := $(PRODUCT_CODENAME)
 
-ROM_VERSION := $(TARGET_PRODUCT)-$(PRODUCT_VERSION)-$(PRODUCT_BUILD)-$(shell date +%Y.%m.%d)-$(shell date -u +%H%M)
-TARGET_OTA_PACKAGE_NAME := $(shell echo ${ROM_VERSION} | tr [:upper:] [:lower:])
+EV_PACKAGE_NAME := $(TARGET_PRODUCT)-$(EV_VERSION)-$(EV_BUILD_TYPE)-$(shell date +%Y.%m.%d)-$(shell date -u +%H%M)
+TARGET_OTA_PACKAGE_NAME := $(shell echo ${EV_PACKAGE_NAME} | tr [:upper:] [:lower:])
