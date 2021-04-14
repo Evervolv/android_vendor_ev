@@ -73,6 +73,9 @@ PRODUCT_PACKAGES += \
 
 # Inherit GMS, Pixel Features, and Modules.
 ifeq ($(WITH_GMS),true)
+ifeq ($(WITH_FULL_GMS),true)
+BUILD_BROKEN_DUP_RULES := true
+endif
 $(call inherit-product-if-exists, vendor/google/gms/config.mk)
 ifeq ($(TARGET_FLATTEN_APEX), false)
 $(call inherit-product-if-exists, vendor/google/modules/build/mainline_modules_r.mk)
