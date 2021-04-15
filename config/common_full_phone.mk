@@ -7,7 +7,7 @@ PRODUCT_PACKAGES += \
 
 # Sensitive Phone Numbers list
 PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/etc/sensitive_pn.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sensitive_pn.xml
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/sensitive_pn.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sensitive_pn.xml
 
 # Telephony packages
 PRODUCT_PACKAGES += \
