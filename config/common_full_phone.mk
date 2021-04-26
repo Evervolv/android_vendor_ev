@@ -9,12 +9,8 @@ PRODUCT_PACKAGES += \
     Stk \
     CellBroadcastReceiver
 
-# Default ringtone
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.config.ringtone=Orion.ogg
-
 # Legacy support
-ifneq ($(TARGET_USES_OLD_MNC_FORMAT),)
+ifeq ($(TARGET_USES_OLD_MNC_FORMAT), true)
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.use_old_mnc_mcc_format=true
 endif

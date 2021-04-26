@@ -1,16 +1,16 @@
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+# ADB
+PRODUCT_PACKAGES += \
+    adb_root
 
-ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.com.google.clientidbase=android-google
+# ADB authentication.
+ifeq ($(TARGET_BUILD_VARIANT),user)
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.adb.secure=1
 else
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.com.google.clientidbase=$(PRODUCT_GMS_CLIENTID_BASE)
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.adb.secure=0
 endif
 
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    keyguard.no_require_sim=true \
-    persist.sys.disable_rescue=true
+# Allow duplicate files 
+BUILD_BROKEN_DUP_RULES ?= true
 
 # Android Beam
 PRODUCT_COPY_FILES += \
@@ -34,43 +34,145 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.sf.blurs_are_expensive=1 \
     ro.surface_flinger.supports_background_blur=1
 
-# Init file
+# Branding
+include $(SRC_EVERVOLV_DIR)/config/branding.mk
+
+# Browser
+PRODUCT_PACKAGES += \
+    Jelly
+
+# Build date override
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
+# Command line
+PRODUCT_PACKAGES += \
+    awk \
+    bash \
+    bzip2 \
+    curl \
+    lib7z \
+    libsepol \
+    scp \
+    sftp \
+    ssh \
+    sshd \
+    sshd_config \
+    ssh-keygen \
+    start-ssh \
+    unzip \
+    zip
+
+# Debug
+ifneq ($(TARGET_BUILD_VARIANT),user)
+PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD ?= false
+PRODUCT_MINIMIZE_JAVA_DEBUG_INFO ?= true
+endif
+
+# DeviceConfig
+PRODUCT_PACKAGES += \
+    SimpleDeviceConfig
+
+# Dex preopt
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    SystemUI \
+    Launcher3QuickStep
+
+# Email
+PRODUCT_PACKAGES += \
+    Email
+
+# Filesystems
+PRODUCT_PACKAGES += \
+    fsck.exfat \
+    fsck.ntfs \
+    mke2fs \
+    mkfs.exfat \
+    mkfs.ntfs \
+    mount.ntfs
+
+# Fonts
+$(call inherit-product-if-exists, external/google-fonts/lato/fonts.mk)
+$(call inherit-product-if-exists, external/google-fonts/rubik/fonts.mk)
+
+# Init
 $(foreach f,$(wildcard $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init/*.rc),\
 	$(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM)/etc/init/$(notdir $f)))
 
-# Permissions for our apps
-PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/sysconfig/sysconfig.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/evervolv-sysconfig.xml
-
-# Prefetching using Perfetto traces and madvise
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.iorapd.enable=true
-
-# Enforce privapp-permissions whitelist
+# Keyguard
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.control_privapp_permissions=enforce
-
-# Do not include art debug targets
-PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD ?= false
-
-# Strip the local variable table and the local variable type table to reduce
-# the size of the system image. This has no bearing on stack traces, but will
-# leave less information available via JDWP.
-PRODUCT_MINIMIZE_JAVA_DEBUG_INFO ?= true
-
-# Storage manager
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.storage_manager.enabled=true
+    keyguard.no_require_sim=true
 
 # Media
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     media.recorder.show_manufacturer_and_model=true
 
-# AOSP audio files
+# Navigation
+PRODUCT_PACKAGES += \
+    NavigationBarMode2ButtonOverlay
+
+# Overlays
+PRODUCT_PACKAGES += \ \
+    PlatformFrameworksOverlay \
+    PlatformDialerOverlay \
+    PlatformDocumentsUIOverlay \
+    PlatformSettingsOverlay \
+    PlatformSettingsProviderOverlay \
+    PlatformDeviceConfigOverlay \
+    PlatformSystemUIOverlay \
+    PlatformTelephonyOverlay \
+    PlatformThemePickerOverlay
+
+# Permissions
+PRODUCT_COPY_FILES += \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/sysconfig/sysconfig.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/evervolv-sysconfig.xml
+
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.control_privapp_permissions=enforce
+
+# Prefetching
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.iorapd.enable=true
+
+# Release tools
+PRODUCT_MOTD ?="\n"
+
+# Rescue
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    persist.sys.disable_rescue=true
+
+# Storage manager
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.storage_manager.enabled=true
+
+# Sound
 include $(SRC_EVERVOLV_DIR)/config/aosp_audio.mk
 
-# Branding
-include $(SRC_EVERVOLV_DIR)/config/branding.mk
+# Themes
+PRODUCT_PACKAGES += \
+    fonts_customization.xml \
+    PlatformThemesStub \
+    ThemePicker \
+    WallpaperPicker
 
-# Packages
-include $(SRC_EVERVOLV_DIR)/config/packages.mk
+# Vendor Mobile Services
+ifeq ($(WITH_GMS),true)
+
+$(call inherit-product-if-exists, vendor/google/gms/config.mk)
+ifeq ($(TARGET_FLATTEN_APEX), false)
+$(call inherit-product-if-exists, vendor/google/modules/build/mainline_modules_r.mk)
+else
+$(call inherit-product-if-exists, vendor/google/modules/build/mainline_modules_r_flatten_apex.mk)
+endif
+$(call inherit-product-if-exists, vendor/google/pixel/config.mk)
+
+else
+
+ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.com.google.clientidbase=android-google
+else
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.com.google.clientidbase=$(PRODUCT_GMS_CLIENTID_BASE)
+endif
+
+endif

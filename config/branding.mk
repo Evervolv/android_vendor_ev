@@ -1,35 +1,12 @@
-# Check BOOT_ANIMATION_SIZE for a valid size
+# Boot animation
 ifneq ($(filter 720p 1080p 1440p hvga qhd wvga xga,$(BOOT_ANIMATION_SIZE)),)
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/bootanimation/$(BOOT_ANIMATION_SIZE).zip:$(TARGET_COPY_OUT_SYSTEM)/media/bootanimation.zip
 endif
 
-# Build type
-ifneq ($(PRODUCT_BUILD),)
-EV_BUILD_TYPE := $(PRODUCT_BUILD)
-else
-EV_BUILD_TYPE := userbuild
-endif
-
-PRODUCT_MOTD ?="\n"
-
 # SDK
-ifndef EV_PLATFORM_SDK_VERSION
-  # This is the canonical definition of the SDK version, which defines
-  # the set of APIs and functionality available in the platform.  It
-  # is a single integer that increases monotonically as updates to
-  # the SDK are released.  It should only be incremented when the APIs for
-  # the new release are frozen (so that developers don't write apps against
-  # intermediate builds).
-  EV_PLATFORM_SDK_VERSION := 3
-endif
-
-ifndef EV_PLATFORM_REV
-  # For internal SDK revisions that are hotfixed/patched
-  # Reset after each EV_PLATFORM_SDK_VERSION release
-  # If you are doing a release and this is NOT 0, you are almost certainly doing it wrong
-  EV_PLATFORM_REV := 0
-endif
+EV_PLATFORM_SDK_VERSION ?= 3
+EV_PLATFORM_REV ?= 0
 
 PRODUCT_PACKAGES += \
     com.evervolv.hardware.xml \
@@ -38,13 +15,8 @@ PRODUCT_PACKAGES += \
     com.evervolv.platform \
     com.evervolv.platform.xml \
     EVSettingsProvider \
-    EVToolbox
-
-# Updater
-ifneq ($(filter nightly testing,$(EV_BUILD_TYPE)),)
-PRODUCT_PACKAGES += \
+    EVToolbox \
     EVUpdater
-endif
 
 # Version Info
 EV_VERSION_MAJOR = 11
@@ -61,10 +33,11 @@ endif
 endif
 endif
 
-ifeq ($(PRODUCT_CODENAME),)
-PRODUCT_CODENAME := $(TARGET_DEVICE)
+ifneq ($(filter nightly testing release,$(PRODUCT_BUILD)),)
+EV_BUILD_TYPE := $(PRODUCT_BUILD)
+else
+EV_BUILD_TYPE := userbuild
 endif
-EV_CODENAME := $(PRODUCT_CODENAME)
 
 EV_PACKAGE_NAME := $(TARGET_PRODUCT)-$(EV_VERSION)-$(EV_BUILD_TYPE)-$(shell date +%Y.%m.%d)-$(shell date -u +%H%M)
 TARGET_OTA_PACKAGE_NAME := $(shell echo ${EV_PACKAGE_NAME} | tr [:upper:] [:lower:])
