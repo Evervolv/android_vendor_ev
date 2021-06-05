@@ -150,6 +150,12 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 # Sound
 include $(SRC_EVERVOLV_DIR)/config/aosp_audio.mk
 
+# StrictMode
+ifneq ($(TARGET_BUILD_VARIANT),eng)
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    persist.sys.strictmode.disable=true
+endif
+
 # Themes
 PRODUCT_PACKAGES += \
     fonts_customization.xml \
