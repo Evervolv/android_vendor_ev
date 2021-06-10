@@ -49,9 +49,7 @@ PRODUCT_OVERRIDE_FINGERPRINT ?= google/redfin/redfin:11/RQ3A.210705.001/7380771:
 
 # Command line
 PRODUCT_PACKAGES += \
-    awk \
     bash \
-    bzip2 \
     curl \
     lib7z \
     libsepol \
