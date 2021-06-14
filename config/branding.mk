@@ -4,6 +4,14 @@ PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/bootanimation/$(BOOT_ANIMATION_SIZE).zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip
 endif
 
+# AOSP has no support of loading framework resources from /system_ext
+# so the SDK has to stay in /system for now
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
+    system/framework/oat/%/com.evervolv.platform.odex \
+    system/framework/oat/%/com.evervolv.platform.vdex \
+    system/framework/com.evervolv.platform-res.apk \
+    system/framework/com.evervolv.platform.jar
+
 # SDK
 EV_PLATFORM_SDK_VERSION ?= 4
 EV_PLATFORM_REV ?= 0
