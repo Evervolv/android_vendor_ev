@@ -45,7 +45,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Build information
-PRODUCT_OVERRIDE_FINGERPRINT ?= google/redfin/redfin:11/RQ3A.210605.005/7349499:user/release-keys
+PRODUCT_OVERRIDE_FINGERPRINT ?= google/redfin/redfin:11/RQ3A.210705.001/7380771:user/release-keys
 
 # Command line
 PRODUCT_PACKAGES += \
