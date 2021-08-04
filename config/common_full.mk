@@ -13,6 +13,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Aperture
 
+# Charger
+PRODUCT_PACKAGES += \
+    lineage_charger_animation
+
 # DeviceConfig
 PRODUCT_PACKAGES += \
     SimpleDeviceConfig

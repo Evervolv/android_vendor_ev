@@ -79,3 +79,44 @@ $(BOOTANIMATION_SYMLINK): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf bootanimation.zip $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(BOOTANIMATION_SYMLINK)
+
+# Set lineage_charger_density to the density bucket of the device.
+lineage_charger_density := mdpi
+ifneq (,$(TARGET_SCREEN_DENSITY))
+lineage_charger_density := $(strip \
+  $(or $(if $(filter $(shell echo $$(($(TARGET_SCREEN_DENSITY) >= 560))),1),xxxhdpi),\
+       $(if $(filter $(shell echo $$(($(TARGET_SCREEN_DENSITY) >= 400))),1),xxhdpi),\
+       $(if $(filter $(shell echo $$(($(TARGET_SCREEN_DENSITY) >= 280))),1),xhdpi),\
+       $(if $(filter $(shell echo $$(($(TARGET_SCREEN_DENSITY) >= 200))),1),hdpi,mdpi)))
+else ifneq (,$(filter mdpi hdpi xhdpi xxhdpi xxxhdpi,$(PRODUCT_AAPT_PREF_CONFIG)))
+# If PRODUCT_AAPT_PREF_CONFIG includes a dpi bucket, then use that value.
+lineage_charger_density := $(PRODUCT_AAPT_PREF_CONFIG)
+endif
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := lineage_charger_battery_scale
+LOCAL_MODULE_STEM := battery_scale.png
+LOCAL_SRC_FILES := charger/$(lineage_charger_density)/battery_scale.png
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(TARGET_OUT_PRODUCT_ETC)/res/images/charger
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := lineage_charger_battery_fail
+LOCAL_MODULE_STEM := battery_fail.png
+LOCAL_SRC_FILES := charger/$(lineage_charger_density)/battery_fail.png
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(TARGET_OUT_PRODUCT_ETC)/res/images/charger
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := lineage_charger_animation
+LOCAL_MODULE_STEM := animation.txt
+LOCAL_SRC_FILES := charger/animation.txt
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(TARGET_OUT_PRODUCT_ETC)/res/values/charger
+LOCAL_REQUIRED_MODULES := lineage_charger_battery_scale lineage_charger_battery_fail
+include $(BUILD_PREBUILT)
