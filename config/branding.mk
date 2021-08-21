@@ -1,7 +1,7 @@
 # Boot animation
 ifneq ($(filter 720p 1080p 1440p hvga qhd wvga xga,$(BOOT_ANIMATION_SIZE)),)
-PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/bootanimation/$(BOOT_ANIMATION_SIZE).zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip
+PRODUCT_PACKAGES += \
+    com.android.bootanimation-$(BOOT_ANIMATION_SIZE)
 endif
 
 # AOSP has no support of loading framework resources from /system_ext

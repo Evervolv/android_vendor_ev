@@ -20,3 +20,45 @@ prebuilt_etc_xml {
     product_specific: true,
     src: "common/etc/sensitive_pn.xml",
 }
+
+prebuilt_etc {
+    name: "bootanimation-720p",
+    filename: "bootanimation.zip",
+    src:  "bootanimation/720p/bootanimation.zip",
+}
+
+prebuilt_etc {
+    name: "bootanimation-1080p",
+    filename: "bootanimation.zip",
+    src:  "bootanimation/1080p/bootanimation.zip",
+}
+
+prebuilt_etc {
+    name: "bootanimation-1440p",
+    filename: "bootanimation.zip",
+    src:  "bootanimation/1440p/bootanimation.zip",
+}
+
+prebuilt_etc {
+    name: "bootanimation-hvga",
+    filename: "bootanimation.zip",
+    src:  "bootanimation/hvga/bootanimation.zip",
+}
+
+prebuilt_etc {
+    name: "bootanimation-qhd",
+    filename: "bootanimation.zip",
+    src:  "bootanimation/qhd/bootanimation.zip",
+}
+
+prebuilt_etc {
+    name: "bootanimation-wvga",
+    filename: "bootanimation.zip",
+    src:  "bootanimation/wvga/bootanimation.zip",
+}
+
+prebuilt_etc {
+    name: "bootanimation-xga",
+    filename: "bootanimation.zip",
+    src:  "bootanimation/xga/bootanimation.zip",
+}
