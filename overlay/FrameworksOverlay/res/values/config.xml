@@ -161,4 +161,12 @@
 
     <!-- Recents text and image selection for Pixel Launcher (not supported by Launcher3) -->
     <string name="config_defaultContentSuggestionsService" translatable="false">com.google.android.as/com.google.android.apps.miphone.aiai.app.AiAiContentSuggestionsService</string>
+
+    <!-- Control the default night mode to use when there is no other mode override set.
+         One of the following values (see UiModeManager.java):
+             0 - MODE_NIGHT_AUTO
+             1 - MODE_NIGHT_NO
+             2 - MODE_NIGHT_YES
+    -->
+    <integer name="config_defaultNightMode">2</integer>
 </resources>
