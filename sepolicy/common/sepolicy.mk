@@ -10,14 +10,14 @@ BOARD_SEPOLICY_M4DEFS += board_excludes_fuseblk_sepolicy=true
 endif
 endif
 
-BOARD_PLAT_PUBLIC_SEPOLICY_DIR += \
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
     $(SRC_EVERVOLV_DIR)/sepolicy/common/public
 
-BOARD_PLAT_PRIVATE_SEPOLICY_DIR += \
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
     $(SRC_EVERVOLV_DIR)/sepolicy/common/private
 
 ifeq ($(TARGET_USES_PREBUILT_VENDOR_SEPOLICY), true)
-BOARD_PLAT_PRIVATE_SEPOLICY_DIR += \
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
     $(SRC_EVERVOLV_DIR)/sepolicy/common/dynamic
 else
 BOARD_VENDOR_SEPOLICY_DIRS += \
@@ -26,6 +26,6 @@ BOARD_VENDOR_SEPOLICY_DIRS += \
 endif
 
 ifeq ($(TARGET_HAS_LEGACY_CAMERA_HAL1), true)
-BOARD_PLAT_PUBLIC_SEPOLICY_DIR += \
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
     $(SRC_EVERVOLV_DIR)/sepolicy/common/legacy/public/legacy-camera-hal1
 endif
