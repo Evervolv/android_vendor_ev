@@ -1,2 +1,2 @@
-ro.evervolv.build.version.security_patch u:object_r:exported2_default_prop:s0
+ro.evervolv.build.version.security_patch u:object_r:vendor_security_patch_level_prop:s0
 ro.telephony.use_old_mnc_mcc_format    u:object_r:exported3_default_prop:s0
