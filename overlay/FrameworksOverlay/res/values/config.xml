@@ -289,4 +289,7 @@
     <string name="config_systemTextIntelligence">com.google.android.as</string>
     <string name="config_systemUiIntelligence">com.google.android.as</string>
     <string name="config_systemVisualIntelligence">com.google.android.as</string>
+
+    <!-- Determines whether the shell features all run on another thread. -->
+    <bool name="config_enableShellMainThread">true</bool>
 </resources>
