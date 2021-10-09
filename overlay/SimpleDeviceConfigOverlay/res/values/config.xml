@@ -20,6 +20,9 @@
             System
         -->
 
+        <!-- Use new privacy indicators for location -->
+        <item>privacy/location_indicators_enabled=true</item>
+
         <!-- Allow more cached apps in the background -->
         <item>activity_manager/max_cached_processes=64</item>
 
