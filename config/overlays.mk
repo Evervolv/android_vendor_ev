@@ -30,14 +30,6 @@ PRODUCT_PACKAGES += \
     IconShapeTaperedRectOverlay \
     IconShapeTeardropOverlay \
     IconShapeVesselOverlay \
-    PlatformBlackAccent \
-    PlatformBlueAccent \
-    PlatformCyanAccent \
-    PlatformGreenAccent \
-    PlatformOrangeAccent \
-    PlatformPinkAccent \
-    PlatformRedAccent \
-    PlatformYellowAccent \
     PlatformBlackTheme \
     fonts_customization.xml \
     FontLatoOverlay \
