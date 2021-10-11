@@ -14,3 +14,7 @@ ifeq ($(TARGET_USES_OLD_MNC_FORMAT), true)
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.use_old_mnc_mcc_format=true
 endif
+
+# Enable support of one-handed mode
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.support_one_handed_mode=true
