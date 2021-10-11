@@ -93,11 +93,6 @@ PRODUCT_PACKAGES += \
     mke2fs \
     mkfs.ntfs \
     mount.ntfs
-
-# Fonts
-$(call inherit-product-if-exists, external/google-fonts/lato/fonts.mk)
-$(call inherit-product-if-exists, external/google-fonts/rubik/fonts.mk)
-
 # Init
 $(foreach f,$(wildcard $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init/*.rc),\
 	$(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM)/etc/init/$(notdir $f)))
@@ -159,7 +154,6 @@ endif
 
 # Themes
 PRODUCT_PACKAGES += \
-    fonts_customization.xml \
     PlatformThemesStub \
     ThemePicker \
     WallpaperPicker

@@ -15,13 +15,6 @@
  *
  */
 
-prebuilt_etc {
-	name: "fonts_customization.xml",
-	product_specific: true,
-	src: "common/etc/fonts_customization.xml",
-	filename_from_src: true,
-}
-
 prebuilt_etc_xml {
     name: "sensitive_pn.xml",
     product_specific: true,
