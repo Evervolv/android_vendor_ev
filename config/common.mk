@@ -83,10 +83,6 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI \
     Launcher3QuickStep
 
-# Email
-PRODUCT_PACKAGES += \
-    Email
-
 # Filesystems
 PRODUCT_PACKAGES += \
     fsck.ntfs \
