@@ -57,6 +57,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/bin/curl
 
+PRODUCT_COPY_FILES += \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
+
 # Debug
 ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD ?= false
@@ -83,8 +86,8 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/%/libntfs-3g.so
 
 # Init
-$(foreach f,$(wildcard $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init/*.rc),\
-       $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/$(notdir $f)))
+PRODUCT_COPY_FILES += \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init/init.evervolv-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.evervolv-system_ext.rc
 
 # Keyguard
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
