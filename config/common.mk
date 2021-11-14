@@ -57,7 +57,6 @@ PRODUCT_PACKAGES += \
     bash \
     curl \
     lib7z \
-    libsepol \
     scp \
     sftp \
     ssh \
