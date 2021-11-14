@@ -84,7 +84,7 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 
 # Init
 $(foreach f,$(wildcard $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init/*.rc),\
-	$(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM)/etc/init/$(notdir $f)))
+       $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/$(notdir $f)))
 
 # Keyguard
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
