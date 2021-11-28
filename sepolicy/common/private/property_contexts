@@ -1,4 +1,8 @@
-ro.evervolv.build.version.security_patch u:object_r:vendor_security_patch_level_prop:s0
+# Aux camera
+vendor.camera.aux.packageexcludelist   u:object_r:vendor_persist_camera_prop:s0
+vendor.camera.aux.packagelist          u:object_r:vendor_persist_camera_prop:s0
+
+# Radio
 ro.telephony.use_old_mnc_mcc_format    u:object_r:telephony_config_prop:s0
 
 # Recovery update
