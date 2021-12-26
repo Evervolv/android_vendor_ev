@@ -15,5 +15,12 @@
 -->
 
 <resources>
-    <bool name="show_documents_root">true</bool>
+    <!-- Indicates if showing as search bar design -->
+    <bool name="show_search_bar">true</bool>
+
+    <!-- Indicates if internal storage is shown as default or not. -->
+    <bool name="config_default_show_device_root">false</bool>
+
+    <!-- Whether to show capitalize string on Button -->
+    <bool name="config_button_all_caps">false</bool>
 </resources>
