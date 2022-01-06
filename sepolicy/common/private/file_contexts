@@ -1,5 +1,5 @@
 # ADB Root
-/system/bin/adb_root       u:object_r:adbroot_exec:s0
+/(system_ext|system/system_ext)/bin/adb_root       u:object_r:adbroot_exec:s0
 /data/adbroot(/.*)?        u:object_r:adbroot_data_file:s0
 
 # Filesystem tools
