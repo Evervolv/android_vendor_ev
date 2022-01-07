@@ -37,6 +37,6 @@
         <item>com.android.systemui.plugin.globalactions.wallet</item>
     </string-array>
 
-    <string name="config_systemUIFactoryComponent" translatable="false">org.protonaosp.systemui.CustomSystemUIFactory</string>
+    <string name="config_systemUIFactoryComponent" translatable="false">com.evervolv.android.systemui.EVSystemUIFactory</string>
 </resources>
 
