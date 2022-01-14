@@ -1,5 +1,4 @@
 type hal_evervolv_camera_motor_hwservice, hwservice_manager_type;
 type hal_evervolv_fastcharge_hwservice, hwservice_manager_type;
-type hal_evervolv_fod_hwservice, hwservice_manager_type;
 type hal_evervolv_touch_hwservice, hwservice_manager_type;
 type hal_evervolv_livedisplay_hwservice, hwservice_manager_type;
