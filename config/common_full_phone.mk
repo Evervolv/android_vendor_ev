@@ -17,5 +17,6 @@ include $(SRC_EVERVOLV_DIR)/config/aosp_audio.mk
 include $(SRC_EVERVOLV_DIR)/config/overlays.mk
 
 PRODUCT_PACKAGES += \
+    RepainterServicePriv \
     ThemePicker \
     ThemesStub
