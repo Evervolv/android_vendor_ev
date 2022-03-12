@@ -1,4 +1,9 @@
-# This config is for legacy purposes, there are no atv product size variants
+# Inherit common stuff
+$(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common.mk)
 
-# Inherit common atv Lineage stuff
-$(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common_tv.mk)
+# Inherit Lineage atv device tree
+$(call inherit-product-if-exists, device/lineage/atv/lineage_atv.mk)
+
+# AOSP packages
+PRODUCT_PACKAGES += \
+    LeanbackIME
