@@ -33,7 +33,7 @@ include $(SRC_EVERVOLV_DIR)/config/branding.mk
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Build information
-PRODUCT_OVERRIDE_FINGERPRINT ?= google/raven/raven:12/SQ1D.220205.003/8069835:user/release-keys
+PRODUCT_OVERRIDE_FINGERPRINT ?= google/redfin/redfin:12/SP2A.220305.012/8177914:user/release-keys
 
 # Debug
 ifneq ($(TARGET_BUILD_VARIANT),user)
