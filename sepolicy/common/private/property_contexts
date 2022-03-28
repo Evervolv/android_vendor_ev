@@ -13,3 +13,8 @@ ro.evervolv.releasetype                u:object_r:build_prop:s0
 ro.evervolv.version                    u:object_r:build_prop:s0
 ro.evervolv.build.version.plat.sdk     u:object_r:build_prop:s0
 ro.evervolv.build.version.plat.rev     u:object_r:build_prop:s0
+
+# Bootloader props
+ro.boot.flash.locked                   u:object_r:bootloader_prop:s0 exact bool
+ro.boot.warranty_bit                   u:object_r:bootloader_prop:s0 exact bool
+ro.warranty_bit                        u:object_r:bootloader_prop:s0 exact bool
