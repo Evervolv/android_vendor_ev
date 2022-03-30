@@ -13,3 +13,6 @@ ro.evervolv.releasetype                u:object_r:build_prop:s0
 ro.evervolv.version                    u:object_r:build_prop:s0
 ro.evervolv.build.version.plat.sdk     u:object_r:build_prop:s0
 ro.evervolv.build.version.plat.rev     u:object_r:build_prop:s0
+
+# Security patch
+ro.build.version.real_security_patch   u:object_r:build_prop:s0 exact string
