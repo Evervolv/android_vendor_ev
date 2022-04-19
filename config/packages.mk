@@ -30,10 +30,11 @@ PRODUCT_PACKAGES += \
     PlatformSettingsProviderOverlay \
     PlatformDeviceConfigOverlay \
     PlatformSystemUIOverlay \
-    PlatformTelephonyOverlay
+    PlatformTelephonyOverlay \
+    PlatformThemePickerOverlay
 
 # Themes
 PRODUCT_PACKAGES += \
-    PlatformThemesStub \
+    PixelThemesStub \
     ThemePicker \
     WallpaperPicker
