@@ -30,8 +30,7 @@ PRODUCT_PACKAGES += \
     PlatformSettingsProviderOverlay \
     PlatformDeviceConfigOverlay \
     PlatformSystemUIOverlay \
-    PlatformTelephonyOverlay \
-    PlatformThemePickerOverlay
+    PlatformTelephonyOverlay
 
 # Themes
 PRODUCT_PACKAGES += \
