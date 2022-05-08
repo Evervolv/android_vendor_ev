@@ -48,9 +48,6 @@ include $(SRC_EVERVOLV_DIR)/config/branding.mk
 # Build date override
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
-# Build information
-PRODUCT_OVERRIDE_FINGERPRINT ?= google/raven/raven:12/SP2A.220405.004/8233519:user/release-keys
-
 # Command line
 PRODUCT_PACKAGES += \
     bash \
