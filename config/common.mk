@@ -113,6 +113,13 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.strictmode.disable=true
 endif
 
+# SystemUI
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    SystemUI
+
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    dalvik.vm.systemuicompilerfilter=speed
+
 # Vendor Mobile Services
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \

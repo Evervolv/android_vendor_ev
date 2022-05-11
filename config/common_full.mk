@@ -13,11 +13,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     SimpleDeviceConfig
 
-# Dex preopt
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUI \
-    Launcher3QuickStep
-
 # Email
 PRODUCT_PACKAGES += \
     Etar
