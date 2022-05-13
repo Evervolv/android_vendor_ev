@@ -21,17 +21,9 @@ PRODUCT_PACKAGES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
-    NavigationBarMode2ButtonOverlay \
-    PlatformFrameworksOverlay \
-    PlatformDialerOverlay \
     PlatformDocumentsUIOverlay \
     PlatformLauncher3Overlay \
-    PlatformSettingsOverlay \
-    PlatformSettingsProviderOverlay \
-    PlatformDeviceConfigOverlay \
-    PlatformSystemUIOverlay \
-    PlatformTelephonyOverlay \
-    PlatformThemePickerOverlay
+    PlatformSettingsOverlay
 
 # Themes
 PRODUCT_PACKAGES += \
