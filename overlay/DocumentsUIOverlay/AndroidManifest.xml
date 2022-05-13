@@ -18,6 +18,6 @@
 
     <overlay
         android:isStatic="true"
-        android:priority="600"
+        android:priority="10"
         android:targetPackage="com.android.documentsui" />
 </manifest>
