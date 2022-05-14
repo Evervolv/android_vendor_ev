@@ -188,6 +188,8 @@
 
     <!-- Extra location package names -->
     <string-array name="config_locationExtraPackageNames" translatable="false">
+        <!-- TeleService -->
+        <item>com.android.phone</item>
         <!-- Google Play Services location history module -->
         <item>com.google.android.gms.location.history</item>
     </string-array>
