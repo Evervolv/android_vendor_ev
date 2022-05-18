@@ -192,6 +192,8 @@
         <item>com.android.phone</item>
         <!-- Google Play Services location history module -->
         <item>com.google.android.gms.location.history</item>
+        <!-- CneApp -->
+        <item>com.qualcomm.qti.cne</item>
     </string-array>
 
     <!-- A list of potential packages, in priority order, that may contain an
