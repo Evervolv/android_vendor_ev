@@ -194,6 +194,8 @@
         <item>com.google.android.gms.location.history</item>
         <!-- CneApp -->
         <item>com.qualcomm.qti.cne</item>
+        <!-- ImsService -->
+        <item>com.shannon.imsservice</item>
     </string-array>
 
     <!-- A list of potential packages, in priority order, that may contain an
