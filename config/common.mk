@@ -101,10 +101,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.control_privapp_permissions=enforce
 
-# Prefetching
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.iorapd.enable=true
-
 # Rescue
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.disable_rescue=true
