@@ -42,6 +42,9 @@
     <!-- Whether wallpaper attribution should be shown or not. -->
     <bool name="config_show_wallpaper_attribution">false</bool>
 
+    <!-- Whether system_update_settings should be shown or not. -->
+    <bool name="config_show_system_update_settings">false</bool>
+
     <!-- App intent -->
     <string name="config_account_intent_uri" translatable="false">intent:#Intent;action=com.android.settings.action.VIEW_ACCOUNT;category=android.intent.category.DEFAULT;launchFlags=0x8000;S.extra.callingPackageName=com.android.settings;end</string>
 
