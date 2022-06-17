@@ -33,4 +33,7 @@
     <string name="config_wallpaper_picker_class" translatable="false">com.android.customization.picker.CustomizationPickerActivity</string>
     <!-- Fully-qualified class name for the styles & wallpaper picker activity. -->
     <string name="config_styles_and_wallpaper_picker_class" translatable="false">com.android.customization.picker.CustomizationPickerActivity</string>
+
+    <!-- Whether system_update_settings should be shown or not. -->
+    <bool name="config_show_system_update_settings">false</bool>
 </resources>
