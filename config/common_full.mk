@@ -37,6 +37,12 @@ PRODUCT_PACKAGES += \
     PlatformSettingsOverlay \
     PlatformThemePickerOverlay
 
+ifneq ($(PRODUCT_MANUFACTURER), Google)
+PRODUCT_PACKAGES += \
+    SafetyNetOverlay \
+    PixelImitationOverlay
+endif
+
 # Themes
 PRODUCT_PACKAGES += \
     PixelThemesStub \

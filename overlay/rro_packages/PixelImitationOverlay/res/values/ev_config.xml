@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+** Copyright 2009, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+
+<!-- These resources are around just to allow their values to be customized
+     for different hardware and product builds.  Do not translate.
+
+     NOTE: The naming convention is "config_camelCaseValue". Some legacy
+     entries do not follow the convention, but all new entries should. -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Configuration that imitates properties from the device of choice.
+         Please refer to the configuration in com/android/internal/util/PropImitationFactory.java
+         to determine which device to use with this config.
+         This config requires values for the following properties.
+         ex. BRAND: google	
+             MANUFACTURER: Google
+             DEVICE: marlin	
+             PRODUCT: marlin
+             MODEL: Pixel XL
+             FINGERPRINT: google/marlin/marlin:10/QP1A.191005.007.A3/5972272:user/release-keys -->
+    <string-array name="config_systemPropertiesFeatureValues" translatable="false">
+        <item>google</item>
+        <item>Google</item>
+        <item>marlin</item>
+        <item>marlin</item>
+        <item>Pixel XL</item>
+        <item>google/marlin/marlin:10/QP1A.191005.007.A3/5972272:user/release-keys</item>
+    </string-array>
+
+    <!-- List of packages to handle during property imitation,
+         Properties are used from config_systemPropertiesFeatureValues -->
+    <string-array name="config_propImitationFeaturePackages" translatable="false">
+        <item>com.google.android.apps.photos</item>
+    </string-array>
+
+    <!-- Prefix for packages to handle during property imitation. Example: com.google. -->
+    <string name="config_propImitationPackagePrefix" translatable="false">com.google.</string>
+
+    <!-- List of packages to handle during property imitation,
+         Properties are used from config_propImitationStockValues -->
+    <string-array name="config_propImitationStockPackages" translatable="false">
+        <item>com.android.chrome</item>
+    </string-array>
+
+    <!-- List of packages to skip during property imitation. -->
+    <string-array name="config_propImitationSkipPackages" translatable="false">
+        <item>com.google.android.GoogleCamera</item>
+        <item>com.google.android.GoogleCamera.Cameight</item>
+        <item>com.google.android.GoogleCamera.Go</item>
+        <item>com.google.android.GoogleCamera.Urnyx</item>
+        <item>com.google.android.GoogleCameraAsp</item>
+        <item>com.google.android.GoogleCameraCVM</item>
+        <item>com.google.android.GoogleCameraEng</item>
+        <item>com.google.android.GoogleCameraEng2</item>
+        <item>com.google.android.MTCL83</item>
+        <item>com.google.android.UltraCVM</item>
+        <item>com.google.android.apps.cameralite</item>
+        <item>com.google.ar.core</item>
+        <item>com.google.android.apps.wearables.maestro.companion</item>
+        <item>com.google.android.apps.recorder</item>
+    </string-array>
+
+</resources>
