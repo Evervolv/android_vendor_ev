@@ -27,7 +27,8 @@ $(call inherit-product-if-exists, external/google-fonts/rubik/fonts.mk)
 PRODUCT_PACKAGES += \
     PlatformDocumentsUIOverlay \
     PlatformLauncher3Overlay \
-    PlatformSettingsOverlay
+    PlatformSettingsOverlay \
+    PlatformThemePickerOverlay
 
 # Themes
 PRODUCT_PACKAGES += \
