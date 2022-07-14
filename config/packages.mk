@@ -19,6 +19,10 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 PRODUCT_PACKAGES += \
     Etar
 
+# Fonts
+$(call inherit-product-if-exists, external/google-fonts/lato/fonts.mk)
+$(call inherit-product-if-exists, external/google-fonts/rubik/fonts.mk)
+
 # Overlays
 PRODUCT_PACKAGES += \
     PlatformDocumentsUIOverlay \
@@ -28,5 +32,6 @@ PRODUCT_PACKAGES += \
 # Themes
 PRODUCT_PACKAGES += \
     PixelThemesStub \
+    PlatformThemesStub \
     ThemePicker \
     WallpaperPicker
