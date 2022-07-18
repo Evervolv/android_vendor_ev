@@ -45,7 +45,6 @@ endif
 
 # Themes
 PRODUCT_PACKAGES += \
-    PixelThemesStub \
     PlatformThemesStub \
     ThemePicker \
     WallpaperPicker
