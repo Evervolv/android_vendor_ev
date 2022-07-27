@@ -1,3 +1,12 @@
+# ADB authentication, only applied on nightly/testing/release builds.
+ifneq ($(filter nightly testing release,$(PRODUCT_BUILD)),)
+ifeq ($(TARGET_BUILD_VARIANT),user)
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.adb.secure=1
+else
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.adb.secure=0
+endif
+endif
+
 # Boot animation
 BOOT_ANIMATION_SIZE ?= 1080p
 ifneq ($(filter 720p 1080p 1440p hvga qhd wvga xga,$(BOOT_ANIMATION_SIZE)),)

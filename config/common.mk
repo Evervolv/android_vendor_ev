@@ -2,13 +2,6 @@
 PRODUCT_PACKAGES += \
     adb_root
 
-# ADB authentication.
-ifeq ($(TARGET_BUILD_VARIANT),user)
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.adb.secure=1
-else
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.adb.secure=0
-endif
-
 # Allow duplicate files 
 BUILD_BROKEN_DUP_RULES ?= true
 
