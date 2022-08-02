@@ -16,4 +16,5 @@ runtime_resource_overlay {
     name: "SafetyNetOverlay",
     product_specific: true,
     sdk_version: "current",
+    overrides: ["PixelImitationOverlay"],
 }

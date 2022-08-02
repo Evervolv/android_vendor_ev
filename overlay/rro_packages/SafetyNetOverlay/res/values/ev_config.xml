@@ -44,4 +44,70 @@
         <item>google/redfin/redfin:12/SQ3A.220705.003.A1/8672226:user/release-keys</item>
     </string-array>
 
+    <!-- Configuration that imitates properties from the device of choice.
+         Please refer to the configuration in com/android/internal/util/PropImitationFactory.java
+         to determine which device to use with this config.
+         This config requires values for the following properties.
+         ex. BRAND: google	
+             MANUFACTURER: Google
+             DEVICE: marlin	
+             PRODUCT: marlin
+             MODEL: Pixel XL
+             FINGERPRINT: google/marlin/marlin:10/QP1A.191005.007.A3/5972272:user/release-keys -->
+    <string-array name="config_systemPropertiesFeatureValues" translatable="false">
+        <item>google</item>
+        <item>Google</item>
+        <item>marlin</item>
+        <item>marlin</item>
+        <item>Pixel XL</item>
+        <item>google/marlin/marlin:10/QP1A.191005.007.A3/5972272:user/release-keys</item>
+    </string-array>
+
+    <!-- List of packages to handle during property imitation,
+         Properties are used from config_systemPropertiesFeatureValues -->
+    <string-array name="config_propImitationFeaturePackages" translatable="false">
+        <item>com.google.android.apps.photos</item>
+    </string-array>
+
+    <!-- Prefix for packages to handle during property imitation. Example: com.google. -->
+    <string name="config_propImitationPackagePrefix" translatable="false">com.google.</string>
+
+    <!-- List of packages to handle during property imitation,
+         Properties are used from config_propImitationStockValues -->
+    <string-array name="config_propImitationStockPackages" translatable="false">
+        <item>com.android.chrome</item>
+    </string-array>
+
+    <!-- List of packages to skip during property imitation. -->
+    <string-array name="config_propImitationSkipPackages" translatable="false">
+        <item>com.google.android.GoogleCamera</item>
+        <item>com.google.android.GoogleCamera.Cameight</item>
+        <item>com.google.android.GoogleCamera.Go</item>
+        <item>com.google.android.GoogleCamera.Urnyx</item>
+        <item>com.google.android.GoogleCameraAsp</item>
+        <item>com.google.android.GoogleCameraCVM</item>
+        <item>com.google.android.GoogleCameraEng</item>
+        <item>com.google.android.GoogleCameraEng2</item>
+        <item>com.google.android.MTCL83</item>
+        <item>com.google.android.UltraCVM</item>
+        <item>com.google.android.apps.cameralite</item>
+        <item>com.google.ar.core</item>
+        <item>com.google.android.apps.wearables.maestro.companion</item>
+        <item>com.google.android.apps.recorder</item>
+    </string-array>
+
+    <!-- List of devices to skip during property imitation. -->
+    <string-array name="config_propImitationSkipDeviceList" translatable="false">
+        <item>oriole</item>
+        <item>raven</item>
+        <item>redfin</item>
+        <item>barbet</item>
+        <item>bramble</item>
+        <item>sunfish</item>
+        <item>coral</item>
+        <item>flame</item>
+        <item>bonito</item>
+        <item>sargo</item>
+    </string-array>
+
 </resources>

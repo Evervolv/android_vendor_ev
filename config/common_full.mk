@@ -35,13 +35,8 @@ PRODUCT_PACKAGES += \
     PlatformDocumentsUIOverlay \
     PlatformLauncher3Overlay \
     PlatformSettingsOverlay \
-    PlatformThemePickerOverlay
-
-ifneq ($(PRODUCT_MANUFACTURER), Google)
-PRODUCT_PACKAGES += \
-    SafetyNetOverlay \
-    PixelImitationOverlay
-endif
+    PlatformThemePickerOverlay \
+    SafetyNetOverlay
 
 # Themes
 PRODUCT_PACKAGES += \
