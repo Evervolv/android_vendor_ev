@@ -58,13 +58,6 @@ EV_BUILD_TYPE := $(PRODUCT_BUILD)
 endif
 EV_BUILD_TYPE ?= userbuild
 
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.evervolv.device=$(TARGET_DEVICE) \
-    ro.evervolv.releasetype=$(EV_BUILD_TYPE) \
-    ro.evervolv.version=$(EV_VERSION) \
-    ro.evervolv.build.version.plat.sdk=$(EV_PLATFORM_SDK_VERSION) \
-    ro.evervolv.build.version.plat.rev=$(EV_PLATFORM_REV)
-
 ifeq ($(SKIP_VERBOSE_DATE),true)
 EV_PACKAGE_NAME := $(TARGET_PRODUCT)-$(EV_VERSION)-$(EV_BUILD_TYPE)-$(shell date +%Y.%m.%d)
 endif
