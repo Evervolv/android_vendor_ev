@@ -39,27 +39,17 @@ PRODUCT_PACKAGES += \
     EVUpdater
 
 # Version Info
-EV_VERSION_MAJOR = 12
-EV_VERSION_MINOR = 1
-EV_VERSION_MAINTENANCE = 0
-
-ifeq ($(EV_VERSION),)
-EV_VERSION := $(EV_VERSION_MAJOR)
-ifneq ($(EV_VERSION_MINOR),0)
-EV_VERSION := $(EV_VERSION_MAJOR).$(EV_VERSION_MINOR)
-ifneq ($(EV_VERSION_MAINTENANCE),0)
-EV_VERSION := $(EV_VERSION_MAJOR).$(EV_VERSION_MINOR).$(EV_VERSION_MAINTENANCE)
+ifeq ($(SKIP_VERBOSE_DATE),true)
+EV_BUILD_DATE := $(shell date +%Y.%m.%d)
 endif
-endif
-endif
+EV_BUILD_DATE ?= $(shell date +%Y.%m.%d)-$(shell date -u +%H%M)
 
 ifneq ($(filter nightly testing release,$(PRODUCT_BUILD)),)
 EV_BUILD_TYPE := $(PRODUCT_BUILD)
 endif
 EV_BUILD_TYPE ?= userbuild
 
-ifeq ($(SKIP_VERBOSE_DATE),true)
-EV_PACKAGE_NAME := $(TARGET_PRODUCT)-$(EV_VERSION)-$(EV_BUILD_TYPE)-$(shell date +%Y.%m.%d)
-endif
-EV_PACKAGE_NAME ?= $(TARGET_PRODUCT)-$(EV_VERSION)-$(EV_BUILD_TYPE)-$(shell date +%Y.%m.%d)-$(shell date -u +%H%M)
+EV_VERSION := $(PLATFORM_VERSION)
+
+EV_PACKAGE_NAME ?= $(TARGET_PRODUCT)-$(EV_VERSION)-$(EV_BUILD_TYPE)-$(EV_BUILD_DATE)
 TARGET_OTA_PACKAGE_NAME := $(shell echo ${EV_PACKAGE_NAME} | tr [:upper:] [:lower:])
