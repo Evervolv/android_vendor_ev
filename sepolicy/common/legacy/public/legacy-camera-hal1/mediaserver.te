@@ -1,8 +1,0 @@
-# Legacy camera HAL1
-add_service(mediaserver, cameraserver_service)
-add_hwservice(mediaserver, fwk_camera_hwservice)
-
-allow mediaserver { cameraproxy_service sensor_privacy_service }:service_manager find;
-allow mediaserver hal_camera_hwservice:hwservice_manager find;
-
-hal_client_domain(mediaserver, hal_evervolv_camera_motor)

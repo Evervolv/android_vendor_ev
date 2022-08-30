@@ -24,8 +24,3 @@ BOARD_VENDOR_SEPOLICY_DIRS += \
     $(SRC_EVERVOLV_DIR)/sepolicy/common/dynamic \
     $(SRC_EVERVOLV_DIR)/sepolicy/common/vendor
 endif
-
-ifeq ($(TARGET_HAS_LEGACY_CAMERA_HAL1), true)
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
-    $(SRC_EVERVOLV_DIR)/sepolicy/common/legacy/public/legacy-camera-hal1
-endif
