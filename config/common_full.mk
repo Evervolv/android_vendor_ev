@@ -15,7 +15,8 @@ PRODUCT_PACKAGES += \
 
 # Charger
 PRODUCT_PACKAGES += \
-    lineage_charger_animation
+    lineage_charger_animation \
+    lineage_charger_animation_vendor
 
 # DeviceConfig
 PRODUCT_PACKAGES += \
