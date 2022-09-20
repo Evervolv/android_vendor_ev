@@ -20,6 +20,10 @@ endif
 # AOSP has no support of loading framework resources from /system_ext
 # so the SDK has to stay in /system for now
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
+    system/etc/permissions/com.evervolv.globalactions.xml \
+    system/etc/permissions/com.evervolv.hardware.xml \
+    system/etc/permissions/com.evervolv.livedisplay.xml \
+    system/etc/permissions/com.evervolv.platform.xml \
     system/framework/oat/%/com.evervolv.platform.odex \
     system/framework/oat/%/com.evervolv.platform.vdex \
     system/framework/com.evervolv.platform-res.apk \
