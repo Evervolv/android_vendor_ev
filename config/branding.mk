@@ -37,7 +37,6 @@ PRODUCT_PACKAGES += \
     com.evervolv.globalactions.xml \
     com.evervolv.hardware.xml \
     com.evervolv.livedisplay.xml \
-    com.evervolv.performance.xml \
     com.evervolv.platform-res \
     com.evervolv.platform \
     com.evervolv.platform.xml \
