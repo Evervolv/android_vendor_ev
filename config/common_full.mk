@@ -27,6 +27,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
+    PixelDocumentsUIOverlay \
     PixelSettingsOverlay \
     PlatformLauncher3Overlay
 
