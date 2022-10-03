@@ -9,6 +9,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     ExactCalculator
 
+# Camera
+PRODUCT_PACKAGES += \
+    Aperture
+
 # DeviceConfig
 PRODUCT_PACKAGES += \
     SimpleDeviceConfig
