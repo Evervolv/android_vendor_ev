@@ -1,29 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-/*
-** Copyright 2009, The Android Open Source Project
-**
-** Licensed under the Apache License, Version 2.0 (the "License");
-** you may not use this file except in compliance with the License.
-** You may obtain a copy of the License at
-**
-**     http://www.apache.org/licenses/LICENSE-2.0
-**
-** Unless required by applicable law or agreed to in writing, software
-** distributed under the License is distributed on an "AS IS" BASIS,
-** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-** See the License for the specific language governing permissions and
-** limitations under the License.
-*/
+     Copyright (C) 2013 The CyanogenMod Project
+               (C) 2017-2019 The LineageOS Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
 -->
-
-<!-- These resources are around just to allow their values to be customized
-     for different hardware and product builds.  Do not translate.
-
-     NOTE: The naming convention is "config_camelCaseValue". Some legacy
-     entries do not follow the convention, but all new entries should. -->
-
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Package name(s) containing location provider support.
+         These packages can contain services implementing location providers,
+         such as the Geocode Provider, Network Location Provider, and Fused
+         Location Provider.
+         The signatures of packages named below and installed in the system
+         image are "allowed" signatures.
+         The location framework checks ALL installed packages if they provide
+         an implementation of a specific location provider and compares the
+         signature of the package with the list of allowed signatures.
+
+         The location framework has support for installation of new or
+         updated location providers at run-time. However the new package must
+         have a signature that matches the signature of at least one package
+         on this list which is installed in the system image.
+
+         The chosen package for the specific location provider does not
+         depend on the order of this list. -->
+    <string-array name="config_locationProviderPackageNames" translatable="false">
+        <!-- The Google provider -->
+        <item>com.google.android.gms</item>
+        <!-- The standard AOSP fused location provider -->
+        <item>com.android.location.fused</item>
+        <!-- The MicroG Unified location provider -->
+        <item>org.microg.nlp</item>
+    </string-array>
+
+    <string-array name="config_locationExtraPackageNames" translatable="false">
+        <!-- Bluetooth -->
+        <item>com.android.bluetooth</item>
+        <!-- TeleService -->
+        <item>com.android.phone</item>
+        <!-- CneApp -->
+        <item>com.qualcomm.qti.cne</item>
+        <!-- ImsService -->
+        <item>com.shannon.imsservice</item>
+    </string-array>
+
+    <bool name="config_cellBroadcastAppLinks">true</bool>
+
+    <!-- Enable lockscreen rotation by default -->
+    <bool name="config_enableLockScreenRotation">true</bool>
+
     <!-- Set this to true to enable the platform's auto-power-save modes like doze and
          app standby.  These are not enabled by default because they require a standard
          cloud-to-device messaging service for apps to interact correctly with the modes
@@ -33,32 +67,29 @@
          so that applications can still use their own mechanisms. -->
     <bool name="config_enableAutoPowerModes">true</bool>
 
-    <!-- Flag indicating whether we should enable the adaptive sleep.-->
-    <bool name="config_adaptive_sleep_available">true</bool>
+    <!-- If this is true, long press on power button will be available from a
+         non-interactive state. -->
+    <bool name="config_supportLongPressPowerWhenNonInteractive">true</bool>
+
+    <!--  Whether Multiuser UI should be shown -->
+    <bool name="config_enableMultiUserUI">true</bool>
 
     <!--  Maximum number of supported users -->
     <integer name="config_multiuserMaximumUsers">4</integer>
 
-    <!-- Whether UI for multi user should be shown -->
-    <bool name="config_enableMultiUserUI">true</bool>
+   <!-- Set icon mask to circle -->
+   <string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>
 
-    <!-- Flag indicating which package name can access the persistent data partition -->
-    <string name="config_persistentDataPackageName" translatable="false">com.google.android.gms</string>
+    <!-- Whether action menu items should be displayed in ALLCAPS or not.
+         Defaults to true. If this is not appropriate for specific locales
+         it should be disabled in that locale's resources. -->
+    <bool name="config_buttonTextAllCaps">false</bool>
 
     <!-- Flag indicating whether round icons should be parsed from the application manifest. -->
     <bool name="config_useRoundIcon">true</bool>
 
-    <!-- Specifies the path that is used by AdaptiveIconDrawable class to crop launcher icons. -->
-   <string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>
-
-    <!-- Controls whether system buttons use all caps for text -->
-    <bool name="config_buttonTextAllCaps">false</bool>
-
-    <!-- Whether or not swipe up gesture's opt-in setting is available on this device -->
-    <bool name="config_swipe_up_gesture_setting_available">true</bool>
-
-    <!-- Flag indicating which package name can access DeviceConfig table -->
-    <string name="config_deviceConfiguratorPackageName" translatable="false">org.protonaosp.deviceconfig</string>
+    <!-- Whether or not we should show the option to show battery percentage -->
+    <bool name="config_battery_percentage_setting_available">false</bool>
 
     <!-- List of packages that can use the Conversation space for their category messages
     notifications until they target R -->
@@ -85,8 +116,8 @@
         <item>org.briarproject.briar.android</item>
     </string-array>
 
-    <!-- Whether or not to add a "people" notifications section -->
-    <bool name="config_usePeopleFiltering">true</bool>
+    <!-- Flag indicating which package name can access DeviceConfig table -->
+    <string name="config_deviceConfiguratorPackageName" translatable="false">org.protonaosp.deviceconfig</string>
 
     <!-- Wallpaper cropper package. Used as the default cropper if the active launcher doesn't
          handle wallpaper cropping.
@@ -112,55 +143,8 @@
 
     <!-- Whether this device is supporting the microphone toggle -->
     <bool name="config_supportsMicToggle">true</bool>
-
     <!-- Whether this device is supporting the camera toggle -->
     <bool name="config_supportsCamToggle">true</bool>
-
-    <!-- the number of the max cached processes in the system. -->
-    <integer name="config_customizedMaxCachedProcesses">64</integer>
-
-    <!-- Flag indicating whether we should enable smart battery. -->
-    <bool name="config_smart_battery_available">true</bool>
-
-    <!-- Google Digital Wellbeing -->
-    <string name="config_defaultWellbeingPackage" translatable="false">com.google.android.apps.wellbeing</string>
-
-    <!-- Whether to send a custom package name with the PSD.-->
-    <bool name="config_sendPackageName">true</bool>
-
-    <!-- If this is true, long press on power button will be available from the non-interactive state -->
-    <bool name="config_supportLongPressPowerWhenNonInteractive">true</bool>
-
-    <!-- Flag indicating whether the volume panel should show remote sessions. -->
-    <bool name="config_volumeShowRemoteSessions">false</bool>
-
-    <!-- Corner radius for bottom sheet system dialogs -->
-    <dimen name="config_bottomDialogCornerRadius">16.0dip</dimen>
-
-    <!-- Corner radius of system buttons -->
-    <dimen name="config_buttonCornerRadius">4.0dip</dimen>
-
-    <!-- Corner radius of system dialogs -->
-    <dimen name="config_dialogCornerRadius">28.0dip</dimen>
-
-    <!-- Corner radius of system progress bars -->
-    <dimen name="config_progressBarCornerRadius">1000.0dip</dimen>
-
-    <!-- Default number of days to retain for the automatic storage manager. -->
-    <integer name="config_storageManagerDaystoRetainDefault">60</integer>
-
-    <!-- The component name for the default system attention service.
-         This service must be trusted, as it can be activated without explicit consent of the user.
-         See android.attention.AttentionManagerService.
-    -->
-    <string name="config_defaultAttentionService" translatable="false">com.google.android.as/com.google.android.apps.miphone.aiai.attention.service.AiAiAttentionService</string>
-
-    <!-- Live Captions provided by Google's Device Personalization Service package  -->
-    <string name="config_defaultSystemCaptionsManagerService">com.google.android.as/com.google.android.apps.miphone.aiai.captions.SystemCaptionsManagerService</string>
-    <string name="config_defaultSystemCaptionsService">com.google.android.as/com.google.android.apps.miphone.aiai.captions.CaptionsService</string>
-
-    <!-- Recents text and image selection for Pixel Launcher (not supported by Launcher3) -->
-    <string name="config_defaultContentSuggestionsService" translatable="false">com.google.android.as/com.google.android.apps.miphone.aiai.app.AiAiContentSuggestionsService</string>
 
     <!-- Control the default night mode to use when there is no other mode override set.
          One of the following values (see UiModeManager.java):
@@ -170,134 +154,9 @@
     -->
     <integer name="config_defaultNightMode">2</integer>
 
-    <!-- Android Auto role -->
-    <string name="config_systemAutomotiveProjection" translatable="false">com.google.android.projection.gearhead</string>
-
-    <!-- Flag indicating whether the assist disclosure can be disabled using
-         ASSIST_DISCLOSURE_ENABLED. -->
-    <bool name="config_allowDisablingAssistDisclosure">true</bool>
-
-    <!-- Package name(s) containing location provider support. These packages will be auto-granted
-         several permissions by the system, and should be system packages. -->
-    <string-array name="config_locationProviderPackageNames" translatable="false">
-        <!-- The standard AOSP fused location provider -->
-        <item>com.android.location.fused</item>
-        <!-- Google Play Services or microG -->
-        <item>com.google.android.gms</item>
-    </string-array>
-
-    <!-- Extra location package names -->
-    <string-array name="config_locationExtraPackageNames" translatable="false">
-        <!-- TeleService -->
-        <item>com.android.phone</item>
-        <!-- Google Play Services location history module -->
-        <item>com.google.android.gms.location.history</item>
-        <!-- CneApp -->
-        <item>com.qualcomm.qti.cne</item>
-        <!-- ImsService -->
-        <item>com.shannon.imsservice</item>
-    </string-array>
-
-    <!-- A list of potential packages, in priority order, that may contain an
-         ephemeral resolver. Each package will be be queried for a component
-         that has been granted the PACKAGE_EPHEMERAL_AGENT permission.
-         This may be empty if ephemeral apps are not supported. -->
-    <string-array name="config_ephemeralResolverPackage" translatable="false">
-        <!-- Google Play Services or microG -->
-        <item>com.google.android.gms</item>
-    </string-array>
-
-    <!-- The set of system packages on device that are queryable by any app regardless of the
-         contents of its manifest. -->
-    <string-array name="config_forceQueryablePackages" translatable="false">
-        <!-- Android Settings -->
-        <item>com.android.settings</item>
-        <item>com.android.providers.settings</item>
-        <!-- Google Play Services or microG -->
-        <item>com.google.android.gms</item>
-        <!-- Google Play Store -->
-        <item>com.android.vending</item>
-    </string-array>
-
-    <!-- A list of potential packages, in priority order, that can supply rules to
-         AppIntegrityManager. These need to be apps on the system partition. -->
-    <string-array name="config_integrityRuleProviderPackages" translatable="false">
-        <!-- Google Play Services or microG -->
-        <item>com.google.android.gms</item>
-        <!-- Google Play Store -->
-        <item>com.android.vending</item>
-    </string-array>
-
-    <!-- Apps that are authorized to access shared accounts, overridden by product overlays -->
-    <string name="config_appsAuthorizedForSharedAccounts" translatable="false">;com.android.vending;com.android.settings;</string>
-
-    <!-- The name of the package that will hold the assistant role by default. -->
-    <string name="config_defaultAssistant" translatable="false">com.google.android.googlequicksearchbox</string>
-
-    <!-- Component name that accepts ACTION_SEND intents for nearby (proximity-based) sharing.
-         Used by ChooserActivity. -->
-    <string name="config_defaultNearbySharingComponent" translatable="false">com.google.android.gms/.nearby.sharing.ShareSheetActivity</string>
-
-    <!-- The component name for the default profile supervisor, which can be set as a profile owner
-    even after user setup is complete. The defined component should be used for supervision purposes
-    only. The component must be part of a system app. -->
-    <string name="config_defaultSupervisionProfileOwnerComponent" translatable="false">com.google.android.gms/.kids.account.receiver.ProfileOwnerReceiver</string>
-
-    <!-- An array of packages for which notifications cannot be blocked.
-         Should only be used for core device functionality that must not be
-         rendered inoperative for safety reasons, like the phone dialer and
-         SMS handler. -->
-    <string-array translatable="false" name="config_nonBlockableNotificationPackages">
-        <!-- AOSP apps -->
-        <item>com.android.dialer</item>
-        <item>com.android.messaging</item>
-        <!-- Google apps -->
-        <item>com.google.android.deskclock:Firing</item>
-        <item>com.google.android.setupwizard</item>
-        <item>com.google.android.apps.pixelmigrate</item>
-        <item>com.google.android.dialer</item>
-    </string-array>
-
-    <!-- Names of packages that should not be suspended when personal use is blocked by policy. -->
-    <string-array name="config_packagesExemptFromSuspension" translatable="false">
-        <!-- AOSP apps -->
-        <item>com.android.vending</item>
-        <item>com.android.systemui</item>
-        <item>com.android.settings</item>
-        <item>com.google.android.gms</item>
-        <!-- Google apps -->
-        <item>com.google.android.apps.wellbeing</item>
-        <item>com.google.android.apps.pixelmigrate</item>
-        <item>com.google.android.apps.restore</item>
-    </string-array>
-
-    <!-- An array of packages that can make sound on the ringer stream in priority-only DND
-     mode -->
-    <string-array translatable="false" name="config_priorityOnlyDndExemptPackages">
-        <!-- AOSP apps -->
-        <item>com.android.dialer</item>
-        <item>com.android.systemui</item>
-        <item>android</item>
-        <!-- Google apps -->
-        <item>com.google.android.dialer</item>
-    </string-array>
-
-    <!-- Face detection for screen auto-rotate -->
-    <string name="config_defaultRotationResolverService" translatable="false">com.google.android.as/com.google.android.apps.miphone.aiai.app.AiAiRotationResolverService</string>
-
-    <!-- Launcher app suggestions -->
-    <string name="config_defaultAppPredictionService" translatable="false">com.google.android.as/com.google.android.apps.miphone.aiai.app.AiAiPredictionService</string>
-
-    <!-- Assign roles to AiAi and exempt it from privacy indicators -->
-    <string name="config_systemAmbientAudioIntelligence">com.google.android.as</string>
-    <string name="config_systemAudioIntelligence">com.google.android.as</string>
-    <string name="config_systemNotificationIntelligence">com.google.android.as</string>
-    <string name="config_systemTextIntelligence">com.google.android.as</string>
-    <string name="config_systemUiIntelligence">com.google.android.as</string>
-    <string name="config_systemVisualIntelligence">com.google.android.as</string>
-
-    <!-- Determines whether the shell features all run on another thread. -->
-    <bool name="config_enableShellMainThread">true</bool>
+    <!-- Boolean indicating whether the HWC setColorTransform function can be performed efficiently
+         in hardware. -->
+    <bool name="config_setColorTransformAccelerated">true</bool>
 
     <!-- The default value used for RawContacts.ACCOUNT_NAME when contacts are inserted without this
          column set. These contacts are stored locally on the device and will not be removed even

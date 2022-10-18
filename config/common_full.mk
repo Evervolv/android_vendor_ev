@@ -27,14 +27,11 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
-    PlatformDocumentsUIOverlay \
-    PlatformLauncher3Overlay \
-    PlatformSettingsOverlay \
-    PlatformThemePickerOverlay \
-    SafetyNetOverlay
+    PlatformLauncher3Overlay
 
 # Themes
 PRODUCT_PACKAGES += \
+    PlatformThemePickerOverlay \
     PlatformThemesStub \
     ThemePicker \
     WallpaperPicker
