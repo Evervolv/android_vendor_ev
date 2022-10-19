@@ -26,18 +26,26 @@ ifeq ($(WITH_GMS),true)
         #   - gms_go_2gb.mk     - low ram devices (2GB)
         #   - gms_64bit_only.mk - devices supporting 64-bit only
         #   - gms_minimal.mk    - minimal GMS
-        ifneq ($(GMS_MAKEFILE),)
-            $(call inherit-product, vendor/partner_gms/products/$(GMS_MAKEFILE))
-        else
-            $(call inherit-product-if-exists, vendor/partner_gms/products/gms.mk)
+        GMS_MAKEFILE ?= gms.mk
+        ifneq ($(wildcard vendor/partner_gms/products/$(GMS_MAKEFILE)),)
+            $(call inherit-product-if-exists, vendor/partner_gms/products/$(GMS_MAKEFILE))
+        else ifneq ($(wildcard vendor/google/gms/config.mk),)
+            $(call inherit-product, vendor/google/gms/config.mk)
+            $(call inherit-product-if-exists, vendor/google/pixel/config.mk)
         endif
 
         # Specify the mainline module makefile you want to use, for example:
         #   - mainline_modules.mk              - updatable apex
         #   - mainline_modules_flatten_apex.mk - flatten apex
         #   - mainline_modules_low_ram.mk      - low ram devices
-        ifneq ($(MAINLINE_MODULES_MAKEFILE),)
+        ifneq ($(wildcard vendor/partner_modules/build/$(MAINLINE_MODULES_MAKEFILE)),)
             $(call inherit-product, vendor/partner_modules/build/$(MAINLINE_MODULES_MAKEFILE))
+        else
+            ifneq ($(TARGET_FLATTEN_APEX), true)
+                $(call inherit-product-if-exists, vendor/google/modules/build/mainline_modules_s.mk)
+            else
+                $(call inherit-product-if-exists, vendor/google/modules/build/mainline_modules_s_flatten_apex.mk)
+            endif
         endif
     endif
 endif
