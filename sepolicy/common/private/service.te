@@ -3,4 +3,5 @@ type performance_service, system_api_service, system_server_service, service_man
 type hardware_manager_service, system_api_service, system_server_service, service_manager_type;
 type dc_dimming_service, system_api_service, system_server_service, service_manager_type;
 type globalactions_service, system_api_service, system_server_service, service_manager_type;
+type health_interface_service, system_api_service, system_server_service, service_manager_type;
 type livedisplay_service, system_api_service, system_server_service, service_manager_type;
