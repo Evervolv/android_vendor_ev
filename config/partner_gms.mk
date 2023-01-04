@@ -38,6 +38,7 @@ ifeq ($(WITH_GMS),true)
         #   - mainline_modules.mk              - updatable apex
         #   - mainline_modules_flatten_apex.mk - flatten apex
         #   - mainline_modules_low_ram.mk      - low ram devices
+        MAINLINE_MODULES_MAKEFILE ?= mainline_modules.mk
         ifneq ($(wildcard vendor/partner_modules/build/$(MAINLINE_MODULES_MAKEFILE)),)
             $(call inherit-product, vendor/partner_modules/build/$(MAINLINE_MODULES_MAKEFILE))
         else
