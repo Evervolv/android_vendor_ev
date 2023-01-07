@@ -9,13 +9,6 @@ BUILD_BROKEN_DUP_RULES ?= true
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.software.nfc.beam.xml
 
-# APEX
-OVERRIDE_TARGET_FLATTEN_APEX ?= true
-ifeq ($(OVERRIDE_TARGET_FLATTEN_APEX),true)
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.apex.updatable=false
-endif
-
 # Backup tool
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
