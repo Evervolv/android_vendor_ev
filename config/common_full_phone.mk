@@ -5,3 +5,6 @@ $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/telephony.mk)
 # Enable support of one-handed mode
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.support_one_handed_mode=true
+
+# Sound
+include $(SRC_EVERVOLV_DIR)/config/aosp_audio.mk
