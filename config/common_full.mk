@@ -37,7 +37,4 @@ PRODUCT_PACKAGES += \
 
 # Themes
 PRODUCT_PACKAGES += \
-    PlatformThemePickerOverlay \
-    PlatformThemesStub \
-    ThemePicker \
     WallpaperPicker
