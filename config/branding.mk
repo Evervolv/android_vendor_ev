@@ -1,12 +1,3 @@
-# ADB authentication, only applied on nightly/testing/release builds.
-ifneq ($(filter nightly testing release,$(PRODUCT_BUILD)),)
-ifeq ($(TARGET_BUILD_VARIANT),user)
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.adb.secure=1
-else
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.adb.secure=0
-endif
-endif
-
 # Boot animation
 BOOT_ANIMATION_SIZE ?= 1080p
 ifneq ($(filter 720p 1080p 1440p hvga qhd wvga xga,$(BOOT_ANIMATION_SIZE)),)
@@ -29,10 +20,6 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/framework/com.evervolv.platform-res.apk \
     system/framework/com.evervolv.platform.jar
 
-# SDK
-EV_PLATFORM_SDK_VERSION ?= 4
-EV_PLATFORM_REV ?= 0
-
 PRODUCT_PACKAGES += \
     com.evervolv.globalactions.xml \
     com.evervolv.hardware.xml \
@@ -43,19 +30,3 @@ PRODUCT_PACKAGES += \
     EVSettingsProvider \
     EVToolbox \
     EVUpdater
-
-# Version Info
-ifeq ($(SKIP_VERBOSE_DATE),true)
-EV_BUILD_DATE := $(shell date +%Y.%m.%d)
-endif
-EV_BUILD_DATE ?= $(shell date +%Y.%m.%d)-$(shell date -u +%H%M)
-
-ifneq ($(filter nightly testing release,$(PRODUCT_BUILD)),)
-EV_BUILD_TYPE := $(PRODUCT_BUILD)
-endif
-EV_BUILD_TYPE ?= userbuild
-
-EV_VERSION := $(PLATFORM_VERSION)
-
-EV_PACKAGE_NAME ?= $(TARGET_PRODUCT)-$(EV_VERSION)-$(EV_BUILD_TYPE)-$(EV_BUILD_DATE)
-TARGET_OTA_PACKAGE_NAME := $(shell echo ${EV_PACKAGE_NAME} | tr [:upper:] [:lower:])
