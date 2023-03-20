@@ -1,52 +1,44 @@
 ifeq ($(WITH_GMS),true)
+    ifeq ($(PRODUCT_IS_ATV),true)
+        GMS_PATH ?= vendor/partner_gms-tv
+    else ifeq ($(PRODUCT_IS_AUTO),true)
+        GMS_PATH ?= vendor/partner_gms-car
+    else
+        GMS_PATH ?= vendor/partner_gms
+    endif
+
+    ifeq ($(PRODUCT_IS_ATV),true)
+        MAINLINE_MODULES_PATH ?= $(GMS_PATH)
+    else
+        MAINLINE_MODULES_PATH ?= vendor/partner_modules
+    endif
+
+    # Specify the GMS makefile you want to use, for example:
+    #   - fi.mk             - Project Fi
+    #   - gms.mk            - default GMS
+    #   - gms_gtv.mk        - default GMS (TV)
+    #   - gms_go.mk         - low ram devices
+    #   - gms_go_2gb.mk     - low ram devices (2GB)
+    #   - gms_64bit_only.mk - devices supporting 64-bit only
+    #   - gms_minimal.mk    - minimal GMS
+    GMS_MAKEFILE ?= gms.mk
+
+    # Specify the mainline module makefile you want to use, for example:
+    #   - mainline_modules.mk              - updatable apex
+    #   - mainline_modules_flatten_apex.mk - flatten apex (Not available for TV)
+    #   - mainline_modules_low_ram.mk      - low ram devices (Not available for TV)
+    ifeq ($(TARGET_FLATTEN_APEX), true)
+        MAINLINE_MODULES_MAKEFILE ?= mainline_modules_flatten_apex.mk
+    else
+        MAINLINE_MODULES_MAKEFILE ?= mainline_modules.mk
+    endif
+
+    $(call inherit-product, $(GMS_PATH)/products/$(GMS_MAKEFILE))
+
     # Special handling for Android TV
     ifeq ($(PRODUCT_IS_ATV),true)
-        ifneq ($(GMS_MAKEFILE),)
-            # Specify the GMS makefile you want to use, for example:
-            #   - gms.mk            - default Android TV GMS
-            #   - gms_gtv.mk        - default Google TV GMS
-            #   - gms_minimal.mk    - minimal Android TV GMS
-            $(call inherit-product, vendor/partner_gms-tv/products/$(GMS_MAKEFILE))
-        else
-            $(call inherit-product, vendor/partner_gms-tv/products/gms.mk)
-        endif
-        $(call inherit-product, vendor/partner_gms-tv/products/mainline_modules.mk)
-    # Special handling for Android Automotive
-    else ifeq ($(PRODUCT_IS_AUTO),true)
-        ifneq ($(GMS_MAKEFILE),)
-            $(call inherit-product, vendor/partner_gms-car/products/$(GMS_MAKEFILE))
-        else
-            $(call inherit-product, vendor/partner_gms-car/products/gms.mk)
-        endif
-   else
-        # Specify the GMS makefile you want to use, for example:
-        #   - fi.mk             - Project Fi
-        #   - gms.mk            - default GMS
-        #   - gms_go.mk         - low ram devices
-        #   - gms_go_2gb.mk     - low ram devices (2GB)
-        #   - gms_64bit_only.mk - devices supporting 64-bit only
-        #   - gms_minimal.mk    - minimal GMS
-        GMS_MAKEFILE ?= gms.mk
-        ifneq ($(wildcard vendor/partner_gms/products/$(GMS_MAKEFILE)),)
-            $(call inherit-product-if-exists, vendor/partner_gms/products/$(GMS_MAKEFILE))
-        else ifneq ($(wildcard vendor/google/gms/config.mk),)
-            $(call inherit-product, vendor/google/gms/config.mk)
-            $(call inherit-product-if-exists, vendor/google/pixel/config.mk)
-        endif
-
-        # Specify the mainline module makefile you want to use, for example:
-        #   - mainline_modules.mk              - updatable apex
-        #   - mainline_modules_flatten_apex.mk - flatten apex
-        #   - mainline_modules_low_ram.mk      - low ram devices
-        MAINLINE_MODULES_MAKEFILE ?= mainline_modules.mk
-        ifneq ($(wildcard vendor/partner_modules/build/$(MAINLINE_MODULES_MAKEFILE)),)
-            $(call inherit-product, vendor/partner_modules/build/$(MAINLINE_MODULES_MAKEFILE))
-        else
-            ifneq ($(TARGET_FLATTEN_APEX), true)
-                $(call inherit-product-if-exists, vendor/google/modules/build/mainline_modules.mk)
-            else
-                $(call inherit-product-if-exists, vendor/google/modules/build/mainline_modules_flatten_apex.mk)
-            endif
-        endif
+        $(call inherit-product-if-exists, $(MAINLINE_MODULES_PATH)/products/$(MAINLINE_MODULES_MAKEFILE))
+    else
+        $(call inherit-product-if-exists, $(MAINLINE_MODULES_PATH)/build/$(MAINLINE_MODULES_MAKEFILE))
     endif
 endif
