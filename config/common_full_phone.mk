@@ -14,7 +14,8 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 include $(SRC_EVERVOLV_DIR)/config/aosp_audio.mk
 
 # Themes
+include $(SRC_EVERVOLV_DIR)/config/overlays.mk
+
 PRODUCT_PACKAGES += \
-    PlatformThemePickerOverlay \
-    PlatformThemesStub \
-    ThemePicker
+    ThemePicker \
+    ThemesStub

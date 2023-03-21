@@ -14,6 +14,5 @@ include $(SRC_EVERVOLV_DIR)/config/aosp_audio.mk
 
 # Themes
 PRODUCT_PACKAGES += \
-    PlatformThemePickerOverlay \
-    PlatformThemesStub \
-    ThemePicker
+    ThemePicker \
+    ThemesStub
