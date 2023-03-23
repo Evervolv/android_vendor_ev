@@ -13,7 +13,7 @@
 // limitations under the License.
 
 runtime_resource_overlay {
-    name: "PlatformLauncher3Overlay",
+    name: "EVLauncher3Overlay",
     product_specific: true,
     sdk_version: "current",
 }

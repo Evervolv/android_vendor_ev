@@ -13,7 +13,7 @@
 // limitations under the License.
 
 runtime_resource_overlay {
-    name: "PixelDocumentsUIOverlay",
+    name: "EVDocumentsUIOverlay",
     product_specific: true,
     sdk_version: "current",
 }
