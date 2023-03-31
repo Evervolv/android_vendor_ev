@@ -31,21 +31,11 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
-    EVDeviceConfigOverlay \
-    EVDialerOverlay \
-    EVDocumentsUIOverlay \
-    EVIconLoaderOverlay \
-    EVLauncher3Overlay \
-    EVPlatformOverlay \
-    EVSettingsOverlay \
-    EVSettingsProviderOverlay \
-    EVSystemUIOverlay
+    PixelDocumentsUIOverlay \
+    PixelSettingsOverlay \
+    PlatformLauncher3Overlay
 
 # Themes
-include $(SRC_EVERVOLV_DIR)/config/overlays.mk
-
 PRODUCT_PACKAGES += \
     Backgrounds \
-    ThemePicker \
-    ThemesStub \
     WallpaperPicker

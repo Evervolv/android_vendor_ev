@@ -93,6 +93,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 # Overlays
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay/no-rro
 PRODUCT_PACKAGE_OVERLAYS += \
+    $(SRC_EVERVOLV_DIR)/overlay/common \
     $(SRC_EVERVOLV_DIR)/overlay/no-rro
 
 # Permissions

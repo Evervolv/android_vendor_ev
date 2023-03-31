@@ -12,3 +12,10 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Sound
 include $(SRC_EVERVOLV_DIR)/config/aosp_audio.mk
+
+# Themes
+include $(SRC_EVERVOLV_DIR)/config/overlays.mk
+
+PRODUCT_PACKAGES += \
+    ThemePicker \
+    ThemesStub
