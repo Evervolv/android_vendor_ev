@@ -38,7 +38,8 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 PRODUCT_PACKAGES += \
     FrameworkResEvervolv \
     DocumentsUIResEvervolv \
-    Launcher3ResEvervolv
+    Launcher3ResEvervolv \
+    NavigationBarMode2ButtonOverlay
 
 ifeq ($(WITH_SNET_BYPASS),true)
 PRODUCT_PACKAGES += \
