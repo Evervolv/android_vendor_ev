@@ -21,11 +21,11 @@ import sys
 def main(argv):
     reload(sys)
     sys.setdefaultencoding('utf8')
-    original_file = 'vendor/ev/prebuilt/common/etc/apns-conf.xml'
 
-    if len(argv) == 3:
-        output_file_path = argv[1]
-        custom_override_file = argv[2]
+    if len(argv) == 4:
+        original_file = argv[1]
+        output_file_path = argv[2]
+        custom_override_file = argv[3]
     else:
         raise ValueError("Wrong number of arguments %s" % len(argv))
 
