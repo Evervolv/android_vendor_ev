@@ -49,5 +49,8 @@
 
         <!-- Enable protected by android banner -->
         <item>privacy/safety_protection_enabled=true</item>
+
+        <!-- Show notification volume control slider separate from ring -->
+        <item>systemui/volume_separate_notification=true</item>
     </string-array>
 </resources>
