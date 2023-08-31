@@ -28,6 +28,7 @@
     <string-array name="config_pluginAllowlist" translatable="false">
         <item>com.android.systemui</item>
         <item>com.android.systemui.plugin.globalactions.wallet</item>
+        <item>org.lineageos.settings.device</item>
     </string-array>
 
     <!-- Icons that don't show in a collapsed non-keyguard statusbar -->
