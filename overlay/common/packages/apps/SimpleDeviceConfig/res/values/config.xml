@@ -53,5 +53,9 @@
 
         <!-- Disable always screen on -->
         <item>attention_manager_service/keep_screen_on_enabled=false</item>
+
+        <!-- For SeedVault Backup -->
+        <item>backup_and_restore/backup_transport_future_timeout_millis=900000</item>
+        <item>backup_and_restore/backup_transport_callback_timeout_millis=900000</item>
     </string-array>
 </resources>
