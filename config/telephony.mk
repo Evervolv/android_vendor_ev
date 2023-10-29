@@ -1,3 +1,8 @@
+# GMS
+ifeq ($(WITH_GMS),true)
+WITH_GMS_COMMS_SUITE := true
+endif
+
 # Telephony packages
 PRODUCT_PACKAGES += \
     apns-conf.xml \
