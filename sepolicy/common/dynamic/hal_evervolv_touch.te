@@ -1,5 +1,0 @@
-# HwBinder IPC from client to server
-binder_call(hal_evervolv_touch_client, hal_evervolv_touch_server)
-
-add_hwservice(hal_evervolv_touch_server, hal_evervolv_touch_hwservice)
-allow hal_evervolv_touch_client hal_evervolv_touch_hwservice:hwservice_manager find;

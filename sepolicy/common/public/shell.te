@@ -1,1 +1,0 @@
-dontauditxperm shell adbd:unix_stream_socket ioctl unpriv_tty_ioctls;

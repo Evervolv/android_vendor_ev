@@ -1,2 +1,0 @@
-allow bootanim mediametrics_service:service_manager find;
-binder_call(bootanim, mediametrics)

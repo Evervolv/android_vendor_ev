@@ -1,5 +1,0 @@
-# Allow LiveDisplay to access vendor display property
-get_prop(hal_evervolv_livedisplay_sysfs, vendor_display_prop)
-
-# Allow LiveDisplay to read files in sysfs_graphics
-r_dir_file(hal_evervolv_livedisplay_sysfs, sysfs_graphics)

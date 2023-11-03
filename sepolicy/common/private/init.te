@@ -1,2 +1,0 @@
-allow init sysfs_dm:dir relabelfrom;
-allow init sysfs_dm:file relabelfrom;
