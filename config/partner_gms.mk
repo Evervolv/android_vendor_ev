@@ -3,16 +3,19 @@ ifeq ($(WITH_GMS),true)
         GMS_PATH ?= vendor/partner_gms-tv
     else ifeq ($(PRODUCT_IS_AUTO),true)
         GMS_PATH ?= vendor/partner_gms-car
+    else ifneq ($(wildcard vendor/google/gms/config.mk),)
+        GMS_PATH ?= vendor/google
     else
         GMS_PATH ?= vendor/partner_gms
     endif
+else
+    GMS_PATH :=
+endif
 
-    ifeq ($(PRODUCT_IS_ATV),true)
-        MAINLINE_MODULES_PATH ?= $(GMS_PATH)
-    else
-        MAINLINE_MODULES_PATH ?= vendor/partner_modules
-    endif
-
+ifeq ($(GMS_PATH),vendor/google)
+    $(call inherit-product, $(GMS_PATH)/gms/config.mk)
+    $(call inherit-product-if-exists, $(GMS_PATH)/pixel/config.mk)
+else ifneq ($(GMS_PATH),)
     # Specify the GMS makefile you want to use, for example:
     #   - fi.mk             - Project Fi
     #   - gms.mk            - default GMS
@@ -22,6 +25,12 @@ ifeq ($(WITH_GMS),true)
     #   - gms_64bit_only.mk - devices supporting 64-bit only
     #   - gms_minimal.mk    - minimal GMS
     GMS_MAKEFILE ?= gms.mk
+
+    ifeq ($(PRODUCT_IS_ATV),true)
+        MAINLINE_MODULES_PATH ?= $(GMS_PATH)
+    else
+        MAINLINE_MODULES_PATH ?= vendor/partner_modules
+    endif
 
     # Specify the mainline module makefile you want to use, for example:
     #   - mainline_modules.mk              - updatable apex
@@ -41,4 +50,5 @@ ifeq ($(WITH_GMS),true)
     else
         $(call inherit-product-if-exists, $(MAINLINE_MODULES_PATH)/build/$(MAINLINE_MODULES_MAKEFILE))
     endif
+
 endif
