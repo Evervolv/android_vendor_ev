@@ -38,7 +38,6 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 PRODUCT_PACKAGES += \
     DefaultWallpaperOverlay \
     PixelDocumentsUIOverlay \
-    PixelSettingsOverlay \
     PlatformLauncher3Overlay
 
 # Themes
