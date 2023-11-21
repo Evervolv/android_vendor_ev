@@ -36,9 +36,14 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
-    DefaultWallpaperOverlay \
-    PixelDocumentsUIOverlay \
-    PlatformLauncher3Overlay
+    FrameworkResEvervolv \
+    DocumentsUIResEvervolv \
+    Launcher3ResEvervolv
+
+ifeq ($(WITH_SNET_BYPASS),true)
+PRODUCT_PACKAGES += \
+    FrameworkResGmsCompat
+endif
 
 # Themes
 PRODUCT_PACKAGES += \

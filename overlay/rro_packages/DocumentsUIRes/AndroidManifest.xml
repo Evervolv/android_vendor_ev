@@ -14,10 +14,10 @@
      limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.gmscompat.overlay">
+    package="com.evervolv.documentsui.overlay">
 
     <overlay
         android:isStatic="true"
         android:priority="100"
-        android:targetPackage="android" />
+        android:targetPackage="com.android.documentsui" />
 </manifest>

@@ -13,7 +13,6 @@
 // limitations under the License.
 
 runtime_resource_overlay {
-    name: "AttestationOverlay",
+    name: "FrameworkResEvervolv",
     product_specific: true,
-    sdk_version: "current",
 }

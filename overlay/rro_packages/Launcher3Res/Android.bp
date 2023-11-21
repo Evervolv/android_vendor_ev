@@ -13,7 +13,6 @@
 // limitations under the License.
 
 runtime_resource_overlay {
-    name: "DefaultWallpaperOverlay",
+    name: "Launcher3ResEvervolv",
     product_specific: true,
-    sdk_version: "current",
 }
