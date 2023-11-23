@@ -26,10 +26,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Etar
 
-# Fonts
-$(call inherit-product-if-exists, external/google-fonts/lato/fonts.mk)
-$(call inherit-product-if-exists, external/google-fonts/rubik/fonts.mk)
-
 # Media
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     media.recorder.show_manufacturer_and_model=true
@@ -46,7 +42,10 @@ PRODUCT_PACKAGES += \
     FrameworkResGmsCompat
 endif
 
+# Sound
+include $(SRC_EVERVOLV_DIR)/config/aosp_audio.mk
+
 # Themes
+include $(SRC_EVERVOLV_DIR)/config/overlays.mk
 PRODUCT_PACKAGES += \
-    Backgrounds \
-    WallpaperPicker
+    Backgrounds

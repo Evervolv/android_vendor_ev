@@ -1,3 +1,27 @@
+# App icon shapes
+PRODUCT_PACKAGES += \
+    IconShapePebbleOverlay \
+    IconShapeRoundedRectOverlay \
+    IconShapeSquareOverlay \
+    IconShapeSquircleOverlay \
+    IconShapeTaperedRectOverlay \
+    IconShapeTeardropOverlay \
+    IconShapeVesselOverlay
+
+# Black theme
+PRODUCT_PACKAGES += \
+    PlatformBlackTheme
+
+# Fonts
+$(call inherit-product-if-exists, external/google-fonts/lato/fonts.mk)
+$(call inherit-product-if-exists, external/google-fonts/rubik/fonts.mk)
+
+PRODUCT_PACKAGES += \
+    fonts_customization.xml \
+    FontLatoOverlay \
+    FontRubikOverlay
+
+# Status bar icons
 PRODUCT_PACKAGES += \
     IconPackCircularAndroidOverlay \
     IconPackCircularLauncherOverlay \
@@ -22,23 +46,10 @@ PRODUCT_PACKAGES += \
     IconPackVictorAndroidOverlay \
     IconPackVictorLauncherOverlay \
     IconPackVictorSettingsOverlay \
-    IconPackVictorSystemUIOverlay \
-    IconShapePebbleOverlay \
-    IconShapeRoundedRectOverlay \
-    IconShapeSquareOverlay \
-    IconShapeSquircleOverlay \
-    IconShapeTaperedRectOverlay \
-    IconShapeTeardropOverlay \
-    IconShapeVesselOverlay \
-    PlatformBlackAccent \
-    PlatformBlueAccent \
-    PlatformCyanAccent \
-    PlatformGreenAccent \
-    PlatformOrangeAccent \
-    PlatformPinkAccent \
-    PlatformRedAccent \
-    PlatformYellowAccent \
-    PlatformBlackTheme \
-    fonts_customization.xml \
-    FontLatoOverlay \
-    FontLatoOverlay
+    IconPackVictorSystemUIOverlay
+
+# ThemePicker
+PRODUCT_PACKAGES += \
+    RepainterServicePriv \
+    ThemePicker \
+    ThemesStub
