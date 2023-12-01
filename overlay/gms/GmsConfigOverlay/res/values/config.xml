@@ -21,14 +21,13 @@
          Please refer to the configuration in com/android/internal/util/PropImitationFactory.java
          to determine which device to use with this config. -->
     <string-array name="config_certifiedBuildProperties" translatable="false">
-        <item>PRODUCT:bullhead</item>
-        <item>DEVICE:bullhead</item>
-        <item>MANUFACTURER:LGE</item>
-        <item>BRAND:google</item>
-        <item>MODEL:Nexus 5X</item>
-        <item>FINGERPRINT:google/bullhead/bullhead:8.0.0/OPR6.170623.013/4283548:user/release-keys</item>
-        <item>ID:OPR6.170623.013</item>
-        <item>VERSION.DEVICE_INITIAL_SDK_INT:23</item>
+        <item>PRODUCT:griffin_retcn</item>
+        <item>DEVICE:griffin</item>
+        <item>MANUFACTURER:motorola</item>
+        <item>BRAND:motorola</item>
+        <item>MODEL:XT1650-05</item>
+        <item>FINGERPRINT:motorola/griffin_retcn/griffin:6.0.1/MCC24.246-37/42:user/release-keys</item>
+        <item>VERSION.SECURITY_PATCH:2016-07-01</item>
     </string-array>
 
 </resources>
