@@ -99,6 +99,9 @@ PRODUCT_PACKAGE_OVERLAYS += \
     $(SRC_EVERVOLV_DIR)/overlay/common \
     $(SRC_EVERVOLV_DIR)/overlay/no-rro
 
+PRODUCT_COPY_FILES += \
+    $(SRC_EVERVOLV_DIR)/overlay/partition_order.xml:$(TARGET_COPY_OUT_PRODUCT)/overlay/partition_order.xml
+
 # Rescue
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.disable_rescue=true
