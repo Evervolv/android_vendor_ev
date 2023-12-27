@@ -21,6 +21,10 @@ PRODUCT_PACKAGES += \
     FontLatoOverlay \
     FontRubikOverlay
 
+# GMS
+PRODUCT_PACKAGES += \
+    FrameworkResGmsCompat
+
 # Status bar icons
 PRODUCT_PACKAGES += \
     IconPackCircularAndroidOverlay \
