@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <bool name="config_deviceUseAttestationHooks">true</bool>
+    <!-- Configuration that imitates properties from the device of choice.
+         Please refer to the configuration in com/android/internal/util/PropImitationFactory.java
+         to determine which device to use with this config. -->
+    <string-array name="config_certifiedBuildProperties" translatable="false">
+        <item>PRODUCT:bullhead</item>
+        <item>DEVICE:bullhead</item>
+        <item>MANUFACTURER:LGE</item>
+        <item>BRAND:google</item>
+        <item>MODEL:Nexus 5X</item>
+        <item>FINGERPRINT:google/bullhead/bullhead:8.0.0/OPR6.170623.013/4283548:user/release-keys</item>
+        <item>ID:OPR6.170623.013</item>
+        <item>VERSION.DEVICE_INITIAL_SDK_INT:23</item>
+    </string-array>
 </resources>
