@@ -1,62 +1,35 @@
 # Inherit common stuff
-$(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common.mk)
+$(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common_mobile.mk)
 
 # Audio
 PRODUCT_PACKAGES += \
-    AudioFX \
     Eleven \
     Recorder
 
-# Browser
+ifneq ($(TARGET_EXCLUDES_AUDIOFX),true)
 PRODUCT_PACKAGES += \
-    Jelly
-
-# Calculator
-PRODUCT_PACKAGES += \
-    ExactCalculator
+    AudioFX
+endif
 
 # Camera
+ifneq ($(PRODUCT_NO_CAMERA),true)
 PRODUCT_PACKAGES += \
     Aperture
-
-# Charger
-PRODUCT_PACKAGES += \
-    charger_res_images \
-    lineage_charger_animation \
-    lineage_charger_animation_vendor
-
-# DeviceConfig
-PRODUCT_PACKAGES += \
-    SimpleDeviceConfig
+endif
 
 # Email
 PRODUCT_PACKAGES += \
     Etar
 
-# Media
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    media.recorder.show_manufacturer_and_model=true
+# Fonts
+$(call inherit-product-if-exists, external/google-fonts/lato/fonts.mk)
+$(call inherit-product-if-exists, external/google-fonts/rubik/fonts.mk)
 
-# Overlays
 PRODUCT_PACKAGES += \
-    FrameworkResEvervolv \
-    DocumentsUIResEvervolv \
-    Launcher3ResEvervolv \
-    NavigationBarMode2ButtonOverlay
-
-ifeq ($(WITH_SNET_BYPASS),true)
-PRODUCT_PACKAGES += \
-    FrameworkResGmsCompat
-endif
+    fonts_customization.xml \
+    FontLatoOverlay \
+    FontRubikOverlay
 
 # Permissions
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.control_privapp_permissions=enforce
-
-# Sound
-include $(SRC_EVERVOLV_DIR)/config/aosp_audio.mk
-
-# Themes
-include $(SRC_EVERVOLV_DIR)/config/overlays.mk
-PRODUCT_PACKAGES += \
-    Backgrounds

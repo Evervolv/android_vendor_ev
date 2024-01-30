@@ -1,31 +1,29 @@
-# App icon shapes
-PRODUCT_PACKAGES += \
-    IconShapePebbleOverlay \
-    IconShapeRoundedRectOverlay \
-    IconShapeSquareOverlay \
-    IconShapeSquircleOverlay \
-    IconShapeTaperedRectOverlay \
-    IconShapeTeardropOverlay \
-    IconShapeVesselOverlay
+# Inherit common stuff
+$(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common.mk)
 
-# Black theme
+# Apps
 PRODUCT_PACKAGES += \
-    PlatformBlackTheme
-
-# Fonts
-$(call inherit-product-if-exists, external/google-fonts/lato/fonts.mk)
-$(call inherit-product-if-exists, external/google-fonts/rubik/fonts.mk)
+    Backgrounds \
+    ExactCalculator \
+    Jelly
 
 PRODUCT_PACKAGES += \
-    fonts_customization.xml \
-    FontLatoOverlay \
-    FontRubikOverlay
+    Launcher3ResEvervolv
 
-# GMS
+# Audio
+include $(SRC_EVERVOLV_DIR)/config/aosp_audio.mk
+
+# Charger
 PRODUCT_PACKAGES += \
-    FrameworkResGmsCompat
+    charger_res_images
 
-# Status bar icons
+ifneq ($(WITH_LINEAGE_CHARGER),false)
+PRODUCT_PACKAGES += \
+    lineage_charger_animation \
+    lineage_charger_animation_vendor
+endif
+
+# Customizations
 PRODUCT_PACKAGES += \
     IconPackCircularAndroidOverlay \
     IconPackCircularLauncherOverlay \
@@ -50,10 +48,26 @@ PRODUCT_PACKAGES += \
     IconPackVictorAndroidOverlay \
     IconPackVictorLauncherOverlay \
     IconPackVictorSettingsOverlay \
-    IconPackVictorSystemUIOverlay
+    IconPackVictorSystemUIOverlay \
+    IconShapePebbleOverlay \
+    IconShapeRoundedRectOverlay \
+    IconShapeSquareOverlay \
+    IconShapeSquircleOverlay \
+    IconShapeTaperedRectOverlay \
+    IconShapeTeardropOverlay \
+    IconShapeVesselOverlay \
+    NavigationBarMode2ButtonOverlay
 
-# ThemePicker
+# Media
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    media.recorder.show_manufacturer_and_model=true
+
+# SystemUI plugins
 PRODUCT_PACKAGES += \
-    RepainterServicePriv \
+    QuickAccessWallet
+
+# Themes
+PRODUCT_PACKAGES += \
+    PlatformBlackTheme \
     ThemePicker \
     ThemesStub

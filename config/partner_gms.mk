@@ -52,3 +52,7 @@ else ifneq ($(GMS_PATH),)
     endif
 
 endif
+
+# Overlays
+PRODUCT_PACKAGES += \
+    FrameworkResGmsCompat

@@ -69,6 +69,10 @@ PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD ?= false
 PRODUCT_MINIMIZE_JAVA_DEBUG_INFO ?= true
 endif
 
+# DeviceConfig
+PRODUCT_PACKAGES += \
+    SimpleDeviceConfig
+
 # Downgrade
 ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -101,6 +105,11 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay/no-rro
 PRODUCT_PACKAGE_OVERLAYS += \
     $(SRC_EVERVOLV_DIR)/overlay/common \
     $(SRC_EVERVOLV_DIR)/overlay/no-rro
+
+# Overlays
+PRODUCT_PACKAGES += \
+    FrameworkResEvervolv \
+    DocumentsUIResEvervolv
 
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/overlay/partition_order.xml:$(TARGET_COPY_OUT_PRODUCT)/overlay/partition_order.xml
