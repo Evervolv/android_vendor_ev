@@ -5,6 +5,7 @@ $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common.mk)
 PRODUCT_PACKAGES += \
     Backgrounds \
     ExactCalculator \
+    Glimpse \
     Jelly
 
 PRODUCT_PACKAGES += \
