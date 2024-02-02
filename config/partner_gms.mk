@@ -3,19 +3,21 @@ ifeq ($(WITH_GMS),true)
         GMS_PATH ?= vendor/partner_gms-tv
     else ifeq ($(PRODUCT_IS_AUTO),true)
         GMS_PATH ?= vendor/partner_gms-car
-    else ifneq ($(wildcard vendor/google/gms/config.mk),)
-        GMS_PATH ?= vendor/google
     else
         GMS_PATH ?= vendor/partner_gms
+    endif
+    ifneq ($(wildcard vendor/google/gms/config.mk),)
+        GMS_PATH :=
     endif
 else
     GMS_PATH :=
 endif
 
-ifeq ($(GMS_PATH),vendor/google)
-    $(call inherit-product, $(GMS_PATH)/gms/config.mk)
-    $(call inherit-product-if-exists, $(GMS_PATH)/pixel/config.mk)
-else ifneq ($(GMS_PATH),)
+ifneq ($(GMS_PATH),)
+    # Dexpreopt
+    # Don't dexpreopt prebuilts. (For GMS).
+    DONT_DEXPREOPT_PREBUILTS := true
+
     # Specify the GMS makefile you want to use, for example:
     #   - fi.mk             - Project Fi
     #   - gms.mk            - default GMS
@@ -51,6 +53,14 @@ else ifneq ($(GMS_PATH),)
         $(call inherit-product-if-exists, $(MAINLINE_MODULES_PATH)/build/$(MAINLINE_MODULES_MAKEFILE))
     endif
 
+endif
+
+ifeq ($(WITH_GMS),true)
+    ifeq ($(GMS_PATH),)
+        $(call inherit-product, vendor/google/gms/config.mk)
+        $(call inherit-product-if-exists, vendor/google/pixel/config.mk)
+        $(call inherit-product-if-exists, vendor/mainline_modules/config.mk)
+    endif
 endif
 
 # Overlays
