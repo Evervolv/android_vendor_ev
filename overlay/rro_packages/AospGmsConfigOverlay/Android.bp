@@ -13,6 +13,6 @@
 // limitations under the License.
 
 runtime_resource_overlay {
-    name: "FrameworkResGmsCompat",
+    name: "AospGmsConfigOverlay",
     product_specific: true,
 }

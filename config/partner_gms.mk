@@ -1,3 +1,7 @@
+# Overlays
+PRODUCT_PACKAGES += \
+    AospGmsConfigOverlay
+
 ifeq ($(WITH_GMS),true)
     ifeq ($(PRODUCT_IS_ATV),true)
         GMS_PATH ?= vendor/partner_gms-tv
@@ -62,7 +66,3 @@ ifeq ($(WITH_GMS),true)
         $(call inherit-product-if-exists, vendor/mainline_modules/config.mk)
     endif
 endif
-
-# Overlays
-PRODUCT_PACKAGES += \
-    FrameworkResGmsCompat

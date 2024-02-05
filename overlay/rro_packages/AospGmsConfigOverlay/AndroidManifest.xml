@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="android.gmscompat.overlay">
+    package="com.android.overlay.gmscompat">
 
     <overlay
         android:isStatic="true"
