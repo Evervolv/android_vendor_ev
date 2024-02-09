@@ -74,7 +74,7 @@
         <item>MANUFACTURER:Google</item>
         <item>BRAND:google</item>
         <item>MODEL:Pixel 8 Pro</item>
-        <item>FINGERPRINT:google/husky/husky:14/UQ1A.240105.004/11206848:user/release-keys</item>
+        <item>FINGERPRINT:google/husky/husky:14/UQ1A.240205.004/11269751:user/release-keys</item>
     </string-array>
 
     <string-array name="config_pixelInformationQcom" translatable="false">
@@ -83,7 +83,7 @@
         <item>MANUFACTURER:Google</item>
         <item>BRAND:google</item>
         <item>MODEL:Pixel 5</item>
-        <item>FINGERPRINT:google/redfin/redfin:14/UP1A.231105.001/10817346:user/release-keys</item>
+        <item>FINGERPRINT:google/redfin/redfin:14/UP1A.231105.001.B2/11260668:user/release-keys</item>
     </string-array>
 
     <string-array name="config_pixelInformationLegacy" translatable="false">
