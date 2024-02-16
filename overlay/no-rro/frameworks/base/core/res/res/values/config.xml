@@ -24,6 +24,9 @@
      entries do not follow the convention, but all new entries should. -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- The name of the package that will hold the system gallery role. -->
+    <string name="config_systemGallery" translatable="false">org.lineageos.glimpse</string>
+
     <!-- The type of the light sensor to be used by the display framework for things like
          auto-brightness. If unset, then it just gets the default sensor of type TYPE_LIGHT. -->
     <string name="config_displayLightSensorType" translatable="false">android.sensor.light</string>
