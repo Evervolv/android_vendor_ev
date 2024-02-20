@@ -13,6 +13,6 @@
 // limitations under the License.
 
 runtime_resource_overlay {
-    name: "AospGmsConfigOverlay",
+    name: "PixelFeaturesOverlay",
     product_specific: true,
 }

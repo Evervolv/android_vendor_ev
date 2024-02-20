@@ -1,6 +1,14 @@
 # Overlays
 PRODUCT_PACKAGES += \
-    AospGmsConfigOverlay
+    GmsConfigOverlay
+
+ifneq ($(WITH_GMS_PIXEL),true)
+PRODUCT_PACKAGES += \
+    CoreFeaturesOverlay
+else
+PRODUCT_PACKAGES += \
+    PixelFeaturesOverlay
+endif
 
 ifeq ($(WITH_GMS),true)
     ifeq ($(PRODUCT_IS_ATV),true)

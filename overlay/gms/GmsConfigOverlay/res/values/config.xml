@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- The list of components which should be automatically disabled for all devices. -->
+    <string-array name="config_globallyDisabledComponents" translatable="false">
+        <item>com.google.android.as/com.google.intelligence.sense.ambientmusic.history.AddShortcutActivity</item>
+        <item>com.google.android.as/com.google.intelligence.sense.ambientmusic.history.HistoryContentProvider</item>
+        <item>com.google.android.as/com.google.intelligence.sense.ambientmusic.history.HistoryActivity</item>
+        <item>com.google.android.as/com.google.intelligence.sense.ambientmusic.AmbientMusicSettingsActivity</item>
+        <item>com.google.android.as/com.google.intelligence.sense.ambientmusic.AmbientMusicNotificationsSettingsActivity</item>
+        <item>com.google.android.as/com.google.intelligence.sense.ambientmusic.AmbientMusicSetupWizardActivity</item>
+        <item>com.google.android.gms/com.google.android.gms.update.phone.PopupDialog</item>
+        <item>com.google.android.gms/com.google.android.gms.update.OtaSuggestionSummaryProvider</item>
+        <item>com.google.android.gms/com.google.android.gms.update.SystemUpdateActivity</item>
+        <item>com.google.android.gms/com.google.android.gms.update.SystemUpdateGcmTaskService</item>
+        <item>com.google.android.gms/com.google.android.gms.update.SystemUpdateService</item>
+        <item>com.google.android.settings.intelligence/com.google.android.settings.intelligence.modules.batterywidget.impl.BatteryAppWidgetProvider</item>
+        <item>com.google.android.settings.intelligence/com.google.android.settings.intelligence.modules.batterywidget.impl.BatteryWidgetPromoActivity</item>
+    </string-array>
+
+    <!-- Configuration that imitates properties from the device of choice.
+         Please refer to the configuration in com/android/internal/util/PropImitationFactory.java
+         to determine which device to use with this config. -->
+    <string-array name="config_certifiedBuildProperties" translatable="false">
+        <item>PRODUCT:bullhead</item>
+        <item>DEVICE:bullhead</item>
+        <item>MANUFACTURER:LGE</item>
+        <item>BRAND:google</item>
+        <item>MODEL:Nexus 5X</item>
+        <item>FINGERPRINT:google/bullhead/bullhead:8.0.0/OPR6.170623.013/4283548:user/release-keys</item>
+        <item>ID:OPR6.170623.013</item>
+        <item>VERSION.DEVICE_INITIAL_SDK_INT:23</item>
+    </string-array>
+
+</resources>
