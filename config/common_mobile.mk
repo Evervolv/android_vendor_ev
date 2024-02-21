@@ -1,6 +1,9 @@
 # Inherit common stuff
 $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common.mk)
 
+# Include AOSP audio files
+$(call inherit-product-if-exists, frameworks/base/data/sounds/AudioPackage14.mk)
+
 # Apps
 PRODUCT_PACKAGES += \
     Backgrounds \
