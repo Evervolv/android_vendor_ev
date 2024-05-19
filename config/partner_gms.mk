@@ -1,15 +1,3 @@
-# Overlays
-PRODUCT_PACKAGES += \
-    GmsConfigOverlay
-
-ifneq ($(WITH_GMS_PIXEL),true)
-PRODUCT_PACKAGES += \
-    CoreFeaturesOverlay
-else
-PRODUCT_PACKAGES += \
-    PixelFeaturesOverlay
-endif
-
 ifeq ($(WITH_GMS),true)
     ifeq ($(PRODUCT_IS_ATV),true)
         GMS_PATH ?= vendor/partner_gms-tv
@@ -64,7 +52,6 @@ ifneq ($(GMS_PATH),)
     else
         $(call inherit-product-if-exists, $(MAINLINE_MODULES_PATH)/build/$(MAINLINE_MODULES_MAKEFILE))
     endif
-
 endif
 
 ifeq ($(WITH_GMS),true)
