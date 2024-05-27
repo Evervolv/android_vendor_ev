@@ -61,3 +61,10 @@ ifeq ($(WITH_GMS),true)
         $(call inherit-product-if-exists, vendor/mainline_modules/config.mk)
     endif
 endif
+
+# Certified props
+PRODUCT_PACKAGES += \
+    CertifiedPropsOverlay
+
+PRODUCT_COPY_FILES += \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/overlay/config-system_ext.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/overlay/config/config.xml
