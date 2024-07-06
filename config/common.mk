@@ -122,7 +122,13 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     $(SRC_EVERVOLV_DIR)/build/target/product/security/lineage
 
--include vendor/ev-priv/keys/keys.mk
+ifneq ($(wildcard vendor/ev-priv/keys/keys.mk),)
+    include vendor/ev-priv/keys/keys.mk
+else ifneq ($(wildcard vendor/lineage-priv/keys/keys.mk),)
+    include vendor/lineage-priv/keys/keys.mk
+else
+    include $(SRC_EVERVOLV_DIR)/build/target/product/certificate.mk
+endif
 
 # Storage manager
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
