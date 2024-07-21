@@ -9,7 +9,8 @@ PRODUCT_PACKAGES += \
     Backgrounds \
     ExactCalculator \
     Glimpse \
-    Jelly
+    Jelly \
+    LatinIME
 
 PRODUCT_PACKAGES += \
     Launcher3ResEvervolv
