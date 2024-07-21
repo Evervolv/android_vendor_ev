@@ -1,5 +1,5 @@
-# Inherit common stuff
-$(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common_full.mk)
+# Inherit mobile full common stuff
+$(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common_mobile_full.mk)
 
 # Required packages
 PRODUCT_PACKAGES += \
