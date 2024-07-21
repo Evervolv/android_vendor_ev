@@ -19,10 +19,12 @@ prebuilt_etc_xml {
     name: "apns-conf.xml",
     product_specific: true,
     src: "common/etc/apns-conf.xml",
+    schema: ":apns-conf-schema",
 }
 
 prebuilt_etc_xml {
     name: "sensitive_pn.xml",
     product_specific: true,
     src: "common/etc/sensitive_pn.xml",
+    schema: ":spn-schema",
 }
