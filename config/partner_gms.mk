@@ -1,19 +1,39 @@
-ifeq ($(WITH_GMS),true)
-    ifeq ($(PRODUCT_IS_ATV),true)
-        GMS_PATH ?= vendor/partner_gms-tv
-    else ifeq ($(PRODUCT_IS_AUTO),true)
-        GMS_PATH ?= vendor/partner_gms-car
-    else
-        GMS_PATH ?= vendor/partner_gms
-    endif
-    ifneq ($(wildcard vendor/google/gms/config.mk),)
-        GMS_PATH :=
-    endif
+# Certified props
+PRODUCT_PACKAGES += \
+    CertifiedPropsOverlay
+
+PRODUCT_COPY_FILES += \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/overlay/config-system_ext.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/overlay/config/config.xml
+
+# Client ID
+ifeq ($(PRODUCT_IS_ATV),true)
+ifeq ($(PRODUCT_ATV_CLIENTID_BASE),)
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.oem.key1=ATV00100020
 else
-    GMS_PATH :=
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.oem.key1=$(PRODUCT_ATV_CLIENTID_BASE)
+endif
 endif
 
-ifneq ($(GMS_PATH),)
+ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.com.google.clientidbase=android-google
+else
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.com.google.clientidbase=$(PRODUCT_GMS_CLIENTID_BASE)
+endif
+
+# GMS
+ifeq ($(WITH_GMS),true)
+    ifeq ($(PRODUCT_IS_ATV),true)
+        GMS_PATH := vendor/partner_gms-tv
+    else ifeq ($(PRODUCT_IS_AUTO),true)
+        GMS_PATH := vendor/partner_gms-car
+    else
+        GMS_PATH := vendor/partner_gms
+    endif
+
     # Dexpreopt
     # Don't dexpreopt prebuilts. (For GMS).
     DONT_DEXPREOPT_PREBUILTS := true
@@ -53,18 +73,3 @@ ifneq ($(GMS_PATH),)
         $(call inherit-product-if-exists, $(MAINLINE_MODULES_PATH)/build/$(MAINLINE_MODULES_MAKEFILE))
     endif
 endif
-
-ifeq ($(WITH_GMS),true)
-    ifeq ($(GMS_PATH),)
-        $(call inherit-product, vendor/google/gms/config.mk)
-        $(call inherit-product-if-exists, vendor/google/pixel/config.mk)
-        $(call inherit-product-if-exists, vendor/mainline_modules/config.mk)
-    endif
-endif
-
-# Certified props
-PRODUCT_PACKAGES += \
-    CertifiedPropsOverlay
-
-PRODUCT_COPY_FILES += \
-    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/overlay/config-system_ext.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/overlay/config/config.xml
