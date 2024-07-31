@@ -36,8 +36,9 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/bin/backuptool_postinstall.sh
 endif
 
-# Branding
-include $(SRC_EVERVOLV_DIR)/config/branding.mk
+# Bootanimation
+TARGET_SCREEN_WIDTH ?= 1080
+TARGET_SCREEN_HEIGHT ?= 1920
 
 # Build date override
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
@@ -78,6 +79,22 @@ ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.ota.allow_downgrade=true
 endif
+
+# Evervolv
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
+    system/etc/permissions/com.evervolv.platform.xml \
+    system/framework/oat/%/com.evervolv.platform.odex \
+    system/framework/oat/%/com.evervolv.platform.vdex \
+    system/framework/com.evervolv.platform-res.apk \
+    system/framework/com.evervolv.platform.jar
+
+PRODUCT_PACKAGES += \
+    bootanimation.zip \
+    com.evervolv.platform-res \
+    com.evervolv.platform \
+    EVSettingsProvider \
+    EVToolbox \
+    EVUpdater
 
 # Filesystems
 PRODUCT_PACKAGES += \
