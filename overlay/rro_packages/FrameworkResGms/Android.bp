@@ -5,6 +5,6 @@
 //
 
 runtime_resource_overlay {
-    name: "CertifiedPropsOverlay",
+    name: "FrameworkResGms",
     system_ext_specific: true,
 }

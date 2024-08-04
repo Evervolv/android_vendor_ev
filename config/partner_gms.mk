@@ -1,6 +1,6 @@
 # Certified props
 PRODUCT_PACKAGES += \
-    CertifiedPropsOverlay
+    FrameworkResGms
 
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/overlay/config-system_ext.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/overlay/config/config.xml
