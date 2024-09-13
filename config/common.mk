@@ -97,6 +97,17 @@ PRODUCT_PACKAGES += \
     EVToolbox \
     EVUpdater
 
+EV_PLATFORM_SDK_VERSION ?= 4
+EV_PLATFORM_SDK_REV ?= 0
+EV_PLATFORM_VERSION ?= $(PLATFORM_VERSION)
+EV_PRODUCT_BUILD ?= userbuild
+
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.evervolv.build.version.plat.sdk=$(EV_PLATFORM_SDK_VERSION) \
+    ro.evervolv.build.version.plat.rev=$(EV_PLATFORM_SDK_REV) \
+    ro.evervolv.releasetype=$(EV_PRODUCT_BUILD) \
+    ro.evervolv.version=$(EV_PLATFORM_VERSION)
+
 # Filesystems
 PRODUCT_PACKAGES += \
     fsck.ntfs \
