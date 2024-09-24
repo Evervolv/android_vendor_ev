@@ -1,0 +1,10 @@
+//
+// SPDX-FileCopyrightText: 2020 Paranoid Android
+// SPDX-FileCopyrightText: 2024 Evervolv
+// SPDX-License-Identifier: Apache-2.0
+//
+
+runtime_resource_overlay {
+    name: "DefaultWallpaperOverlay",
+    product_specific: true,
+}

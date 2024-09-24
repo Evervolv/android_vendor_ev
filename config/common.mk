@@ -135,11 +135,6 @@ PRODUCT_PACKAGE_OVERLAYS += \
     $(SRC_EVERVOLV_DIR)/overlay/common \
     $(SRC_EVERVOLV_DIR)/overlay/no-rro
 
-# Overlays
-PRODUCT_PACKAGES += \
-    FrameworkResEvervolv \
-    DocumentsUIResEvervolv
-
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/overlay/partition_order.xml:$(TARGET_COPY_OUT_PRODUCT)/overlay/partition_order.xml
 
@@ -181,4 +176,8 @@ include $(SRC_EVERVOLV_DIR)/config/partner_gms.mk
 
 # Vendor restrictions
 PRODUCT_RESTRICT_VENDOR_FILES := false
+
+# Wallpaper
+PRODUCT_PACKAGES += \
+    DefaultWallpaperOverlay
 
