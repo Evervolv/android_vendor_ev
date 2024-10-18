@@ -40,9 +40,6 @@ endif
 TARGET_SCREEN_WIDTH ?= 1080
 TARGET_SCREEN_HEIGHT ?= 1920
 
-# Build date override
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-
 # Command line
 PRODUCT_PACKAGES += \
     bash \
