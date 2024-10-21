@@ -91,8 +91,7 @@ PRODUCT_PACKAGES += \
     com.evervolv.platform \
     EVSettingsProvider \
     EVSetupWizard \
-    EVToolbox \
-    EVUpdater
+    EVToolbox
 
 EV_PLATFORM_SDK_VERSION ?= 4
 EV_PLATFORM_SDK_REV ?= 0
