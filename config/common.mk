@@ -12,9 +12,6 @@ else
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.adb.secure=0
 endif
 
-# Allow duplicate files 
-BUILD_BROKEN_DUP_RULES ?= true
-
 # Backup tool
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
