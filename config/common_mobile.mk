@@ -6,6 +6,7 @@ $(call inherit-product-if-exists, frameworks/base/data/sounds/AudioPackage14.mk)
 
 # Apps
 PRODUCT_PACKAGES += \
+    AvatarPicker \
     Backgrounds \
     ExactCalculator \
     Glimpse \
