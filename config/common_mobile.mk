@@ -74,6 +74,6 @@ PRODUCT_PACKAGES += \
 
 # Themes
 PRODUCT_PACKAGES += \
-    PlatformBlackTheme \
+    LineageBlackTheme \
     ThemePicker \
     ThemesStub
