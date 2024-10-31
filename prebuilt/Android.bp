@@ -28,3 +28,10 @@ prebuilt_etc_xml {
     src: "common/etc/sensitive_pn.xml",
     schema: ":spn-schema",
 }
+
+prebuilt_etc_xml {
+    name: "evervolv-component-overrides.xml",
+    product_specific: true,
+    src: "common/etc/evervolv-component-overrides.xml",
+    sub_dir: "sysconfig",
+}

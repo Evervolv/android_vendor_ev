@@ -30,6 +30,10 @@ endif
 TARGET_SCREEN_WIDTH ?= 1080
 TARGET_SCREEN_HEIGHT ?= 1920
 
+# Component overrides
+PRODUCT_PACKAGES += \
+    evervolv-component-overrides.xml
+
 # DeviceConfig
 PRODUCT_PACKAGES += \
     SimpleDeviceConfig
