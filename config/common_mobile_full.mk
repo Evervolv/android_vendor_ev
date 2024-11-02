@@ -3,8 +3,8 @@ $(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common_mobile.mk)
 
 # Audio
 PRODUCT_PACKAGES += \
-    Eleven \
-    Recorder
+    Recorder \
+    Twelve
 
 ifneq ($(TARGET_EXCLUDES_AUDIOFX),true)
 PRODUCT_PACKAGES += \
