@@ -5,6 +5,13 @@
 PRODUCT_PACKAGES += \
     adb_root
 
+# ADB authentication, only applied on user builds.
+ifeq ($(TARGET_BUILD_VARIANT),user)
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.adb.secure=1
+else
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.adb.secure=0
+endif
+
 # Backup tool
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
@@ -34,13 +41,44 @@ TARGET_SCREEN_HEIGHT ?= 1920
 PRODUCT_PACKAGES += \
     evervolv-component-overrides.xml
 
+# Command line
+PRODUCT_PACKAGES += \
+    bash \
+    curl \
+    lib7z \
+    scp \
+    sftp \
+    ssh \
+    sshd \
+    sshd_config \
+    ssh-keygen \
+    start-ssh \
+    unzip \
+    zip
+
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
+    system/bin/curl
+
+PRODUCT_COPY_FILES += \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
+
+# Debug
+ifneq ($(TARGET_BUILD_VARIANT),user)
+PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD ?= false
+PRODUCT_MINIMIZE_JAVA_DEBUG_INFO ?= true
+endif
+
 # DeviceConfig
 PRODUCT_PACKAGES += \
     SimpleDeviceConfig
 
-# Evervolv
-EV_PRODUCT_BUILD ?= userbuild
+# Downgrade
+ifneq ($(TARGET_BUILD_VARIANT),user)
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.ota.allow_downgrade=true
+endif
 
+# Evervolv
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/etc/permissions/com.evervolv.platform.xml \
     system/framework/oat/%/com.evervolv.platform.odex \
@@ -56,15 +94,50 @@ PRODUCT_PACKAGES += \
     EVSetupWizard \
     EVToolbox
 
+EV_PLATFORM_SDK_VERSION ?= 4
+EV_PLATFORM_SDK_REV ?= 0
+EV_PLATFORM_VERSION ?= $(PLATFORM_VERSION)
+EV_PRODUCT_BUILD ?= userbuild
+
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.evervolv.build.version.plat.sdk=4 \
-    ro.evervolv.build.version.plat.rev=0
+    ro.evervolv.build.version.plat.sdk=$(EV_PLATFORM_SDK_VERSION) \
+    ro.evervolv.build.version.plat.rev=$(EV_PLATFORM_SDK_REV) \
+    ro.evervolv.releasetype=$(EV_PRODUCT_BUILD) \
+    ro.evervolv.version=$(EV_PLATFORM_VERSION)
+
+# Filesystems
+PRODUCT_PACKAGES += \
+    fsck.ntfs \
+    mkfs.ntfs \
+    mount.ntfs
+
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
+    system/bin/fsck.ntfs \
+    system/bin/mkfs.ntfs \
+    system/bin/mount.ntfs \
+    system/%/libfuse-lite.so \
+    system/%/libntfs-3g.so
+
+# Init
+PRODUCT_COPY_FILES += \
+    $(SRC_EVERVOLV_DIR)/prebuilt/common/etc/init/init.evervolv-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.evervolv-system_ext.rc
+
+# Keyguard
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    keyguard.no_require_sim=true
 
 # Overlays
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay/no-rro
 PRODUCT_PACKAGE_OVERLAYS += \
     $(SRC_EVERVOLV_DIR)/overlay/common \
     $(SRC_EVERVOLV_DIR)/overlay/no-rro
+
+PRODUCT_COPY_FILES += \
+    $(SRC_EVERVOLV_DIR)/overlay/partition_order.xml:$(TARGET_COPY_OUT_PRODUCT)/overlay/partition_order.xml
+
+# Rescue
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    persist.sys.disable_rescue=true
 
 # Security
 PRODUCT_EXTRA_RECOVERY_KEYS += \
@@ -78,23 +151,22 @@ else
     include $(SRC_EVERVOLV_DIR)/build/target/product/certificate.mk
 endif
 
-# System
+# Storage manager
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.storage_manager.enabled=true
+
+# StrictMode
+ifneq ($(TARGET_BUILD_VARIANT),eng)
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    persist.sys.strictmode.disable=true
+endif
+
+# SystemUI
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI
 
-ifneq ($(TARGET_BUILD_VARIANT),user)
-PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD ?= false
-PRODUCT_MINIMIZE_JAVA_DEBUG_INFO ?= true
-endif
-
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    dalvik.vm.systemuicompilerfilter=speed \
-    keyguard.no_require_sim=true \
-    persist.sys.disable_rescue=true \
-    persist.sys.strictmode.disable=$(if $(filter eng,$(TARGET_BUILD_VARIANT)),false,true) \
-    ro.adb.secure=$(if $(filter user,$(TARGET_BUILD_VARIANT)),1,0) \
-    ro.ota.allow_downgrade=$(if $(filter user,$(TARGET_BUILD_VARIANT)),false,true) \
-    ro.storage_manager.enabled=true
+    dalvik.vm.systemuicompilerfilter=speed
 
 # Vendor Mobile Services
 include $(SRC_EVERVOLV_DIR)/config/partner_gms.mk
