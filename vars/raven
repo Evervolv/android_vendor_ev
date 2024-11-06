@@ -6,25 +6,23 @@ device_repos=(
   device/google/raviole
 )
 
-readonly fbpk_version="v2"
-
 # Updated semi-manually via pixel/update-any-var.sh
 
-readonly build_id="AP2A.240605.024"
+readonly build_id="AP3A.241105.007"
 
 # Updated automatically via pixel/update-device-vars.sh
 
-readonly prev_aosp_tag="android-14.0.0_r34"
-readonly aosp_tag="android-14.0.0_r50"
+readonly prev_aosp_tag="android-15.0.0_r2"
+readonly aosp_tag="android-15.0.0_r4"
 
-readonly build_number="11860263"
+readonly build_number="12470370"
 
-readonly image_url="https://dl.google.com/dl/android/aosp/raven-ap2a.240605.024-factory-ec9948cb.zip"
-readonly image_sha256="ec9948cb9f9a6cf39a8392abe21d783ac2fadc3380de3f68663e12b3fe657c38"
+readonly image_url="https://dl.google.com/dl/android/aosp/raven-ap3a.241105.007-factory-647ea40c.zip"
+readonly image_sha256="647ea40c9cf31dac376f766c0537f865cce4d02a5d0cee157fc6efaedd7f5699"
 
-readonly flash_url="https://flash.android.com/build/11860263?target=raven-user&signed"
+readonly flash_url="https://flash.android.com/build/12470370?target=raven-user&signed"
 
-readonly ota_url="https://dl.google.com/dl/android/aosp/raven-ota-ap2a.240605.024-9fe0dd60.zip"
-readonly ota_sha256="9fe0dd60f1ef4a2e3f10cc253881f7cc5bb8226fa9664832ef8c92b6bf6761ef"
+readonly ota_url="https://dl.google.com/dl/android/aosp/raven-ota-ap3a.241105.007-b3dbe78d.zip"
+readonly ota_sha256="b3dbe78d4de2593bf867e8ba6685794b529f31a03a2a2f49ddd6348539a11c37"
 
-readonly security_patch="2024-06-05"
+readonly security_patch="2024-11-05"

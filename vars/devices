@@ -16,8 +16,4 @@ readonly devices=(
   bluejay
   raven
   oriole
-  barbet
-  redfin
-  bramble
-  sunfish
 )
