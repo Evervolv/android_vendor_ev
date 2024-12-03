@@ -30,6 +30,10 @@ PRODUCT_PACKAGES += \
     FontLatoOverlay \
     FontRubikOverlay
 
+# PDF Viewer
+PRODUCT_PACKAGES += \
+    Camelot
+
 # Permissions
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.control_privapp_permissions=enforce
