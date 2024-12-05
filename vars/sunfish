@@ -3,6 +3,7 @@
 # Usage: ${device_repos[@]}
 device_repos=(
   device/google/sunfish
+  device/google/sunfish-sepolicy
 )
 
 # Updated semi-manually via pixel/update-any-var.sh
@@ -10,6 +11,8 @@ device_repos=(
 readonly build_id="TQ3A.230805.001.S1"
 
 # Updated automatically via pixel/update-device-vars.sh
+
+readonly aosp_branch="android13-qpr3-s14-release"
 
 readonly prev_aosp_tag="android-13.0.0_r67"
 readonly aosp_tag="android-13.0.0_r83"

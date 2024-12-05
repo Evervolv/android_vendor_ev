@@ -3,7 +3,9 @@
 # Usage: ${device_repos[@]}
 device_repos=(
   device/google/redbull
+  device/google/redbull-sepolicy
   device/google/barbet
+  device/google/barbet-sepolicy
 )
 
 # Updated semi-manually via pixel/update-any-var.sh
@@ -11,6 +13,8 @@ device_repos=(
 readonly build_id="AP2A.240805.005"
 
 # Updated automatically via pixel/update-device-vars.sh
+
+readonly aosp_branch="android14-qpr3-release"
 
 readonly prev_aosp_tag="android-14.0.0_r52"
 readonly aosp_tag="android-14.0.0_r55"

@@ -1,3 +1,6 @@
 # Usage: ${kernel_repos[@]}
 readonly kernel_repos=(
+  kernel/google/gs201/private/gs-google
+  kernel/google/redbull
+  kernel/google/redbull/private/msm-google-modules/qcacld
 )
