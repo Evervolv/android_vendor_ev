@@ -11,6 +11,10 @@ $(call inherit-product-if-exists, device/lineage/atv/lineage_atv.mk)
 PRODUCT_PACKAGES += \
     LeanbackIME
 
+# Lineage packages
+PRODUCT_PACKAGES += \
+    Catapult
+
 # Permissions
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.control_privapp_permissions=log
