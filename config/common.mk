@@ -178,6 +178,9 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     debug.sf.enable_transaction_tracing=false
 endif
 
+# Userdata image build
+PRODUCT_BUILD_USERDATA_IMAGE := false
+
 # Vendor Mobile Services
 include $(SRC_EVERVOLV_DIR)/config/partner_gms.mk
 
