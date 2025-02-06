@@ -4,7 +4,6 @@
 device_repos=(
   # common repos in barbet
   device/google/redfin
-  device/google/redfin-sepolicy
 )
 
 # Updated semi-manually via pixel/update-any-var.sh
@@ -12,8 +11,6 @@ device_repos=(
 readonly build_id="UP1A.231105.001.B2"
 
 # Updated automatically via pixel/update-device-vars.sh
-
-readonly aosp_branch="android14-release"
 
 readonly prev_aosp_tag="android-14.0.0_r13"
 readonly aosp_tag="android-14.0.0_r28"

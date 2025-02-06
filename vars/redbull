@@ -2,7 +2,5 @@
 
 # Updated semi-manually via pixel/update-any-var.sh
 
-readonly kernel_branch="android-msm-redbull-4.19-android13-qpr3"
-
-readonly prev_kernel_tag=android-13.0.0_r0.111 # Aug 2023
-readonly kernel_tag=android-13.0.0_r0.122 # Sep 2023
+readonly prev_kernel_tag=android-14.0.0_r0.108 # Jul 2024
+readonly kernel_tag=android-14.0.0_r0.111 # Aug 2024

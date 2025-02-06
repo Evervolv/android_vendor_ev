@@ -3,7 +3,6 @@
 # Usage: ${device_repos[@]}
 device_repos=(
   device/google/coral
-  device/google/coral-sepolicy
 )
 
 # Updated semi-manually via pixel/update-any-var.sh
@@ -11,8 +10,6 @@ device_repos=(
 readonly build_id="TP1A.221005.002.B2"
 
 # Updated automatically via pixel/update-device-vars.sh
-
-readonly aosp_branch="unknown"
 
 readonly prev_aosp_tag="android-13.0.0_r7"
 readonly aosp_tag="android-13.0.0_r31"

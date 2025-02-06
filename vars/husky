@@ -3,9 +3,7 @@
 # Usage: ${device_repos[@]}
 device_repos=(
   device/google/zuma
-  device/google/zuma-sepolicy
   device/google/shusky
-  device/google/shusky-sepolicy
 )
 
 # Updated semi-manually via pixel/update-any-var.sh
@@ -13,8 +11,6 @@ device_repos=(
 readonly build_id="AP4A.241205.013"
 
 # Updated automatically via pixel/update-device-vars.sh
-
-readonly aosp_branch="android15-qpr1-release"
 
 readonly prev_aosp_tag="android-15.0.0_r4"
 readonly aosp_tag="android-15.0.0_r6"

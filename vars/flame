@@ -11,8 +11,6 @@ readonly build_id="TP1A.221005.002.B2"
 
 # Updated automatically via pixel/update-device-vars.sh
 
-readonly aosp_branch="unknown"
-
 readonly prev_aosp_tag="android-13.0.0_r7"
 readonly aosp_tag="android-13.0.0_r31"
 
