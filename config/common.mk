@@ -133,6 +133,9 @@ PRODUCT_PACKAGE_OVERLAYS += \
     $(SRC_EVERVOLV_DIR)/overlay/common \
     $(SRC_EVERVOLV_DIR)/overlay/no-rro
 
+PRODUCT_PACKAGES += \
+    PermissionControllerOverlay
+
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/overlay/partition_order.xml:$(TARGET_COPY_OUT_PRODUCT)/overlay/partition_order.xml
 
