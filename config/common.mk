@@ -84,8 +84,6 @@ endif
 
 # Evervolv
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
-    system/etc/permissions/com.evervolv.platform.xml \
-    system/etc/permissions/org.lineage.health.xml \
     system/framework/oat/%/com.evervolv.platform.odex \
     system/framework/oat/%/com.evervolv.platform.vdex \
     system/framework/com.evervolv.platform-res.apk \
