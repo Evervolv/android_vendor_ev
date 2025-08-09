@@ -136,6 +136,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     keyguard.no_require_sim=true
 
+# Lineage interfaces
+PRODUCT_PACKAGES += \
+    framework_compatibility_matrix.lineage.xml
+
 # Overlays
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += $(SRC_EVERVOLV_DIR)/overlay/no-rro
 PRODUCT_PACKAGE_OVERLAYS += \
