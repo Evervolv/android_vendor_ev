@@ -94,6 +94,7 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
 
 PRODUCT_PACKAGES += \
     bootanimation.zip \
+    bootanimation-dark.zip \
     com.evervolv.platform-res \
     com.evervolv.platform \
     EVSettingsProvider \
