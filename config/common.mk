@@ -152,6 +152,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(SRC_EVERVOLV_DIR)/overlay/partition_order.xml:$(TARGET_COPY_OUT_PRODUCT)/overlay/partition_order.xml
 
+# Provisioning
+PRODUCT_PRODUCT_PROPERTIES += \
+    remote_provisioning.enable_rkpd=true \
+    remote_provisioning.hostname=remoteprovisioning.googleapis.com
+
 # Rescue
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.disable_rescue=true
